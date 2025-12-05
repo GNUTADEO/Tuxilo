@@ -1,0 +1,29 @@
+services:
+  front_blog_dev:
+    container_name: blog_dev
+    env_file: ./.env
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    networks:
+      - blog_nginx
+    ports:
+      - "5173:5173"
+    profiles:
+      - dev
+    volumes:
+      - ./blog/src:/usr/src/app/src
+      - ./blog/static:/usr/src/app/static
+
+  front_blog:
+    image: spanishhans/apps:BLOG-Blog
+    build:
+      context: .
+      dockerfile: Dockerfile
+    profiles:
+      - prod
+
+networks:
+  blog_nginx:
+    name: blog_nginx_network
+    external: true
