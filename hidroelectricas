@@ -1,0 +1,165 @@
+Total de hidroeléctricas encontradas: 160
+
+Listado de hidroeléctricas:
+Values_Code               Values_Name Values_CompanyCode
+       2QBW                  EL POPAL               ISGG
+       2QEK                  SALTO II               ENDG
+       2QRL                LA REBUSCA               HZEG
+       2QV2                BAJO TULUA               EPSG
+       2R22                  LAGUNETA               ENDG
+       2S6U      AUTOG ARGOS EL CAIRO               EPMG
+       2S78              LA FRISOLERA               SGMG
+       2S8N              GUAVIO MENOR               ENDG
+       2S8U           PORCE III MENOR               EPMG
+       2S9L                 EL COCUYO               PCYG
+       2SDR                ALEJANDRIA               GALG
+       2SI1                MORRO AZUL               RENG
+       2SS2                   MAGALLO               HCCG
+       2SW1                   EL EDEN               PRIG
+       2T1L                 EL MOLINO               ISGG
+       2T4P                SAN MATIAS               ISGG
+       2T7D            AUTOG CANTAYUS               GECG
+       2TUT                   LUZMA I               ISGG
+       2TUV                  LUZMA II               ISGG
+       2U1G                LAS PALMAS               GNCG
+       2UPD              TEQUENDAMA 2               ENDG
+       2UPF              TEQUENDAMA 3               ENDG
+       2UPH              TEQUENDAMA 4               ENDG
+       2UPJ              TEQUENDAMA 1               ENDG
+       2UR5 SAN JOSE DE LA MONTAÑA II               GPEG
+       2UX3                AURES BAJO               ABAG
+       2V5G               JUAN GARCIA               GPEG
+       2WC5                MULATOS II               ESUG
+       2YIR           PCH LA LIBERTAD               EGEG
+       2YNA            HIDROBARRANCAS               HBCG
+       2ZCF    SAN ANDRES DE CUERQUIA               EPSG
+       3AFQ                    POCUNE               RTAG
+       3AQP                     CAUYA               SFEG
+       3CG9               LA CHORRERA               HEMG
+       3DXJ              LAS VIOLETAS               PCYG
+       3E9I                      ZEUS               CHZG
+       3ED1  AUTOG GRAN COLOMBIA GOLD               PRIG
+       3H2U                     TZ II               CTZG
+       3HDE             SAN BARTOLOME               PSBG
+       3HDG                    OIBITA               PSBG
+       3IRZ     LA CASCADA DE GRANADA               SFEG
+       4XQC   AUTOG GOLOSINAS TRULULU               EXIG
+       ABJ1   LA CASCADA ( ABEJORRAL)               GPEG
+       AFR1               AGUA FRESCA               ADCG
+       ALBG                     ALBAN               EPSG
+       ALTG                ALTO TULUA               EPSG
+       AMA1                    AMAIME               EPSG
+       AMF1                    AMALFI               HZEG
+       AMR1                   AMERICA               EPMG
+       ASN1                    ASNAZU               EPTG
+       AYR1               AUTOG AYURA               EPMG
+       BAR1                   BARROSO               ISGG
+       BLL3                     BELLO               EPMG
+       BLM1                  BELMONTE               EEPG
+       BSQ1                 EL BOSQUE               ERCG
+       BYN1                    BAYONA               CALG
+       CCN1                  COCONUCO               EMEG
+       CHBG                   BETANIA               ENDG
+       CHVR                    CHIVOR               CHVG
+       CIVG                   NIMA II               CIVG
+       CLDR                  CALDERAS               ISGG
+       CLL1             CARLOS LLERAS               HDPG
+       CLMG                    CALIMA               EPSG
+       CMN1   AUTOG CEMENTOS DEL NARE               EPMG
+       CMP2           CAMPESTRE (EPM)               EPMG
+       COE1                    COELLO               ENGG
+       CPT1       CAMPESTRE (CALARCA)               CALG
+       CQT1                 CHARQUITO               ENDG
+       CRC1                  CARACOLI               EPMG
+       CSC1                   CASCADA               EPMG
+       CUC1                   CUCUANA               EPSG
+       CUR1               CURRUCUCUES               NRCG
+       DVS1     DARIO VALENCIA SAMPER               ENDG
+       ESMR                 ESMERALDA               EPMG
+       FLRD                   FLORIDA               EPTG
+       GCA1                  CARUQUIA               ISGG
+       GCC1                  GUACAICA               EPMG
+       GQA1               GUANAQUITAS               ISGG
+       GTPE                   GUATAPE               EPMG
+       GTRG                   GUATRON               EPMG
+       GVIO                    GUAVIO               ENDG
+       HMIN          ESCUELA DE MINAS               HDPG
+       HMLG                    MIEL I               ISGG
+       HMO1           HIDROMONTAÑITAS               EPSG
+       HRD1              LA HERRADURA               EPMG
+       INS1                    INSULA               EPMG
+       INT1                INTERMEDIA               EPMG
+       INZ1                      INZA               EPTG
+       IQU1                  IQUIRA I               HLAG
+       IQU2                 IQUIRA II               HLAG
+       JAGS                    JAGUAS               ISGG
+       LBR1              NUEVO LIBARE               EEPG
+       LCS1    LA CASCADA (ANTIOQUIA)               GNCG
+       LMR1                EL LIMONAR               ENDG
+       LPLO                  RIO PALO               EPTG
+       LTSJ               LA TASAJERA               EPMG
+       MIR1                 MIROLINDO               HDTG
+       MNC1                 MUNICIPAL               EPMG
+       MND1                   MONDOMO               EPTG
+       MNT1               MANANTIALES               EPMG
+       MOY1        AMOYA LA ESPERANZA               ISGG
+       NAV1                 LA NAVETA               IACG
+       NIM1                      NIMA               EPSG
+       NQU1                    NIQUIA               EPMG
+       NTB1                  NUTIBARA               EPMG
+       OVJ1                    OVEJAS               EPTG
+       PES1                   ITUANGO               EPMG
+       PGUG                     PAGUA               ENDG
+       PJR1                  PAJARITO               EPMG
+       PLM1            PALMAS SAN GIL               EPMG
+       PLU1                     URRAO               SFEG
+       PLYS                    PLAYAS               EPMG
+       PMR1                  REMEDIOS               CIEG
+       PRC2                  PORCE II               EPMG
+       PRC3                 PORCE III               EPMG
+       PRD4                  PRADO IV               EPSG
+       PRDO                     PRADO               EPSG
+       PRV1               PROVIDENCIA               HZEG
+       PST1                  PASTALES               HDTG
+       PTA1                   LA PITA               HLAG
+       PTC1       PATICO - LA CABRERA               FERG
+       PTG1          PUENTE GUILLERMO               NRCG
+       QUI1                 EL QUIMBO               ENDG
+       RBB1                  RIO BOBO               CDNG
+       RCIO                 RIO RECIO               HDTG
+       RCL1                  RIO CALI               EPSG
+       RFR1                RIO FRIO I               CETG
+       RFR2               RIO FRIO II               CETG
+       RGR1                RIO GRANDE               EPMG
+       RGRN               RIOGRANDE I               EPMG
+       RMR1                     RUMOR               CETG
+       RMYO                  RIO MAYO               CDNG
+       RNG1                  RIONEGRO               SPRG
+       RPD1               RIO PIEDRAS               EPSG
+       SBA1                      SUBA               ENDG
+       SFC1  SAN FRANCISCO (PUTUMAYO)               SGMG
+       SJM1    SAN JOSE DE LA MONTAÑA               GPEG
+       SJN1                   SAJANDI               EPTG
+       SJOG                  SAN JOSE               GCEG
+       SLV1                    SILVIA               EPTG
+       SLVJ                 SALVAJINA               EPSG
+       SMI1                SAN MIGUEL               ISGG
+       SNC1                SAN CANCIO               EPMG
+       SNCR                SAN CARLOS               ISGG
+       SNFR             SAN FRANCISCO               EPMG
+       SNS1                    SONSON               EPMG
+       SNT1                 SANTA ANA               ENDG
+       SOG1                  SOGAMOSO               ISGG
+       SPY1               RIO SAPUYES               CDNG
+       SRA1                SANTA RITA               GPEG
+       STG1                  SANTIAGO               HDTG
+       SUV1                   SUEVA 2               CMXG
+       TMS1         RIOFRIO (TAMESIS)               EPMG
+       TUJ1                   TUNJITA               CHVG
+       UNN1                     UNION               CALG
+       URA1                      URRA               EMUG
+       USQ1                   USAQUEN               ENDG
+       VLT1                 LA VUELTA               EPMG
+       VNTA                 VENTANA A               HDTG
+       VNTB                 VENTANA B               HDTG
+
