@@ -1,0 +1,13 @@
+[project]
+name = "api"
+version = "0.1.0"
+description = "librerias api"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "folium>=0.20.0",
+    "leafmap>=0.57.9",
+    "marimo>=0.18.2",
+    "plotly>=6.5.0",
+    "pydataxm>=0.3.16",
+]
