@@ -1,0 +1,92 @@
+{
+  "version": "1",
+  "metadata": {
+    "marimo_version": "0.18.2"
+  },
+  "cells": [
+    {
+      "id": "Hbol",
+      "code_hash": "6eec5c3359e420e637aca7e8e247ce0c",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "MJUe",
+      "code_hash": "40564a35c0192829832eb42ca4add4fc",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "vblA",
+      "code_hash": "25b14b62fa3592510bde00b4aa070a16",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "bkHC",
+      "code_hash": "34489feacae6a64f25d3009c2fa87f12",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h1 id=\"presencia-de-fenomenos-enso-por-ano\">Presencia de Fen\u00f3menos ENSO por A\u00f1o</h1>\n<span class=\"paragraph\"><strong>Criterios de clasificaci\u00f3n:</strong></span>\n<ul>\n<li><strong>La Ni\u00f1a</strong>: ONI &lt; 0 (negativo) Y TSM_Fria &lt; 0 (fr\u00edo)</li>\n<li><strong>El Ni\u00f1o</strong>: ONI &gt; 0 (positivo) Y TSM_Calida &gt; 0 (c\u00e1lido)</li>\n<li><strong>Neutral</strong>: Otros casos</li>\n</ul></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "lEQa",
+      "code_hash": "1a72a706097d810000bb8d60edd17c36",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "PKri",
+      "code_hash": "8ec5228ed66a20046ce5a545d95510b8",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='PKri-0' random-id='e0704f4b-c5f3-0b9f-8cc5-4b53e6c1c81d'><marimo-table data-initial-value='[]' data-label='null' data-data='&quot;[{&#92;&quot;A&#92;&#92;u00f1o&#92;&quot;:2017,&#92;&quot;Total_Meses&#92;&quot;:3,&#92;&quot;La_Ni&#92;&#92;u00f1a_Meses&#92;&quot;:3,&#92;&quot;La_Ni&#92;&#92;u00f1a_%&#92;&quot;:100.0,&#92;&quot;El_Ni&#92;&#92;u00f1o_Meses&#92;&quot;:0,&#92;&quot;El_Ni&#92;&#92;u00f1o_%&#92;&quot;:0.0,&#92;&quot;Neutral_Meses&#92;&quot;:0,&#92;&quot;Neutral_%&#92;&quot;:0.0},{&#92;&quot;A&#92;&#92;u00f1o&#92;&quot;:2018,&#92;&quot;Total_Meses&#92;&quot;:12,&#92;&quot;La_Ni&#92;&#92;u00f1a_Meses&#92;&quot;:5,&#92;&quot;La_Ni&#92;&#92;u00f1a_%&#92;&quot;:41.7,&#92;&quot;El_Ni&#92;&#92;u00f1o_Meses&#92;&quot;:5,&#92;&quot;El_Ni&#92;&#92;u00f1o_%&#92;&quot;:41.7,&#92;&quot;Neutral_Meses&#92;&quot;:2,&#92;&quot;Neutral_%&#92;&quot;:16.7},{&#92;&quot;A&#92;&#92;u00f1o&#92;&quot;:2019,&#92;&quot;Total_Meses&#92;&quot;:12,&#92;&quot;La_Ni&#92;&#92;u00f1a_Meses&#92;&quot;:0,&#92;&quot;La_Ni&#92;&#92;u00f1a_%&#92;&quot;:0.0,&#92;&quot;El_Ni&#92;&#92;u00f1o_Meses&#92;&quot;:11,&#92;&quot;El_Ni&#92;&#92;u00f1o_%&#92;&quot;:91.7,&#92;&quot;Neutral_Meses&#92;&quot;:1,&#92;&quot;Neutral_%&#92;&quot;:8.3}]&quot;' data-total-rows='3' data-total-columns='8' data-max-columns='50' data-banner-text='&quot;&quot;' data-pagination='false' data-page-size='10' data-field-types='[[&quot;A\u00f1o&quot;,[&quot;integer&quot;,&quot;int32&quot;]],[&quot;Total_Meses&quot;,[&quot;integer&quot;,&quot;int64&quot;]],[&quot;La_Ni\u00f1a_Meses&quot;,[&quot;integer&quot;,&quot;int64&quot;]],[&quot;La_Ni\u00f1a_%&quot;,[&quot;number&quot;,&quot;float64&quot;]],[&quot;El_Ni\u00f1o_Meses&quot;,[&quot;integer&quot;,&quot;int64&quot;]],[&quot;El_Ni\u00f1o_%&quot;,[&quot;number&quot;,&quot;float64&quot;]],[&quot;Neutral_Meses&quot;,[&quot;integer&quot;,&quot;int64&quot;]],[&quot;Neutral_%&quot;,[&quot;number&quot;,&quot;float64&quot;]]]' data-show-filters='true' data-show-download='true' data-show-column-summaries='false' data-show-data-types='true' data-show-page-size-selector='false' data-show-column-explorer='true' data-show-chart-builder='true' data-row-headers='[]' data-has-stable-row-id='false' data-lazy='false' data-preload='false'></marimo-table></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "dTsK",
+      "code_hash": null,
+      "outputs": [],
+      "console": []
+    }
+  ]
+}
