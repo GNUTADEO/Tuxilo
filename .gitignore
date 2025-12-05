@@ -1,1 +1,6 @@
+# Directorios
 .venv/
+Secrets/
+
+# Archivos
+.env
