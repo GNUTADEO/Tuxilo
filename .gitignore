@@ -4,3 +4,13 @@ Secrets/
 
 # Archivos
 .env
+
+# Cosas del LaTeX
+*.aux
+*.bcf
+*.lof
+*.log
+*.out
+*.run.xml
+*.toc
+
