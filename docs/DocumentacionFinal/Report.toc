@@ -1,0 +1,8 @@
+\xpg@aux {}{spanish}
+\contentsline {chapter}{Prefacio}{i}{chapter*.1}%
+\contentsline {chapter}{Agradecimientos}{ii}{chapter*.2}%
+\contentsline {chapter}{Índice general}{iii}{section*.4}%
+\contentsline {chapter}{Índice de figuras}{iv}{section*.6}%
+\contentsline {chapter}{\chapternumberline {1}Capítulo}{1}{chapter.1}%
+\contentsline {appendix}{\chapternumberline {A}Apéndice A}{2}{appendix.A}%
+\contentsline {appendix}{\chapternumberline {B}Acrónimos}{3}{appendix.B}%
