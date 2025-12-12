@@ -6,10 +6,10 @@ FROM base AS build
 WORKDIR /usr/src/app
 
 # Copy package files first for caching
-COPY ./blog/package.json ./blog/pnpm-lock.yaml ./
+COPY ./front/package.json ./front/pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
 
-COPY blog .
+COPY front .
 
 # Build the app
 RUN pnpm run build
@@ -19,11 +19,11 @@ FROM base AS runner
 WORKDIR /usr/src/app
 
 # Copy built files & dependencies
-COPY blog .
+COPY front .
 COPY --from=build /usr/src/app/node_modules ./node_modules
 COPY --from=build /usr/src/app/build ./build
 COPY --from=build /usr/src/app/.svelte-kit ./.svelte-kit
 COPY --from=build /usr/src/app/package.json ./package.json
 
 # Production server
-CMD ["pnpm", "run", "start", "--port", "${PORT_BLOG:-3000}"]
+CMD ["pnpm", "run", "start", "--port", "${PORT_FRONT:-3000}"]

@@ -15,16 +15,19 @@
 	<div class="flex-1"></div>
 	<div class="flex-none">
 		<ul class="menu menu-horizontal px-2 gap-2 text-sm font-medium">
-			<li><a href="/">Link</a></li>
+			<li><a href="/">Manual</a></li>
 			<li>
 				<details>
-					<summary>Parent</summary>
+					<summary>Data</summary>
 					<ul class="bg-base-100 rounded-t-none p-2">
 						<li><a href="/">Link 1</a></li>
 						<li><a href="/">Link 2</a></li>
 					</ul>
 				</details>
 			</li>
+			<li><a href="/">Contribuir</a></li>
+			<li><a href="/">Acerca de</a></li>
+			<li><a href="/">Contacto</a></li>
 		</ul>
 	</div>
 </div>
