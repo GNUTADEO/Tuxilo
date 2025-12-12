@@ -1,0 +1,346 @@
+{
+  "version": "1",
+  "metadata": {
+    "marimo_version": "0.18.1"
+  },
+  "cells": [
+    {
+      "id": "Hbol",
+      "code_hash": "9fdaa2ccc9e1a42287fe3ad34345c251",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "MJUe",
+      "code_hash": "538e8f82cbf0bd1bf8e3481bd22b8a31",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "vblA",
+      "code_hash": "4655f6d6846b5825efbf43de15f7fec6",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "lEQa",
+      "code_hash": "7d32daf98eb73353315ec1d11f1aa3b5",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "tmrv",
+      "code_hash": "6ecc705fd4ae1b5eca08d47dd8888397",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "MxgZ",
+      "code_hash": "0cad4c5bdd5e3760996c5363d44681d6",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='MxgZ-0' random-id='8a2965cd-2dd4-001d-8d08-9cd0c516f042'><marimo-table data-initial-value='[]' data-label='null' data-data='&quot;[{&#92;&quot;&#92;&quot;:&#92;&quot;2017-10-01 00:00:00&#92;&quot;,&#92;&quot;Anomal&#92;&#92;u00edas TSM [&#92;&#92;u00b0C]-ENSO-Fase C&#92;&#92;u00e1lida&#92;&quot;:0.0,&#92;&quot;Anomal&#92;&#92;u00edas TSM [&#92;&#92;u00b0C]-ENSO-Fase Fr&#92;&#92;u00eda&#92;&quot;:-0.7,&#92;&quot;Anomal&#92;&#92;u00edas Aportes (%)&#92;&quot;:-34.47},{&#92;&quot;&#92;&quot;:&#92;&quot;2017-11-01 00:00:00&#92;&quot;,&#92;&quot;Anomal&#92;&#92;u00edas TSM [&#92;&#92;u00b0C]-ENSO-Fase C&#92;&#92;u00e1lida&#92;&quot;:0.0,&#92;&quot;Anomal&#92;&#92;u00edas TSM [&#92;&#92;u00b0C]-ENSO-Fase Fr&#92;&#92;u00eda&#92;&quot;:-0.9,&#92;&quot;Anomal&#92;&#92;u00edas Aportes (%)&#92;&quot;:-17.439999999999998},{&#92;&quot;&#92;&quot;:&#92;&quot;2017-12-01 00:00:00&#92;&quot;,&#92;&quot;Anomal&#92;&#92;u00edas TSM [&#92;&#92;u00b0C]-ENSO-Fase C&#92;&#92;u00e1lida&#92;&quot;:0.0,&#92;&quot;Anomal&#92;&#92;u00edas TSM [&#92;&#92;u00b0C]-ENSO-Fase Fr&#92;&#92;u00eda&#92;&quot;:-1.0,&#92;&quot;Anomal&#92;&#92;u00edas Aportes (%)&#92;&quot;:-26.0},{&#92;&quot;&#92;&quot;:&#92;&quot;2018-01-01 00:00:00&#92;&quot;,&#92;&quot;Anomal&#92;&#92;u00edas TSM [&#92;&#92;u00b0C]-ENSO-Fase C&#92;&#92;u00e1lida&#92;&quot;:NaN,&#92;&quot;Anomal&#92;&#92;u00edas TSM [&#92;&#92;u00b0C]-ENSO-Fase Fr&#92;&#92;u00eda&#92;&quot;:-0.9,&#92;&quot;Anomal&#92;&#92;u00edas Aportes (%)&#92;&quot;:19.92},{&#92;&quot;&#92;&quot;:&#92;&quot;2018-02-01 00:00:00&#92;&quot;,&#92;&quot;Anomal&#92;&#92;u00edas TSM [&#92;&#92;u00b0C]-ENSO-Fase C&#92;&#92;u00e1lida&#92;&quot;:0.0,&#92;&quot;Anomal&#92;&#92;u00edas TSM [&#92;&#92;u00b0C]-ENSO-Fase Fr&#92;&#92;u00eda&#92;&quot;:-0.8,&#92;&quot;Anomal&#92;&#92;u00edas Aportes (%)&#92;&quot;:-11.489999999999995},{&#92;&quot;&#92;&quot;:&#92;&quot;2018-03-01 00:00:00&#92;&quot;,&#92;&quot;Anomal&#92;&#92;u00edas TSM [&#92;&#92;u00b0C]-ENSO-Fase C&#92;&#92;u00e1lida&#92;&quot;:0.0,&#92;&quot;Anomal&#92;&#92;u00edas TSM [&#92;&#92;u00b0C]-ENSO-Fase Fr&#92;&#92;u00eda&#92;&quot;:-0.6,&#92;&quot;Anomal&#92;&#92;u00edas Aportes (%)&#92;&quot;:-12.14},{&#92;&quot;&#92;&quot;:&#92;&quot;2018-04-01 00:00:00&#92;&quot;,&#92;&quot;Anomal&#92;&#92;u00edas TSM [&#92;&#92;u00b0C]-ENSO-Fase C&#92;&#92;u00e1lida&#92;&quot;:0.0,&#92;&quot;Anomal&#92;&#92;u00edas TSM [&#92;&#92;u00b0C]-ENSO-Fase Fr&#92;&#92;u00eda&#92;&quot;:-0.4,&#92;&quot;Anomal&#92;&#92;u00edas Aportes (%)&#92;&quot;:36.30000000000001},{&#92;&quot;&#92;&quot;:&#92;&quot;2018-05-01 00:00:00&#92;&quot;,&#92;&quot;Anomal&#92;&#92;u00edas TSM [&#92;&#92;u00b0C]-ENSO-Fase C&#92;&#92;u00e1lida&#92;&quot;:0.0,&#92;&quot;Anomal&#92;&#92;u00edas TSM [&#92;&#92;u00b0C]-ENSO-Fase Fr&#92;&#92;u00eda&#92;&quot;:-0.1,&#92;&quot;Anomal&#92;&#92;u00edas Aportes (%)&#92;&quot;:52.0},{&#92;&quot;&#92;&quot;:&#92;&quot;2018-06-01 00:00:00&#92;&quot;,&#92;&quot;Anomal&#92;&#92;u00edas TSM [&#92;&#92;u00b0C]-ENSO-Fase C&#92;&#92;u00e1lida&#92;&quot;:0.1,&#92;&quot;Anomal&#92;&#92;u00edas TSM [&#92;&#92;u00b0C]-ENSO-Fase Fr&#92;&#92;u00eda&#92;&quot;:0.0,&#92;&quot;Anomal&#92;&#92;u00edas Aportes (%)&#92;&quot;:20.879999999999995},{&#92;&quot;&#92;&quot;:&#92;&quot;2018-07-01 00:00:00&#92;&quot;,&#92;&quot;Anomal&#92;&#92;u00edas TSM [&#92;&#92;u00b0C]-ENSO-Fase C&#92;&#92;u00e1lida&#92;&quot;:0.1,&#92;&quot;Anomal&#92;&#92;u00edas TSM [&#92;&#92;u00b0C]-ENSO-Fase Fr&#92;&#92;u00eda&#92;&quot;:0.0,&#92;&quot;Anomal&#92;&#92;u00edas Aportes (%)&#92;&quot;:3.260000000000005}]&quot;' data-total-rows='27' data-total-columns='3' data-max-columns='50' data-banner-text='&quot;&quot;' data-pagination='true' data-page-size='10' data-field-types='[[&quot;Anomal\u00edas TSM [\u00b0C]-ENSO-Fase C\u00e1lida&quot;,[&quot;number&quot;,&quot;float64&quot;]],[&quot;Anomal\u00edas TSM [\u00b0C]-ENSO-Fase Fr\u00eda&quot;,[&quot;number&quot;,&quot;float64&quot;]],[&quot;Anomal\u00edas Aportes (%)&quot;,[&quot;number&quot;,&quot;float64&quot;]]]' data-show-filters='true' data-show-download='true' data-show-column-summaries='true' data-show-data-types='true' data-show-page-size-selector='true' data-show-column-explorer='true' data-show-chart-builder='true' data-row-headers='[[&quot;&quot;,[&quot;datetime&quot;,&quot;datetime64[ns]&quot;]]]' data-has-stable-row-id='false' data-lazy='false' data-preload='false'></marimo-table></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "PKri",
+      "code_hash": "799bb4ba9abe0097a6502240fefe5e7a",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "/var/folders/zv/0rxglff90mzc1bj9gj5w1dcr0000gn/T/marimo_89320/__marimo__cell_PKri_.py:3: FutureWarning: The 'delim_whitespace' keyword in pd.read_csv is deprecated and will be removed in a future version. Use ``sep='\\s+'`` instead\n  df = pd.read_csv(enso,\n",
+          "mimetype": "text/plain"
+        }
+      ]
+    },
+    {
+      "id": "SFPL",
+      "code_hash": "fb984d1cbe1cebb81028edbfd82785c8",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "Forma original: (47, 13)\nForma filtrada: (3, 13)\n",
+          "mimetype": "text/plain"
+        }
+      ]
+    },
+    {
+      "id": "BYtC",
+      "code_hash": "9acd2f4a36f9414950d2128872602ef2",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='BYtC-0' random-id='c34c5950-7592-4c80-0906-e6dd9a000f23'><marimo-table data-initial-value='[]' data-label='null' data-data='&quot;[{&#92;&quot;&#92;&quot;:38,&#92;&quot;YEAR&#92;&quot;:2017,&#92;&quot;DJ&#92;&quot;:-0.43,&#92;&quot;JF&#92;&quot;:-0.42,&#92;&quot;FM&#92;&quot;:-0.58,&#92;&quot;MA&#92;&quot;:-0.19,&#92;&quot;AM&#92;&quot;:0.19,&#92;&quot;MJ&#92;&quot;:-0.24,&#92;&quot;JJ&#92;&quot;:-0.63,&#92;&quot;JA&#92;&quot;:-0.73,&#92;&quot;AS&#92;&quot;:-0.74,&#92;&quot;SO&#92;&quot;:-0.59,&#92;&quot;ON&#92;&quot;:-0.62,&#92;&quot;ND&#92;&quot;:-0.74},{&#92;&quot;&#92;&quot;:39,&#92;&quot;YEAR&#92;&quot;:2018,&#92;&quot;DJ&#92;&quot;:-0.79,&#92;&quot;JF&#92;&quot;:-0.71,&#92;&quot;FM&#92;&quot;:-0.8,&#92;&quot;MA&#92;&quot;:-1.32,&#92;&quot;AM&#92;&quot;:-0.94,&#92;&quot;MJ&#92;&quot;:-0.52,&#92;&quot;JJ&#92;&quot;:-0.05,&#92;&quot;JA&#92;&quot;:0.46,&#92;&quot;AS&#92;&quot;:0.62,&#92;&quot;SO&#92;&quot;:0.52,&#92;&quot;ON&#92;&quot;:0.33,&#92;&quot;ND&#92;&quot;:0.18},{&#92;&quot;&#92;&quot;:40,&#92;&quot;YEAR&#92;&quot;:2019,&#92;&quot;DJ&#92;&quot;:0.09,&#92;&quot;JF&#92;&quot;:0.5,&#92;&quot;FM&#92;&quot;:0.76,&#92;&quot;MA&#92;&quot;:0.3,&#92;&quot;AM&#92;&quot;:0.23,&#92;&quot;MJ&#92;&quot;:0.35,&#92;&quot;JJ&#92;&quot;:0.3,&#92;&quot;JA&#92;&quot;:0.32,&#92;&quot;AS&#92;&quot;:0.16,&#92;&quot;SO&#92;&quot;:0.31,&#92;&quot;ON&#92;&quot;:0.47,&#92;&quot;ND&#92;&quot;:0.36}]&quot;' data-total-rows='3' data-total-columns='13' data-max-columns='50' data-banner-text='&quot;&quot;' data-pagination='true' data-page-size='10' data-field-types='[[&quot;YEAR&quot;,[&quot;integer&quot;,&quot;int64&quot;]],[&quot;DJ&quot;,[&quot;number&quot;,&quot;float64&quot;]],[&quot;JF&quot;,[&quot;number&quot;,&quot;float64&quot;]],[&quot;FM&quot;,[&quot;number&quot;,&quot;float64&quot;]],[&quot;MA&quot;,[&quot;number&quot;,&quot;float64&quot;]],[&quot;AM&quot;,[&quot;number&quot;,&quot;float64&quot;]],[&quot;MJ&quot;,[&quot;number&quot;,&quot;float64&quot;]],[&quot;JJ&quot;,[&quot;number&quot;,&quot;float64&quot;]],[&quot;JA&quot;,[&quot;number&quot;,&quot;float64&quot;]],[&quot;AS&quot;,[&quot;number&quot;,&quot;float64&quot;]],[&quot;SO&quot;,[&quot;number&quot;,&quot;float64&quot;]],[&quot;ON&quot;,[&quot;number&quot;,&quot;float64&quot;]],[&quot;ND&quot;,[&quot;number&quot;,&quot;float64&quot;]]]' data-show-filters='true' data-show-download='true' data-show-column-summaries='false' data-show-data-types='true' data-show-page-size-selector='false' data-show-column-explorer='true' data-show-chart-builder='true' data-row-headers='[[&quot;&quot;,[&quot;integer&quot;,&quot;int64&quot;]]]' data-has-stable-row-id='false' data-lazy='false' data-preload='false'></marimo-table></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "RGSE",
+      "code_hash": "64e8a1d1e2ff8c85e440c7fe7bcfbae3",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "UwKL",
+      "code_hash": "34413c74018941629dbec7d4d5c45815",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Vrgh",
+      "code_hash": "d1255411e2a76325c897bcbc47403360",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "nrao",
+      "code_hash": "905533858217d762415d9ebf08a64a61",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "VtBH",
+      "code_hash": "ff66660f93bd05a1fae055bcfdcc513a",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "hwOG",
+      "code_hash": "b5255f0fdbeada5cb697a8c562f078c5",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "ZJWz",
+      "code_hash": "59552830364ae8d62dde9e5f1bcc1d2a",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='ZJWz-0' random-id='082d0b91-49a0-7c29-066d-1321131562c0'><marimo-table data-initial-value='[]' data-label='null' data-data='&quot;[{&#92;&quot;DATE&#92;&quot;:&#92;&quot;2017-01-01 00:00:00&#92;&quot;,&#92;&quot;VALUE&#92;&quot;:-0.42},{&#92;&quot;DATE&#92;&quot;:&#92;&quot;2017-02-01 00:00:00&#92;&quot;,&#92;&quot;VALUE&#92;&quot;:-0.58},{&#92;&quot;DATE&#92;&quot;:&#92;&quot;2017-03-01 00:00:00&#92;&quot;,&#92;&quot;VALUE&#92;&quot;:-0.19},{&#92;&quot;DATE&#92;&quot;:&#92;&quot;2017-04-01 00:00:00&#92;&quot;,&#92;&quot;VALUE&#92;&quot;:0.19},{&#92;&quot;DATE&#92;&quot;:&#92;&quot;2017-05-01 00:00:00&#92;&quot;,&#92;&quot;VALUE&#92;&quot;:-0.24},{&#92;&quot;DATE&#92;&quot;:&#92;&quot;2017-06-01 00:00:00&#92;&quot;,&#92;&quot;VALUE&#92;&quot;:-0.63},{&#92;&quot;DATE&#92;&quot;:&#92;&quot;2017-07-01 00:00:00&#92;&quot;,&#92;&quot;VALUE&#92;&quot;:-0.73},{&#92;&quot;DATE&#92;&quot;:&#92;&quot;2017-08-01 00:00:00&#92;&quot;,&#92;&quot;VALUE&#92;&quot;:-0.74},{&#92;&quot;DATE&#92;&quot;:&#92;&quot;2017-09-01 00:00:00&#92;&quot;,&#92;&quot;VALUE&#92;&quot;:-0.59},{&#92;&quot;DATE&#92;&quot;:&#92;&quot;2017-10-01 00:00:00&#92;&quot;,&#92;&quot;VALUE&#92;&quot;:-0.62}]&quot;' data-total-rows='36' data-total-columns='2' data-max-columns='50' data-banner-text='&quot;&quot;' data-pagination='true' data-page-size='10' data-field-types='[[&quot;DATE&quot;,[&quot;datetime&quot;,&quot;datetime64[ns]&quot;]],[&quot;VALUE&quot;,[&quot;number&quot;,&quot;float64&quot;]]]' data-show-filters='true' data-show-download='true' data-show-column-summaries='true' data-show-data-types='true' data-show-page-size-selector='true' data-show-column-explorer='true' data-show-chart-builder='true' data-row-headers='[]' data-has-stable-row-id='false' data-lazy='false' data-preload='false'></marimo-table></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "gxDK",
+      "code_hash": "ec632e10bf147de8f477e417135798ce",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h1 id=\"presencia-de-los-fenomenos-por-ano\">Presencia de los fenomenos por a\u00f1o</h1></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "SwIF",
+      "code_hash": "eaf580bcdb1e80da9a7c537820a2eb86",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "JfZR",
+      "code_hash": "9a0c92123e90812b3eb117c899f47e10",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "zLpR",
+      "code_hash": "73492bdcb33e71003dfa4f8fd3664641",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "DpHo",
+      "code_hash": "a60855d89b16006b6f605ace3fbed894",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h1 id=\"presencia-de-fenomenos-enso-por-ano\">Presencia de Fen\u00f3menos ENSO por A\u00f1o</h1>\n<span class=\"paragraph\"><strong>Criterios de clasificaci\u00f3n:</strong></span>\n<ul>\n<li><strong>La Ni\u00f1a</strong>: ONI &lt; 0 (negativo) Y TSM_Fria &lt; 0 (fr\u00edo)</li>\n<li><strong>El Ni\u00f1o</strong>: ONI &gt; 0 (positivo) Y TSM_Calida &gt; 0 (c\u00e1lido)</li>\n<li><strong>Neutral</strong>: Otros casos</li>\n</ul></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "OuOi",
+      "code_hash": "d7bc8d679efc7423332ab96aa4be0036",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "kJfK",
+      "code_hash": "8ec5228ed66a20046ce5a545d95510b8",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='kJfK-0' random-id='fe3a7adb-f87f-ffb9-2360-89e8808f6695'><marimo-table data-initial-value='[]' data-label='null' data-data='&quot;[{&#92;&quot;A&#92;&#92;u00f1o&#92;&quot;:2017,&#92;&quot;Total_Meses&#92;&quot;:3,&#92;&quot;La_Ni&#92;&#92;u00f1a_Meses&#92;&quot;:3,&#92;&quot;La_Ni&#92;&#92;u00f1a_%&#92;&quot;:100.0,&#92;&quot;El_Ni&#92;&#92;u00f1o_Meses&#92;&quot;:0,&#92;&quot;El_Ni&#92;&#92;u00f1o_%&#92;&quot;:0.0,&#92;&quot;Neutral_Meses&#92;&quot;:0,&#92;&quot;Neutral_%&#92;&quot;:0.0},{&#92;&quot;A&#92;&#92;u00f1o&#92;&quot;:2018,&#92;&quot;Total_Meses&#92;&quot;:12,&#92;&quot;La_Ni&#92;&#92;u00f1a_Meses&#92;&quot;:5,&#92;&quot;La_Ni&#92;&#92;u00f1a_%&#92;&quot;:41.7,&#92;&quot;El_Ni&#92;&#92;u00f1o_Meses&#92;&quot;:5,&#92;&quot;El_Ni&#92;&#92;u00f1o_%&#92;&quot;:41.7,&#92;&quot;Neutral_Meses&#92;&quot;:2,&#92;&quot;Neutral_%&#92;&quot;:16.7},{&#92;&quot;A&#92;&#92;u00f1o&#92;&quot;:2019,&#92;&quot;Total_Meses&#92;&quot;:12,&#92;&quot;La_Ni&#92;&#92;u00f1a_Meses&#92;&quot;:0,&#92;&quot;La_Ni&#92;&#92;u00f1a_%&#92;&quot;:0.0,&#92;&quot;El_Ni&#92;&#92;u00f1o_Meses&#92;&quot;:11,&#92;&quot;El_Ni&#92;&#92;u00f1o_%&#92;&quot;:91.7,&#92;&quot;Neutral_Meses&#92;&quot;:1,&#92;&quot;Neutral_%&#92;&quot;:8.3}]&quot;' data-total-rows='3' data-total-columns='8' data-max-columns='50' data-banner-text='&quot;&quot;' data-pagination='false' data-page-size='10' data-field-types='[[&quot;A\u00f1o&quot;,[&quot;integer&quot;,&quot;int32&quot;]],[&quot;Total_Meses&quot;,[&quot;integer&quot;,&quot;int64&quot;]],[&quot;La_Ni\u00f1a_Meses&quot;,[&quot;integer&quot;,&quot;int64&quot;]],[&quot;La_Ni\u00f1a_%&quot;,[&quot;number&quot;,&quot;float64&quot;]],[&quot;El_Ni\u00f1o_Meses&quot;,[&quot;integer&quot;,&quot;int64&quot;]],[&quot;El_Ni\u00f1o_%&quot;,[&quot;number&quot;,&quot;float64&quot;]],[&quot;Neutral_Meses&quot;,[&quot;integer&quot;,&quot;int64&quot;]],[&quot;Neutral_%&quot;,[&quot;number&quot;,&quot;float64&quot;]]]' data-show-filters='true' data-show-download='true' data-show-column-summaries='false' data-show-data-types='true' data-show-page-size-selector='false' data-show-column-explorer='true' data-show-chart-builder='true' data-row-headers='[]' data-has-stable-row-id='false' data-lazy='false' data-preload='false'></marimo-table></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Dxdy",
+      "code_hash": "7d6e964b3b92c0aaec5d27f34c8f8ba1",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h1 id=\"patrones\">Patrones</h1></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "xwad",
+      "code_hash": null,
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "IzBY",
+      "code_hash": null,
+      "outputs": [],
+      "console": []
+    }
+  ]
+}
