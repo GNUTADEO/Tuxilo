@@ -1,0 +1,270 @@
+{
+  "version": "1",
+  "metadata": {
+    "marimo_version": "0.18.2"
+  },
+  "cells": [
+    {
+      "id": "Hbol",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "pNPh",
+      "code_hash": "4db6de2d467ef2864d669fc3c2d9b145",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h1 id=\"objetos-simem\">Objetos SIMEM</h1></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "JfUm",
+      "code_hash": "58df75adb7222a0c9dde3665927642dd",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "htbq",
+      "code_hash": "06ebc7eba25bfde20ffee05d0216d231",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='htbq-0' random-id='15a1609e-7d52-c8c6-e605-16dc54c85c29'><marimo-table data-initial-value='[]' data-label='null' data-data='&quot;[{&#92;&quot;idDataset&#92;&quot;:&#92;&quot;a704ee&#92;&quot;,&#92;&quot;nombreConjuntoDatos&#92;&quot;:&#92;&quot;Datos soporte del proceso de liquidaci&#92;&#92;u00f3n por C&#92;&#92;u00f3digo sic agente, Recurso, Tipo combustible, versi&#92;&#92;u00f3n y mensual&#92;&quot;,&#92;&quot;fechaPublicacion&#92;&quot;:&#92;&quot;2023-09-28T21:28:06.433&#92;&quot;,&#92;&quot;fechaActualizacion&#92;&quot;:&#92;&quot;2025-12-11T12:26:00.153&#92;&quot;,&#92;&quot;inicioDato&#92;&quot;:&#92;&quot;2017-12-01T00:00:00&#92;&quot;,&#92;&quot;finDato&#92;&quot;:&#92;&quot;2025-11-01T00:00:00&#92;&quot;,&#92;&quot;fechaDescarga&#92;&quot;:&#92;&quot;2025-04-30T11:38:47.52&#92;&quot;,&#92;&quot;urlConexionAPI&#92;&quot;:&#92;&quot;https://www.simem.coPublicData?startDate=2025-12-13&amp;endDate=2025-12-13&amp;datasetId=a704ee&#92;&quot;,&#92;&quot;urlConjuntoDatos&#92;&quot;:&#92;&quot;https://www.simem.co/datadetail/a704eef3-ca1c-4ebf-98a0-01325c61765d&#92;&quot;,&#92;&quot;tipoPublicacion&#92;&quot;:&#92;&quot;P&#92;&#92;u00fablico&#92;&quot;},{&#92;&quot;idDataset&#92;&quot;:&#92;&quot;d808d4&#92;&quot;,&#92;&quot;nombreConjuntoDatos&#92;&quot;:&#92;&quot;Energ&#92;&#92;u00eda de Referencia para el Mercado Secundario&#92;&quot;,&#92;&quot;fechaPublicacion&#92;&quot;:&#92;&quot;2023-09-29T11:01:54.317&#92;&quot;,&#92;&quot;fechaActualizacion&#92;&quot;:&#92;&quot;2025-09-03T14:56:00.327&#92;&quot;,&#92;&quot;inicioDato&#92;&quot;:&#92;&quot;2018-12-01T00:00:00&#92;&quot;,&#92;&quot;finDato&#92;&quot;:&#92;&quot;2050-11-30T00:00:00&#92;&quot;,&#92;&quot;fechaDescarga&#92;&quot;:&#92;&quot;2025-04-09T09:42:23.763&#92;&quot;,&#92;&quot;urlConexionAPI&#92;&quot;:&#92;&quot;https://www.simem.coPublicData?startDate=2025-12-13&amp;endDate=2025-12-13&amp;datasetId=d808d4&#92;&quot;,&#92;&quot;urlConjuntoDatos&#92;&quot;:&#92;&quot;https://www.simem.co/datadetail/d808d43d-e3da-493d-aab5-015a818ade10&#92;&quot;,&#92;&quot;tipoPublicacion&#92;&quot;:&#92;&quot;P&#92;&#92;u00fablico&#92;&quot;},{&#92;&quot;idDataset&#92;&quot;:&#92;&quot;2106b8&#92;&quot;,&#92;&quot;nombreConjuntoDatos&#92;&quot;:&#92;&quot;Precios y estad&#92;&#92;u00edsticas de los contratos de convocatorias del SICEP entre agentes integrados verticalmente para el mercado regulado por comercializador&#92;&quot;,&#92;&quot;fechaPublicacion&#92;&quot;:&#92;&quot;2023-09-30T10:35:01.19&#92;&quot;,&#92;&quot;fechaActualizacion&#92;&quot;:&#92;&quot;2025-12-11T13:30:34.663&#92;&quot;,&#92;&quot;inicioDato&#92;&quot;:&#92;&quot;2020-10-01T00:00:00&#92;&quot;,&#92;&quot;finDato&#92;&quot;:&#92;&quot;2025-11-01T00:00:00&#92;&quot;,&#92;&quot;fechaDescarga&#92;&quot;:&#92;&quot;2025-03-08T11:37:23.957&#92;&quot;,&#92;&quot;urlConexionAPI&#92;&quot;:&#92;&quot;https://www.simem.coPublicData?startDate=2025-12-13&amp;endDate=2025-12-13&amp;datasetId=2106b8&#92;&quot;,&#92;&quot;urlConjuntoDatos&#92;&quot;:&#92;&quot;https://www.simem.co/datadetail/99686983-57a4-433b-bc5e-028ecd0845ba&#92;&quot;,&#92;&quot;tipoPublicacion&#92;&quot;:&#92;&quot;P&#92;&#92;u00fablico&#92;&quot;},{&#92;&quot;idDataset&#92;&quot;:&#92;&quot;B1009C&#92;&quot;,&#92;&quot;nombreConjuntoDatos&#92;&quot;:&#92;&quot;Compras en bolsa nacional en moneda&#92;&quot;,&#92;&quot;fechaPublicacion&#92;&quot;:&#92;&quot;2024-11-07T10:33:56.017&#92;&quot;,&#92;&quot;fechaActualizacion&#92;&quot;:&#92;&quot;2025-12-13T10:22:35.877&#92;&quot;,&#92;&quot;inicioDato&#92;&quot;:&#92;&quot;2021-01-01T00:00:00&#92;&quot;,&#92;&quot;finDato&#92;&quot;:&#92;&quot;2025-12-08T00:00:00&#92;&quot;,&#92;&quot;fechaDescarga&#92;&quot;:null,&#92;&quot;urlConexionAPI&#92;&quot;:&#92;&quot;https://www.simem.coPublicData?startDate=2025-12-13&amp;endDate=2025-12-13&amp;datasetId=B1009C&#92;&quot;,&#92;&quot;urlConjuntoDatos&#92;&quot;:&#92;&quot;https://www.simem.co/datadetail/b1009c18-5450-4ae7-ad5f-02a07b73d371&#92;&quot;,&#92;&quot;tipoPublicacion&#92;&quot;:&#92;&quot;P&#92;&#92;u00fablico&#92;&quot;},{&#92;&quot;idDataset&#92;&quot;:&#92;&quot;E4CE10&#92;&quot;,&#92;&quot;nombreConjuntoDatos&#92;&quot;:&#92;&quot;Costo Servicios ASIC y CND&#92;&quot;,&#92;&quot;fechaPublicacion&#92;&quot;:&#92;&quot;2025-07-11T11:30:08.153&#92;&quot;,&#92;&quot;fechaActualizacion&#92;&quot;:&#92;&quot;2025-12-11T12:24:18.763&#92;&quot;,&#92;&quot;inicioDato&#92;&quot;:&#92;&quot;2021-01-01T00:00:00&#92;&quot;,&#92;&quot;finDato&#92;&quot;:&#92;&quot;2025-11-01T00:00:00&#92;&quot;,&#92;&quot;fechaDescarga&#92;&quot;:null,&#92;&quot;urlConexionAPI&#92;&quot;:&#92;&quot;https://www.simem.coPublicData?startDate=2025-12-13&amp;endDate=2025-12-13&amp;datasetId=E4CE10&#92;&quot;,&#92;&quot;urlConjuntoDatos&#92;&quot;:&#92;&quot;https://www.simem.co/datadetail/e4ce10c3-dffc-402b-9d54-03a68ec322a5&#92;&quot;,&#92;&quot;tipoPublicacion&#92;&quot;:&#92;&quot;P&#92;&#92;u00fablico&#92;&quot;},{&#92;&quot;idDataset&#92;&quot;:&#92;&quot;7AEE6F&#92;&quot;,&#92;&quot;nombreConjuntoDatos&#92;&quot;:&#92;&quot;Nivel embalse reportado menos compromisos EVE embalsados por planta&#92;&quot;,&#92;&quot;fechaPublicacion&#92;&quot;:&#92;&quot;2023-09-28T20:27:03.407&#92;&quot;,&#92;&quot;fechaActualizacion&#92;&quot;:&#92;&quot;2025-12-13T10:29:19.793&#92;&quot;,&#92;&quot;inicioDato&#92;&quot;:&#92;&quot;2021-01-01T00:00:00&#92;&quot;,&#92;&quot;finDato&#92;&quot;:&#92;&quot;2025-12-10T00:00:00&#92;&quot;,&#92;&quot;fechaDescarga&#92;&quot;:null,&#92;&quot;urlConexionAPI&#92;&quot;:&#92;&quot;https://www.simem.coPublicData?startDate=2025-12-13&amp;endDate=2025-12-13&amp;datasetId=7AEE6F&#92;&quot;,&#92;&quot;urlConjuntoDatos&#92;&quot;:&#92;&quot;https://www.simem.co/datadetail/7aee6f59-52c2-4279-bf7e-042e6a730d51&#92;&quot;,&#92;&quot;tipoPublicacion&#92;&quot;:&#92;&quot;P&#92;&#92;u00fablico&#92;&quot;},{&#92;&quot;idDataset&#92;&quot;:&#92;&quot;A9185B&#92;&quot;,&#92;&quot;nombreConjuntoDatos&#92;&quot;:&#92;&quot;DemandaComercialLiquidacionCargo&#92;&quot;,&#92;&quot;fechaPublicacion&#92;&quot;:&#92;&quot;2025-07-08T09:22:06.007&#92;&quot;,&#92;&quot;fechaActualizacion&#92;&quot;:&#92;&quot;2025-11-19T20:25:59.58&#92;&quot;,&#92;&quot;inicioDato&#92;&quot;:&#92;&quot;2024-10-01T00:00:00&#92;&quot;,&#92;&quot;finDato&#92;&quot;:&#92;&quot;2025-08-31T00:00:00&#92;&quot;,&#92;&quot;fechaDescarga&#92;&quot;:null,&#92;&quot;urlConexionAPI&#92;&quot;:&#92;&quot;https://www.simem.coPublicData?startDate=2025-12-13&amp;endDate=2025-12-13&amp;datasetId=A9185B&#92;&quot;,&#92;&quot;urlConjuntoDatos&#92;&quot;:&#92;&quot;https://www.simem.co/datadetail/a9185b6b-cf8b-4813-b198-048a0d250f92&#92;&quot;,&#92;&quot;tipoPublicacion&#92;&quot;:&#92;&quot;P&#92;&#92;u00fablico&#92;&quot;},{&#92;&quot;idDataset&#92;&quot;:&#92;&quot;AA7064&#92;&quot;,&#92;&quot;nombreConjuntoDatos&#92;&quot;:&#92;&quot;InsumosPrecioEscasezMarginalHeatRate&#92;&quot;,&#92;&quot;fechaPublicacion&#92;&quot;:&#92;&quot;2025-06-06T11:24:00.72&#92;&quot;,&#92;&quot;fechaActualizacion&#92;&quot;:&#92;&quot;2025-12-11T12:28:12.493&#92;&quot;,&#92;&quot;inicioDato&#92;&quot;:&#92;&quot;2024-10-01T00:00:00&#92;&quot;,&#92;&quot;finDato&#92;&quot;:&#92;&quot;2025-10-01T00:00:00&#92;&quot;,&#92;&quot;fechaDescarga&#92;&quot;:null,&#92;&quot;urlConexionAPI&#92;&quot;:&#92;&quot;https://www.simem.coPublicData?startDate=2025-12-13&amp;endDate=2025-12-13&amp;datasetId=AA7064&#92;&quot;,&#92;&quot;urlConjuntoDatos&#92;&quot;:&#92;&quot;https://www.simem.co/datadetail/aa706442-715a-49dc-aa0d-04e6894c7a4b&#92;&quot;,&#92;&quot;tipoPublicacion&#92;&quot;:&#92;&quot;P&#92;&#92;u00fablico&#92;&quot;},{&#92;&quot;idDataset&#92;&quot;:&#92;&quot;F3A83B&#92;&quot;,&#92;&quot;nombreConjuntoDatos&#92;&quot;:&#92;&quot;Estad&#92;&#92;u00edsticas de contratos de Demanda Desconectable Voluntaria (DDV)&#92;&quot;,&#92;&quot;fechaPublicacion&#92;&quot;:&#92;&quot;2023-09-30T11:09:06.763&#92;&quot;,&#92;&quot;fechaActualizacion&#92;&quot;:&#92;&quot;2025-12-13T08:26:56.59&#92;&quot;,&#92;&quot;inicioDato&#92;&quot;:&#92;&quot;2022-12-01T00:00:00&#92;&quot;,&#92;&quot;finDato&#92;&quot;:&#92;&quot;2026-11-01T00:00:00&#92;&quot;,&#92;&quot;fechaDescarga&#92;&quot;:&#92;&quot;2025-05-06T11:28:35.46&#92;&quot;,&#92;&quot;urlConexionAPI&#92;&quot;:&#92;&quot;https://www.simem.coPublicData?startDate=2025-12-13&amp;endDate=2025-12-13&amp;datasetId=F3A83B&#92;&quot;,&#92;&quot;urlConjuntoDatos&#92;&quot;:&#92;&quot;https://www.simem.co/datadetail/f3a83baa-a370-4557-be0d-05396fb30421&#92;&quot;,&#92;&quot;tipoPublicacion&#92;&quot;:&#92;&quot;P&#92;&#92;u00fablico&#92;&quot;},{&#92;&quot;idDataset&#92;&quot;:&#92;&quot;bf41fe&#92;&quot;,&#92;&quot;nombreConjuntoDatos&#92;&quot;:&#92;&quot;Hist&#92;&#92;u00f3rico Posici&#92;&#92;u00f3n abierta por contrato II Open interest II&#92;&quot;,&#92;&quot;fechaPublicacion&#92;&quot;:&#92;&quot;2025-03-10T23:00:12.1&#92;&quot;,&#92;&quot;fechaActualizacion&#92;&quot;:&#92;&quot;2025-11-13T13:42:16.183&#92;&quot;,&#92;&quot;inicioDato&#92;&quot;:&#92;&quot;2023-08-31T00:00:00&#92;&quot;,&#92;&quot;finDato&#92;&quot;:&#92;&quot;2025-10-31T00:00:00&#92;&quot;,&#92;&quot;fechaDescarga&#92;&quot;:&#92;&quot;2025-03-13T08:58:15.363&#92;&quot;,&#92;&quot;urlConexionAPI&#92;&quot;:&#92;&quot;https://www.simem.coPublicData?startDate=2025-12-13&amp;endDate=2025-12-13&amp;datasetId=bf41fe&#92;&quot;,&#92;&quot;urlConjuntoDatos&#92;&quot;:&#92;&quot;https://www.simem.co/datadetail/bf41fe3a-faa8-4f73-9773-07c7f97c8447&#92;&quot;,&#92;&quot;tipoPublicacion&#92;&quot;:&#92;&quot;P&#92;&#92;u00fablico&#92;&quot;}]&quot;' data-total-rows='434' data-total-columns='10' data-max-columns='50' data-banner-text='&quot;&quot;' data-pagination='true' data-page-size='10' data-field-types='[[&quot;idDataset&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;nombreConjuntoDatos&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;fechaPublicacion&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;fechaActualizacion&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;inicioDato&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;finDato&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;fechaDescarga&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;urlConexionAPI&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;urlConjuntoDatos&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;tipoPublicacion&quot;,[&quot;string&quot;,&quot;object&quot;]]]' data-show-filters='true' data-show-download='true' data-show-column-summaries='true' data-show-data-types='true' data-show-page-size-selector='true' data-show-column-explorer='true' data-show-chart-builder='true' data-row-headers='[]' data-has-stable-row-id='false' data-lazy='false' data-preload='false'></marimo-table></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "EMxJ",
+      "code_hash": "bcbea55b3e313a81cd6bf64bf398c850",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "****************************************************************************************************\nInitializing object\nThe object has been initialized with the dataset: \"Listado de Embalses que sirven al Sistema Interconectado Nacional\"\n****************************************************************************************************\n",
+          "mimetype": "text/plain"
+        }
+      ]
+    },
+    {
+      "id": "jion",
+      "code_hash": "8f44cfbf96dc09224f378bf49e23cc4e",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "application/json": "[\"_ReadSIMEM__check_date_resolution\", \"_ReadSIMEM__columns\", \"_ReadSIMEM__create_urls\", \"_ReadSIMEM__dataset_id\", \"_ReadSIMEM__dataset_info\", \"_ReadSIMEM__date_filter\", \"_ReadSIMEM__end_date\", \"_ReadSIMEM__filter_url\", \"_ReadSIMEM__get_dataset_info\", \"_ReadSIMEM__granularity\", \"_ReadSIMEM__metadata\", \"_ReadSIMEM__name\", \"_ReadSIMEM__resolution\", \"_ReadSIMEM__save_dataset\", \"_ReadSIMEM__start_date\", \"__class__\", \"__dataclass_fields__\", \"__dataclass_params__\", \"__delattr__\", \"__dict__\", \"__dir__\", \"__doc__\", \"__eq__\", \"__firstlineno__\", \"__format__\", \"__ge__\", \"__getattribute__\", \"__getstate__\", \"__gt__\", \"__hash__\", \"__init__\", \"__init_subclass__\", \"__le__\", \"__lt__\", \"__match_args__\", \"__module__\", \"__ne__\", \"__new__\", \"__reduce__\", \"__reduce_ex__\", \"__replace__\", \"__repr__\", \"__setattr__\", \"__sizeof__\", \"__static_attributes__\", \"__str__\", \"__subclasshook__\", \"__weakref__\", \"_generate_dates\", \"_get_records\", \"_make_request\", \"_set_dataset_data\", \"_set_datasetid\", \"get_columns\", \"get_datasetid\", \"get_enddate\", \"get_filter_column\", \"get_filter_url\", \"get_filters\", \"get_granularity\", \"get_metadata\", \"get_name\", \"get_resolution\", \"get_startdate\", \"main\", \"set_dates\", \"set_filter\", \"url_api\"]"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "OGFE",
+      "code_hash": "3d20f64d6e54a2fe78e8317724c94af9",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='OGFE-0' random-id='d9de707a-b68a-c624-f274-e96579cca20d'><marimo-table data-initial-value='[]' data-label='null' data-data='&quot;[{&#92;&quot;nameColumn&#92;&quot;:&#92;&quot;NombreEmbalse&#92;&quot;,&#92;&quot;dataType&#92;&quot;:&#92;&quot;texto&#92;&quot;,&#92;&quot;description&#92;&quot;:&#92;&quot;Nombre de los embalses del sistema interconectado nacional. &#92;&quot;},{&#92;&quot;nameColumn&#92;&quot;:&#92;&quot;CodigoEmbalse&#92;&quot;,&#92;&quot;dataType&#92;&quot;:&#92;&quot;texto&#92;&quot;,&#92;&quot;description&#92;&quot;:&#92;&quot;C&#92;&#92;u00f3digo del embalse&#92;&quot;},{&#92;&quot;nameColumn&#92;&quot;:&#92;&quot;FechaEjecucion&#92;&quot;,&#92;&quot;dataType&#92;&quot;:&#92;&quot;fecha&#92;&quot;,&#92;&quot;description&#92;&quot;:&#92;&quot;Fecha Extracci&#92;&#92;u00f3n del dato&#92;&quot;},{&#92;&quot;nameColumn&#92;&quot;:&#92;&quot;Fecha&#92;&quot;,&#92;&quot;dataType&#92;&quot;:&#92;&quot;fecha&#92;&quot;,&#92;&quot;description&#92;&quot;:&#92;&quot;Fecha de representaci&#92;&#92;u00f3n de la informaci&#92;&#92;u00f3n&#92;&quot;}]&quot;' data-total-rows='4' data-total-columns='3' data-max-columns='50' data-banner-text='&quot;&quot;' data-pagination='true' data-page-size='10' data-field-types='[[&quot;nameColumn&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;dataType&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;description&quot;,[&quot;string&quot;,&quot;object&quot;]]]' data-show-filters='true' data-show-download='true' data-show-column-summaries='false' data-show-data-types='true' data-show-page-size-selector='false' data-show-column-explorer='true' data-show-chart-builder='true' data-row-headers='[]' data-has-stable-row-id='false' data-lazy='false' data-preload='false'></marimo-table></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "PYJq",
+      "code_hash": "0f906db81140cd2c0817729c040acb13",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "Inicio consulta sincronica\nCreacion url: 0.0004353523254394531\nExtraccion de registros: 8.77343201637268\nEnd of data extracting process\n****************************************************************************************************\n",
+          "mimetype": "text/plain"
+        }
+      ]
+    },
+    {
+      "id": "mxXw",
+      "code_hash": "9375a087f2e402fbb7fb62be4e30a78c",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "['AGREGADO MIRAFLORES - TRONERAS' 'AGREGADO_BOGOTA' 'AGREGADO_SIN'\n 'ALTOANCHICAYA' 'AMANI' 'BETANIA' 'CALDERAS' 'CALIMA1' 'CHUZA'\n 'EL QUIMBO' 'EMBALSE LA FE' 'EMBALSES BOGOTA' 'ESMERALDA' 'FLORIDA2'\n 'GUAVIO' 'ITUANGO' 'MIRAFLORES' 'MUNA' 'NEUSA' 'PENOL'\n 'PENOL (ENERG. ATRAPADA)' 'PLAYAS' 'PORCE II' 'PORCE III' 'PRADO'\n 'PUNCHINA' 'QUEBRADON' 'RIOGRANDE2' 'SALVAJINA' 'SAN LORENZO'\n 'SAN RAFAEL' 'SISGA' 'TOMINE' 'TOPOCORO' 'TRONERAS' 'URRA1']\n",
+          "mimetype": "text/plain"
+        }
+      ]
+    },
+    {
+      "id": "UDlg",
+      "code_hash": "90c7ad5b0ed09314446fb55d0f6f8063",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h1 id=\"objetos-sinergox-xm\">Objetos SINERGOX - XM</h1></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "mrsy",
+      "code_hash": "348207c79449a95ca3e479c01d450a0d",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='mrsy-0' random-id='b29151dc-12f2-abe8-f23d-003bf6dac91b'><marimo-table data-initial-value='[]' data-label='null' data-data='&quot;[{&#92;&quot;MetricId&#92;&quot;:&#92;&quot;DemaReal&#92;&quot;,&#92;&quot;MetricName&#92;&quot;:&#92;&quot;Demanda Real por Sistema&#92;&quot;,&#92;&quot;Entity&#92;&quot;:&#92;&quot;Sistema&#92;&quot;,&#92;&quot;MaxDays&#92;&quot;:31,&#92;&quot;Type&#92;&quot;:&#92;&quot;HourlyEntities&#92;&quot;,&#92;&quot;Url&#92;&quot;:&#92;&quot;https://servapibi.xm.com.co/hourly&#92;&quot;,&#92;&quot;Filter&#92;&quot;:&#92;&quot;No aplica&#92;&quot;,&#92;&quot;MetricUnits&#92;&quot;:&#92;&quot;kWh&#92;&quot;,&#92;&quot;MetricDescription&#92;&quot;:&#92;&quot;Demanda de usuarios regulados y no regulados que hacen parte del Sistema Interconectado Nacional (no incluye Alumbrado P&#92;&#92;u00fablico)&#92;&quot;},{&#92;&quot;MetricId&#92;&quot;:&#92;&quot;DemaReal&#92;&quot;,&#92;&quot;MetricName&#92;&quot;:&#92;&quot;Demanda Real por Agente&#92;&quot;,&#92;&quot;Entity&#92;&quot;:&#92;&quot;Agente&#92;&quot;,&#92;&quot;MaxDays&#92;&quot;:31,&#92;&quot;Type&#92;&quot;:&#92;&quot;HourlyEntities&#92;&quot;,&#92;&quot;Url&#92;&quot;:&#92;&quot;https://servapibi.xm.com.co/hourly&#92;&quot;,&#92;&quot;Filter&#92;&quot;:&#92;&quot;Codigo Comercializador&#92;&quot;,&#92;&quot;MetricUnits&#92;&quot;:&#92;&quot;kWh&#92;&quot;,&#92;&quot;MetricDescription&#92;&quot;:&#92;&quot;Demanda de usuarios regulados y no regulados que hacen parte del Sistema Interconectado Nacional (no incluye Alumbrado P&#92;&#92;u00fablico)&#92;&quot;},{&#92;&quot;MetricId&#92;&quot;:&#92;&quot;ExpoMoneda&#92;&quot;,&#92;&quot;MetricName&#92;&quot;:&#92;&quot;Exportaciones Moneda por Sistema&#92;&quot;,&#92;&quot;Entity&#92;&quot;:&#92;&quot;Sistema&#92;&quot;,&#92;&quot;MaxDays&#92;&quot;:31,&#92;&quot;Type&#92;&quot;:&#92;&quot;HourlyEntities&#92;&quot;,&#92;&quot;Url&#92;&quot;:&#92;&quot;https://servapibi.xm.com.co/hourly&#92;&quot;,&#92;&quot;Filter&#92;&quot;:&#92;&quot;No aplica&#92;&quot;,&#92;&quot;MetricUnits&#92;&quot;:&#92;&quot;COP&#92;&quot;,&#92;&quot;MetricDescription&#92;&quot;:&#92;&quot;Transferencias de Energia desde Colombia hacia otros paises&#92;&quot;},{&#92;&quot;MetricId&#92;&quot;:&#92;&quot;DemaCome&#92;&quot;,&#92;&quot;MetricName&#92;&quot;:&#92;&quot;Demanda Comercial por Sistema&#92;&quot;,&#92;&quot;Entity&#92;&quot;:&#92;&quot;Sistema&#92;&quot;,&#92;&quot;MaxDays&#92;&quot;:31,&#92;&quot;Type&#92;&quot;:&#92;&quot;HourlyEntities&#92;&quot;,&#92;&quot;Url&#92;&quot;:&#92;&quot;https://servapibi.xm.com.co/hourly&#92;&quot;,&#92;&quot;Filter&#92;&quot;:&#92;&quot;No aplica&#92;&quot;,&#92;&quot;MetricUnits&#92;&quot;:&#92;&quot;kWh&#92;&quot;,&#92;&quot;MetricDescription&#92;&quot;:&#92;&quot;Considera la demanda propia de cada comercializador mas la paticipacion en la perdidas del STN y los consumos propios de los generadores.&#92;&quot;},{&#92;&quot;MetricId&#92;&quot;:&#92;&quot;Gene&#92;&quot;,&#92;&quot;MetricName&#92;&quot;:&#92;&quot;Generaci&#92;&#92;u00f3n por Sistema&#92;&quot;,&#92;&quot;Entity&#92;&quot;:&#92;&quot;Sistema&#92;&quot;,&#92;&quot;MaxDays&#92;&quot;:31,&#92;&quot;Type&#92;&quot;:&#92;&quot;HourlyEntities&#92;&quot;,&#92;&quot;Url&#92;&quot;:&#92;&quot;https://servapibi.xm.com.co/hourly&#92;&quot;,&#92;&quot;Filter&#92;&quot;:&#92;&quot;No aplica&#92;&quot;,&#92;&quot;MetricUnits&#92;&quot;:&#92;&quot;kWh&#92;&quot;,&#92;&quot;MetricDescription&#92;&quot;:&#92;&quot;Generacion neta de cada una de las plantas Nacionales en sus puntos de frontera.&#92;&quot;},{&#92;&quot;MetricId&#92;&quot;:&#92;&quot;GeneIdea&#92;&quot;,&#92;&quot;MetricName&#92;&quot;:&#92;&quot;Generaci&#92;&#92;u00f3n Ideal por Sistema&#92;&quot;,&#92;&quot;Entity&#92;&quot;:&#92;&quot;Sistema&#92;&quot;,&#92;&quot;MaxDays&#92;&quot;:31,&#92;&quot;Type&#92;&quot;:&#92;&quot;HourlyEntities&#92;&quot;,&#92;&quot;Url&#92;&quot;:&#92;&quot;https://servapibi.xm.com.co/hourly&#92;&quot;,&#92;&quot;Filter&#92;&quot;:&#92;&quot;No aplica&#92;&quot;,&#92;&quot;MetricUnits&#92;&quot;:&#92;&quot;kWh&#92;&quot;,&#92;&quot;MetricDescription&#92;&quot;:&#92;&quot;Despacho de generacion que resulta de considerar una red de transporte inexistente&#92;&quot;},{&#92;&quot;MetricId&#92;&quot;:&#92;&quot;PrecBolsNaci&#92;&quot;,&#92;&quot;MetricName&#92;&quot;:&#92;&quot;Precio Bolsa Nacional por Sistema&#92;&quot;,&#92;&quot;Entity&#92;&quot;:&#92;&quot;Sistema&#92;&quot;,&#92;&quot;MaxDays&#92;&quot;:31,&#92;&quot;Type&#92;&quot;:&#92;&quot;HourlyEntities&#92;&quot;,&#92;&quot;Url&#92;&quot;:&#92;&quot;https://servapibi.xm.com.co/hourly&#92;&quot;,&#92;&quot;Filter&#92;&quot;:&#92;&quot;No aplica&#92;&quot;,&#92;&quot;MetricUnits&#92;&quot;:&#92;&quot;COP/kWh&#92;&quot;,&#92;&quot;MetricDescription&#92;&quot;:&#92;&quot;Precio de oferta de la &#92;&#92;u00faltima planta flexible para atender la demanda comercial nacional, m&#92;&#92;u00e1s delta de incremento para remunerar los costos no cubiertos de las plantas t&#92;&#92;u00e9rmicas en el despacho ideal.&#92;&quot;},{&#92;&quot;MetricId&#92;&quot;:&#92;&quot;RestAliv&#92;&quot;,&#92;&quot;MetricName&#92;&quot;:&#92;&quot;Restricciones Aliviadas por Sistema&#92;&quot;,&#92;&quot;Entity&#92;&quot;:&#92;&quot;Sistema&#92;&quot;,&#92;&quot;MaxDays&#92;&quot;:31,&#92;&quot;Type&#92;&quot;:&#92;&quot;HourlyEntities&#92;&quot;,&#92;&quot;Url&#92;&quot;:&#92;&quot;https://servapibi.xm.com.co/hourly&#92;&quot;,&#92;&quot;Filter&#92;&quot;:&#92;&quot;No aplica&#92;&quot;,&#92;&quot;MetricUnits&#92;&quot;:&#92;&quot;COP&#92;&quot;,&#92;&quot;MetricDescription&#92;&quot;:&#92;&quot;&#92;&#92;u201cEs el valor a cargo de los comercializadores por concepto de restricciones despu&#92;&#92;u00e9s de aplicar los alivios definidos en la regulaci&#92;&#92;u00f3n vigente&#92;&#92;u201d, la regla de negocio de esta m&#92;&#92;u00e9trica ser&#92;&#92;u00eda la Resoluci&#92;&#92;u00f3n &#92;&quot;},{&#92;&quot;MetricId&#92;&quot;:&#92;&quot;ConsCombustibleMBTU&#92;&quot;,&#92;&quot;MetricName&#92;&quot;:&#92;&quot;Consumo Combustible MBTU por Recurso&#92;&quot;,&#92;&quot;Entity&#92;&quot;:&#92;&quot;Recurso&#92;&quot;,&#92;&quot;MaxDays&#92;&quot;:31,&#92;&quot;Type&#92;&quot;:&#92;&quot;HourlyEntities&#92;&quot;,&#92;&quot;Url&#92;&quot;:&#92;&quot;https://servapibi.xm.com.co/hourly&#92;&quot;,&#92;&quot;Filter&#92;&quot;:&#92;&quot;Codigo Submercado Generaci&#92;&#92;u00f3n&#92;&quot;,&#92;&quot;MetricUnits&#92;&quot;:&#92;&quot;MBTU&#92;&quot;,&#92;&quot;MetricDescription&#92;&quot;:&#92;&quot;Los generadores t&#92;&#92;u00e9rmicos deben reportar diariamente seg&#92;&#92;u00fan resoluci&#92;&#92;u00f3n CREG 084 de 2005 el consumo de combustible en MBTU&#92;&quot;},{&#92;&quot;MetricId&#92;&quot;:&#92;&quot;ConsCombustibleMBTU&#92;&quot;,&#92;&quot;MetricName&#92;&quot;:&#92;&quot;Consumo Combustible MBTU&#92;&quot;,&#92;&quot;Entity&#92;&quot;:&#92;&quot;Combustible&#92;&quot;,&#92;&quot;MaxDays&#92;&quot;:31,&#92;&quot;Type&#92;&quot;:&#92;&quot;HourlyEntities&#92;&quot;,&#92;&quot;Url&#92;&quot;:&#92;&quot;https://servapibi.xm.com.co/hourly&#92;&quot;,&#92;&quot;Filter&#92;&quot;:&#92;&quot;Codigo Submercado Generaci&#92;&#92;u00f3n&#92;&quot;,&#92;&quot;MetricUnits&#92;&quot;:&#92;&quot;MBTU&#92;&quot;,&#92;&quot;MetricDescription&#92;&quot;:&#92;&quot;Los generadores t&#92;&#92;u00e9rmicos deben reportar diariamente seg&#92;&#92;u00fan resoluci&#92;&#92;u00f3n CREG 084 de 2005 el consumo de combustible en MBTU&#92;&quot;}]&quot;' data-total-rows='193' data-total-columns='9' data-max-columns='50' data-banner-text='&quot;&quot;' data-pagination='true' data-page-size='10' data-field-types='[[&quot;MetricId&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;MetricName&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;Entity&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;MaxDays&quot;,[&quot;integer&quot;,&quot;int64&quot;]],[&quot;Type&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;Url&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;Filter&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;MetricUnits&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;MetricDescription&quot;,[&quot;string&quot;,&quot;object&quot;]]]' data-show-filters='true' data-show-download='true' data-show-column-summaries='true' data-show-data-types='true' data-show-page-size-selector='true' data-show-column-explorer='true' data-show-chart-builder='true' data-row-headers='[]' data-has-stable-row-id='false' data-lazy='false' data-preload='false'></marimo-table></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "XjRM",
+      "code_hash": "4dfba9de2b82fc6c517f58991a449308",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "Help on method request_data in module pydataxm.pydataxm:\n\nrequest_data(coleccion, metrica, start_date, end_date, filtros=None) method of pydataxm.pydataxm.ReadDB instance\n    request public server data from XM by the API\n    Args:\n        coleccion: one of the set of variables availables at self.get_collections()\n        metrica:one of this variables available in \"ListadoMetricas\", you have to enter MetricID\n        start_date: start date consult data using YYYY-MM-DD format\n        end_date: end date consult data using YYYY-MM-DD format\n        filter: optional parameter, list of values to filter data\n    Returns:\n        DataFrame with the raw Data\n\n",
+          "mimetype": "text/plain"
+        }
+      ]
+    },
+    {
+      "id": "jrCN",
+      "code_hash": "a4d38b87b41530a403591366c5153fef",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='jrCN-0' random-id='7cd6028e-9eec-26c8-ea52-37e222967f0e'><marimo-table data-initial-value='[]' data-label='null' data-data='&quot;[{&#92;&quot;&#92;&quot;:190,&#92;&quot;MetricId&#92;&quot;:&#92;&quot;ListadoEmbalses&#92;&quot;,&#92;&quot;MetricName&#92;&quot;:&#92;&quot;Listado de embalses por Sistema&#92;&quot;,&#92;&quot;Entity&#92;&quot;:&#92;&quot;Sistema&#92;&quot;,&#92;&quot;MaxDays&#92;&quot;:731,&#92;&quot;Type&#92;&quot;:&#92;&quot;ListsEntities&#92;&quot;,&#92;&quot;Url&#92;&quot;:&#92;&quot;https://servapibi.xm.com.co/list&#92;&quot;,&#92;&quot;Filter&#92;&quot;:&#92;&quot;No aplica&#92;&quot;,&#92;&quot;MetricUnits&#92;&quot;:&#92;&quot;&#92;&quot;,&#92;&quot;MetricDescription&#92;&quot;:&#92;&quot;Listado de embalses que se encuentran registrados ante el CND y que son reportados por alg&#92;&#92;u00fan recurso del SIN&#92;&quot;}]&quot;' data-total-rows='1' data-total-columns='9' data-max-columns='50' data-banner-text='&quot;&quot;' data-pagination='true' data-page-size='10' data-field-types='[[&quot;MetricId&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;MetricName&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;Entity&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;MaxDays&quot;,[&quot;integer&quot;,&quot;int64&quot;]],[&quot;Type&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;Url&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;Filter&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;MetricUnits&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;MetricDescription&quot;,[&quot;string&quot;,&quot;object&quot;]]]' data-show-filters='true' data-show-download='true' data-show-column-summaries='false' data-show-data-types='true' data-show-page-size-selector='false' data-show-column-explorer='true' data-show-chart-builder='true' data-row-headers='[[&quot;&quot;,[&quot;integer&quot;,&quot;int64&quot;]]]' data-has-stable-row-id='false' data-lazy='false' data-preload='false'></marimo-table></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "snrV",
+      "code_hash": "b9793e6e33a53e3d2259071d2c7e3917",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='snrV-0' random-id='b9cc1abc-8532-4410-2796-2a1fce131868'><marimo-table data-initial-value='[]' data-label='null' data-data='&quot;[{&#92;&quot;Id&#92;&quot;:&#92;&quot;Sistema&#92;&quot;,&#92;&quot;Values_Code&#92;&quot;:&#92;&quot;AGREGADO&#92;&quot;,&#92;&quot;Values_Name&#92;&quot;:&#92;&quot;AGREGADO BOGOTA&#92;&quot;,&#92;&quot;Values_HydroRegion&#92;&quot;:&#92;&quot;CENTRO&#92;&quot;,&#92;&quot;Values_Status&#92;&quot;:&#92;&quot;ACTIVO&#92;&quot;,&#92;&quot;Date&#92;&quot;:&#92;&quot;2025-12-13 00:00:00&#92;&quot;},{&#92;&quot;Id&#92;&quot;:&#92;&quot;Sistema&#92;&quot;,&#92;&quot;Values_Code&#92;&quot;:&#92;&quot;AGREGADO&#92;&quot;,&#92;&quot;Values_Name&#92;&quot;:&#92;&quot;AGREGADO BOGOTA&#92;&quot;,&#92;&quot;Values_HydroRegion&#92;&quot;:&#92;&quot;CENTRO&#92;&quot;,&#92;&quot;Values_Status&#92;&quot;:&#92;&quot;ACTIVO&#92;&quot;,&#92;&quot;Date&#92;&quot;:&#92;&quot;2025-12-13 00:00:00&#92;&quot;},{&#92;&quot;Id&#92;&quot;:&#92;&quot;Sistema&#92;&quot;,&#92;&quot;Values_Code&#92;&quot;:&#92;&quot;ALTOANCH&#92;&quot;,&#92;&quot;Values_Name&#92;&quot;:&#92;&quot;ALTOANCHICAYA&#92;&quot;,&#92;&quot;Values_HydroRegion&#92;&quot;:&#92;&quot;VALLE&#92;&quot;,&#92;&quot;Values_Status&#92;&quot;:&#92;&quot;ACTIVO&#92;&quot;,&#92;&quot;Date&#92;&quot;:&#92;&quot;2025-12-13 00:00:00&#92;&quot;},{&#92;&quot;Id&#92;&quot;:&#92;&quot;Sistema&#92;&quot;,&#92;&quot;Values_Code&#92;&quot;:&#92;&quot;ALTOANCH&#92;&quot;,&#92;&quot;Values_Name&#92;&quot;:&#92;&quot;ALTOANCHICAYA&#92;&quot;,&#92;&quot;Values_HydroRegion&#92;&quot;:&#92;&quot;VALLE&#92;&quot;,&#92;&quot;Values_Status&#92;&quot;:&#92;&quot;ACTIVO&#92;&quot;,&#92;&quot;Date&#92;&quot;:&#92;&quot;2025-12-13 00:00:00&#92;&quot;},{&#92;&quot;Id&#92;&quot;:&#92;&quot;Sistema&#92;&quot;,&#92;&quot;Values_Code&#92;&quot;:&#92;&quot;BETANIA&#92;&quot;,&#92;&quot;Values_Name&#92;&quot;:&#92;&quot;BETANIA&#92;&quot;,&#92;&quot;Values_HydroRegion&#92;&quot;:&#92;&quot;CENTRO&#92;&quot;,&#92;&quot;Values_Status&#92;&quot;:&#92;&quot;ACTIVO&#92;&quot;,&#92;&quot;Date&#92;&quot;:&#92;&quot;2025-12-13 00:00:00&#92;&quot;},{&#92;&quot;Id&#92;&quot;:&#92;&quot;Sistema&#92;&quot;,&#92;&quot;Values_Code&#92;&quot;:&#92;&quot;CALIMA1&#92;&quot;,&#92;&quot;Values_Name&#92;&quot;:&#92;&quot;CALIMA1&#92;&quot;,&#92;&quot;Values_HydroRegion&#92;&quot;:&#92;&quot;VALLE&#92;&quot;,&#92;&quot;Values_Status&#92;&quot;:&#92;&quot;ACTIVO&#92;&quot;,&#92;&quot;Date&#92;&quot;:&#92;&quot;2025-12-13 00:00:00&#92;&quot;},{&#92;&quot;Id&#92;&quot;:&#92;&quot;Sistema&#92;&quot;,&#92;&quot;Values_Code&#92;&quot;:&#92;&quot;CHUZA&#92;&quot;,&#92;&quot;Values_Name&#92;&quot;:&#92;&quot;CHUZA&#92;&quot;,&#92;&quot;Values_HydroRegion&#92;&quot;:&#92;&quot;ORIENTE&#92;&quot;,&#92;&quot;Values_Status&#92;&quot;:&#92;&quot;ACTIVO&#92;&quot;,&#92;&quot;Date&#92;&quot;:&#92;&quot;2025-12-13 00:00:00&#92;&quot;},{&#92;&quot;Id&#92;&quot;:&#92;&quot;Sistema&#92;&quot;,&#92;&quot;Values_Code&#92;&quot;:&#92;&quot;CHUZA&#92;&quot;,&#92;&quot;Values_Name&#92;&quot;:&#92;&quot;CHUZA&#92;&quot;,&#92;&quot;Values_HydroRegion&#92;&quot;:&#92;&quot;ORIENTE&#92;&quot;,&#92;&quot;Values_Status&#92;&quot;:&#92;&quot;ACTIVO&#92;&quot;,&#92;&quot;Date&#92;&quot;:&#92;&quot;2025-12-13 00:00:00&#92;&quot;},{&#92;&quot;Id&#92;&quot;:&#92;&quot;Sistema&#92;&quot;,&#92;&quot;Values_Code&#92;&quot;:&#92;&quot;ELQUIMBO&#92;&quot;,&#92;&quot;Values_Name&#92;&quot;:&#92;&quot;EL QUIMBO&#92;&quot;,&#92;&quot;Values_HydroRegion&#92;&quot;:&#92;&quot;CENTRO&#92;&quot;,&#92;&quot;Values_Status&#92;&quot;:&#92;&quot;ACTIVO&#92;&quot;,&#92;&quot;Date&#92;&quot;:&#92;&quot;2025-12-13 00:00:00&#92;&quot;},{&#92;&quot;Id&#92;&quot;:&#92;&quot;Sistema&#92;&quot;,&#92;&quot;Values_Code&#92;&quot;:&#92;&quot;ESMERALD&#92;&quot;,&#92;&quot;Values_Name&#92;&quot;:&#92;&quot;ESMERALDA&#92;&quot;,&#92;&quot;Values_HydroRegion&#92;&quot;:&#92;&quot;ORIENTE&#92;&quot;,&#92;&quot;Values_Status&#92;&quot;:&#92;&quot;ACTIVO&#92;&quot;,&#92;&quot;Date&#92;&quot;:&#92;&quot;2025-12-13 00:00:00&#92;&quot;}]&quot;' data-total-rows='30' data-total-columns='6' data-max-columns='50' data-banner-text='&quot;&quot;' data-pagination='true' data-page-size='10' data-field-types='[[&quot;Id&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;Values_Code&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;Values_Name&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;Values_HydroRegion&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;Values_Status&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;Date&quot;,[&quot;datetime&quot;,&quot;datetime64[ns]&quot;]]]' data-show-filters='true' data-show-download='true' data-show-column-summaries='true' data-show-data-types='true' data-show-page-size-selector='true' data-show-column-explorer='true' data-show-chart-builder='true' data-row-headers='[]' data-has-stable-row-id='false' data-lazy='false' data-preload='false'></marimo-table></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "VPvx",
+      "code_hash": "35202ff3a7bd19bdc92d56868bf00c42",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h1 id=\"informacion-geografica-de-los-embalses\">Informaci\u00f3n Geogr\u00e1fica de los Embalses</h1></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "lxMX",
+      "code_hash": "4af517ef739f700432dc8122b81bb1e4",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "DPtb",
+      "code_hash": "daaf35fc2eb8c68f6faa9fd76b8c3b92",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='DPtb-0' random-id='283f0e4a-bf1a-710b-d3f8-a5d034d4caf1'><marimo-table data-initial-value='[]' data-label='null' data-data='&quot;[{&#92;&quot;Nombre del embalse&#92;&quot;:&#92;&quot;ESMERALDA&#92;&quot;,&#92;&quot;Operador&#92;&quot;:&#92;&quot;AES COLOMBIA &amp; CIA. S.C.A. E.S.P.&#92;&quot;,&#92;&quot;Regi&#92;&#92;u00f3n  hidrol&#92;&#92;u00f3gica&#92;&quot;:&#92;&quot;Oriente&#92;&quot;,&#92;&quot; Latitud [&#92;&#92;u00b0]&#92;&quot;:&#92;&quot;4.9&#92;&quot;,&#92;&quot;Longitud [&#92;&#92;u00b0]&#92;&quot;:&#92;&quot;-73.3&#92;&quot;},{&#92;&quot;Nombre del embalse&#92;&quot;:&#92;&quot;ALTOANCHICAYA&#92;&quot;,&#92;&quot;Operador&#92;&quot;:&#92;&quot;CELSIA COLOMBIA S.A. E.S.P.&#92;&quot;,&#92;&quot;Regi&#92;&#92;u00f3n  hidrol&#92;&#92;u00f3gica&#92;&quot;:&#92;&quot;Valle&#92;&quot;,&#92;&quot; Latitud [&#92;&#92;u00b0]&#92;&quot;:&#92;&quot;3.320507&#92;&quot;,&#92;&quot;Longitud [&#92;&#92;u00b0]&#92;&quot;:&#92;&quot;-76.521748&#92;&quot;},{&#92;&quot;Nombre del embalse&#92;&quot;:&#92;&quot;CALIMA&#92;&quot;,&#92;&quot;Operador&#92;&quot;:&#92;&quot;CELSIA COLOMBIA S.A. E.S.P.&#92;&quot;,&#92;&quot;Regi&#92;&#92;u00f3n  hidrol&#92;&#92;u00f3gica&#92;&quot;:&#92;&quot;Valle&#92;&quot;,&#92;&quot; Latitud [&#92;&#92;u00b0]&#92;&quot;:&#92;&quot;3.524585&#92;&quot;,&#92;&quot;Longitud [&#92;&#92;u00b0]&#92;&quot;:&#92;&quot;-76.333665&#92;&quot;},{&#92;&quot;Nombre del embalse&#92;&quot;:&#92;&quot;PRADO&#92;&quot;,&#92;&quot;Operador&#92;&quot;:&#92;&quot;CELSIA COLOMBIA S.A. E.S.P.&#92;&quot;,&#92;&quot;Regi&#92;&#92;u00f3n  hidrol&#92;&#92;u00f3gica&#92;&quot;:&#92;&quot;Centro&#92;&quot;,&#92;&quot; Latitud [&#92;&#92;u00b0]&#92;&quot;:&#92;&quot;3.451501&#92;&quot;,&#92;&quot;Longitud [&#92;&#92;u00b0]&#92;&quot;:&#92;&quot;-74.531129&#92;&quot;},{&#92;&quot;Nombre del embalse&#92;&quot;:&#92;&quot;SALVAJINA&#92;&quot;,&#92;&quot;Operador&#92;&quot;:&#92;&quot;CELSIA COLOMBIA S.A. E.S.P.&#92;&quot;,&#92;&quot;Regi&#92;&#92;u00f3n  hidrol&#92;&#92;u00f3gica&#92;&quot;:&#92;&quot;Valle&#92;&quot;,&#92;&quot; Latitud [&#92;&#92;u00b0]&#92;&quot;:&#92;&quot;2.563915&#92;&quot;,&#92;&quot;Longitud [&#92;&#92;u00b0]&#92;&quot;:&#92;&quot;-76.42273&#92;&quot;}]&quot;' data-total-rows='5' data-total-columns='5' data-max-columns='50' data-banner-text='&quot;&quot;' data-pagination='true' data-page-size='10' data-field-types='[[&quot;Nombre del embalse&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;Operador&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;Regi\u00f3n  hidrol\u00f3gica&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot; Latitud [\u00b0]&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;Longitud [\u00b0]&quot;,[&quot;string&quot;,&quot;object&quot;]]]' data-show-filters='true' data-show-download='true' data-show-column-summaries='false' data-show-data-types='true' data-show-page-size-selector='false' data-show-column-explorer='true' data-show-chart-builder='true' data-row-headers='[]' data-has-stable-row-id='false' data-lazy='false' data-preload='false'></marimo-table></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "CNpS",
+      "code_hash": "1d0db38904205bec4d6f6f6a1f6cec3e",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    }
+  ]
+}
