@@ -4,6 +4,7 @@ services:
     image: nginx:latest
     container_name: tuxhydro_nginx
     restart: unless-stopped
+    user: root
     networks:
       - nginx_net
       - pgadmin_net
