@@ -118,6 +118,12 @@ def _():
 def _(pd):
     df = pd.read_csv("../../data/XM/EmbalsesColombia.csv", delimiter=",", encoding="utf-8")
     df.head()
+    return (df,)
+
+
+@app.cell
+def _(df):
+    df.columns
     return
 
 

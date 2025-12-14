@@ -254,6 +254,19 @@
       "console": []
     },
     {
+      "id": "LjLm",
+      "code_hash": "0d8d07ddb094f82646c2d62707f348bf",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<pre class='text-xs'>Index([&#x27;Nombre del embalse&#x27;, &#x27;Operador&#x27;, &#x27;Regi\u00f3n  hidrol\u00f3gica&#x27;, &#x27; Latitud [\u00b0]&#x27;,\n       &#x27;Longitud [\u00b0]&#x27;],\n      dtype=&#x27;object&#x27;)</pre>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
       "id": "CNpS",
       "code_hash": "1d0db38904205bec4d6f6f6a1f6cec3e",
       "outputs": [
