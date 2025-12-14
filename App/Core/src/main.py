@@ -15,6 +15,7 @@ from routers.actor_segments import router as router_actor_segments
 from routers.actors import router as router_actors
 from routers.forms import router as router_forms
 from routers.results import router as router_results
+from routers.embalses import router as router_embalses
 
 from shared_schemas import (
     ItemError,
@@ -238,7 +239,7 @@ api.mount("/public", api_public)
 ##############################################################################################
 # Montaje de frontend en la aplicación principal
 ##############################################################################################
-public_routers = [router_actors, router_actor_segments, router_forms, router_results]
+public_routers = [router_actors, router_actor_segments, router_forms, router_results, router_embalses]
 
 node_routers = []
 
