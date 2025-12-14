@@ -6,7 +6,7 @@ requests>=2.32.5
 sqlalchemy>=2.0.44
 GeoAlchemy2==0.18.1
 uvicorn>=0.38.0
-Packages/shared_db.zip
-Packages/shared_models.zip
-Packages/shared_schemas.zip
-Packages/shared_utils.zip
+App/Packages/shared_db.zip
+App/Packages/shared_models.zip
+App/Packages/shared_schemas.zip
+App/Packages/shared_utils.zip

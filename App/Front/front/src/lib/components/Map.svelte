@@ -35,7 +35,7 @@
 		
 		// Fetch embalses from API
 		try {
-			const response = await fetch('http://localhost:8000/public/embalses/');
+			const response = await fetch('http://192.168.1.5:8000/public/embalses/');
 			const data = await response.json();
 			embalses = data.embalses;
 			
