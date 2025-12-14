@@ -4,7 +4,8 @@ services:
     image: nginx:latest
     container_name: tuxhydro_nginx
     restart: unless-stopped
-    user: root
+    cap_add:
+      - "NET_BIND_SERVICE"
     networks:
       - nginx_net
       - pgadmin_net
@@ -17,8 +18,10 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
-      - api_core
-      - frontend
+      api_core:
+        condition: service_started
+      frontend:
+        condition: service_started
 
   frontend:
     container_name: tuxhydro_frontend
@@ -29,8 +32,6 @@ services:
     networks:
       - front_net
       - nginx_net
-    ports:
-      - "5173:5173"
 
   api_core:
     container_name: tuxhydro_api_core
@@ -59,8 +60,6 @@ services:
     volumes:
       - pgadmin:/var/lib/pgadmin
   
-
-
   db:
     container_name: gis_db
     env_file: ./.env
@@ -123,3 +122,4 @@ secrets:
     file: ./Secrets/jwt_private.pem
   jwt_public_key:
     file: ./Secrets/jwt_public.pem
+
