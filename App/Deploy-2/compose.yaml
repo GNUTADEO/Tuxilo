@@ -32,6 +32,9 @@ services:
     networks:
       - front_net
       - nginx_net
+    volumes:
+      - ../Front/front/src:/usr/src/app/src
+      - ../Front/front/static:/usr/src/app/static
 
   api_core:
     container_name: tuxhydro_api_core
