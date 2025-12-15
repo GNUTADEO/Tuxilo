@@ -12,7 +12,7 @@ services:
       - api_net
       - front_net
     ports:
-      - "${PORT_PGADMIN}:80"
+      - "${PORT_PGADMIN}:8081"
       - "${PORT_FRONT}:5173"
       - "8000:8000"
     volumes:

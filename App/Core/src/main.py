@@ -156,6 +156,15 @@ Tenga en cuenta que algunos endpoints están protegidos por autenticación y aut
 # MIDDLEWARE
 ##############################################################################################
 
+api.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=COOKIES_SECURE,
+    allow_methods=["*"],
+    allow_headers=["*"],
+    max_age=86400,
+)
+
 api_node.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],# NODE_ORIGINS,
