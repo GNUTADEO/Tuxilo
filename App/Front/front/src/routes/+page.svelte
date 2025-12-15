@@ -1,6 +1,18 @@
 <script>
-    const mapUrl = "https://hub.veeduriadistrital.gov.co:4296/tuxhydro/mapa.html";
-    const seriesUrl = "https://hub.veeduriadistrital.gov.co:4296/tuxhydro/series.html";
+    import Map from '$lib/components/Map.svelte';
+    const seriesUrl = "/assets/working-cat.jpg";
+    
+    let embalses = $state([]);
+    let selectedEmbalseId = $state(null);
+    
+    function handleEmbalsesLoaded(loadedEmbalses) {
+        embalses = loadedEmbalses;
+    }
+    
+    function handleEmbalseChange(event) {
+        selectedEmbalseId = event.target.value ? Number(event.target.value) : null;
+        console.log('Selected embalse ID:', selectedEmbalseId);
+    }
 </script>
 
 <div class="flex h-full w-full gap-4">
@@ -12,6 +24,18 @@
             <h1 class="text-2xl font-bold mb-4">Controles</h1>
 
             <div class="flex flex-col gap-4">
+
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text font-semibold">Embalse</span>
+                    </label>
+                    <select class="select select-bordered w-full" onchange={handleEmbalseChange}>
+                        <option value="">Seleccione un embalse</option>
+                        {#each embalses as embalse}
+                            <option value={embalse.id}>{embalse.nombre}</option>
+                        {/each}
+                    </select>
+                </div>
 
                 <div class="form-control">
                     <label class="label">
@@ -67,11 +91,7 @@
 
         <!-- BIG MAP -->
         <div class="card bg-base-100 shadow-xl p-2 h-[65vh]">
-            <iframe
-                src={mapUrl}
-                title="big-map"
-                class="w-full h-full rounded-xl"
-            ></iframe>
+            <Map selectedEmbalseId={selectedEmbalseId} onEmbalsesLoaded={handleEmbalsesLoaded} />
         </div>
 
         <!-- SMALL TIMESERIES -->

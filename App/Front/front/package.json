@@ -50,6 +50,8 @@
 	},
 	"dependencies": {
 		"@tanstack/svelte-query": "^6.0.8",
+		"@types/leaflet": "^1.9.21",
+		"leaflet": "^1.9.4",
 		"marked": "^17.0.1"
 	}
 }
