@@ -81,7 +81,7 @@ services:
     volumes:
       - postgresql:/var/lib/postgresql/data
       - ./init-db.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
-      - ./init-embalses-geom.sql:/docker-entrypoint-initdb.d/02-init-embalses-geom.sql:ro
+      - ./init-embalses-geom-shp2pgsql.sql:/docker-entrypoint-initdb.d/02-init-embalses-geom.sql:ro
       - ../../data/XM/EmbalsesColombia.csv:/docker-entrypoint-initdb.d/EmbalsesColombia.csv:ro
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${PG_DB_USER} -d ${PG_DB_NAME}"]

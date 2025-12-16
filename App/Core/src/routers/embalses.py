@@ -36,23 +36,23 @@ async def get_all_embalses(
 @router.get("/geojson")
 async def get_embalses_geojson(db: AsyncSession = Depends(get_db)):
     query = text("""
-             SELECT jsonb_build_object(
-                 'type', 'FeatureCollection',
-                 'features', jsonb_agg(feature)
+                  SELECT jsonb_build_object(
+         'type', 'FeatureCollection',
+         'features', jsonb_agg(feature)
+     )
+     FROM (
+         SELECT jsonb_build_object(
+             'type', 'Feature',
+             'id', gid,
+             'geometry', ST_AsGeoJSON(ST_Transform(ST_SetSRID(geom, 9377), 4326))::jsonb,
+             'properties', jsonb_build_object(
+                 'nombre', "NOMBRE_GEO",
+                 'proyecto', "PROYECTO",
+                 'area_km2', ROUND(("SHAPE_Area"/1000000)::numeric, 2)
              )
-             FROM (
-                 SELECT jsonb_build_object(
-                     'type', 'Feature',
-                     'id', id,
-                     'geometry', ST_AsGeoJSON(ST_Transform(ST_SetSRID(geom, 9377), 4326))::jsonb,
-                     'properties', jsonb_build_object(
-                         'nombre', nombre_geo,
-                         'proyecto', proyecto,
-                         'area_km2', ROUND((ST_Area(geom)/1000000)::numeric, 2)
-                     )
-                 ) AS feature
-                 FROM embalses_geom
-             ) features;
+         ) AS feature
+         FROM embalses_geom
+     ) features;
     """)
     result = await db.execute(query)
     return result.scalar()
