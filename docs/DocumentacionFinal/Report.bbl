@@ -1,0 +1,151 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global/global}
+    \entry{openstreetmap_about}{online}{}{}
+      \list{organization}{1}{%
+        {OpenStreetMap Foundation}%
+      }
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labeltitlesource}{title}
+      \field{note}{Official OpenStreetMap “About” page}
+      \field{title}{About OpenStreetMap}
+      \field{urlday}{14}
+      \field{urlmonth}{12}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.openstreetmap.org/about
+      \endverb
+      \verb{url}
+      \verb https://www.openstreetmap.org/about
+      \endverb
+    \endentry
+    \entry{libreoffice_calc}{online}{}{}
+      \list{organization}{1}{%
+        {The Document Foundation}%
+      }
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labeltitlesource}{title}
+      \field{note}{Official LibreOffice Calc product page}
+      \field{title}{Calc: The Spreadsheet for Everyone}
+      \field{urlday}{14}
+      \field{urlmonth}{12}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.libreoffice.org/discover/calc/
+      \endverb
+      \verb{url}
+      \verb https://www.libreoffice.org/discover/calc/
+      \endverb
+    \endentry
+    \entry{gnu_emacs}{online}{}{}
+      \list{organization}{1}{%
+        {Free Software Foundation}%
+      }
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labeltitlesource}{title}
+      \field{note}{Official GNU Emacs project page}
+      \field{title}{GNU Emacs — An Extensible, Customizable Text Editor}
+      \field{urlday}{14}
+      \field{urlmonth}{12}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.gnu.org/software/emacs/
+      \endverb
+      \verb{url}
+      \verb https://www.gnu.org/software/emacs/
+      \endverb
+    \endentry
+    \entry{tuxilo-github}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=7dfc56acd82e97b111f3fc98d361e790}{%
+           family={{GNUTADEO}},
+           familyi={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{7dfc56acd82e97b111f3fc98d361e790}
+      \strng{fullhash}{7dfc56acd82e97b111f3fc98d361e790}
+      \strng{fullhashraw}{7dfc56acd82e97b111f3fc98d361e790}
+      \strng{bibnamehash}{7dfc56acd82e97b111f3fc98d361e790}
+      \strng{authorbibnamehash}{7dfc56acd82e97b111f3fc98d361e790}
+      \strng{authornamehash}{7dfc56acd82e97b111f3fc98d361e790}
+      \strng{authorfullhash}{7dfc56acd82e97b111f3fc98d361e790}
+      \strng{authorfullhashraw}{7dfc56acd82e97b111f3fc98d361e790}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{GitHub repository}
+      \field{title}{Tuxilo: Análisis Hidroeléctrico y Climático}
+      \field{urlday}{10}
+      \field{urlmonth}{12}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://github.com/GNUTADEO/Tuxilo/
+      \endverb
+      \verb{url}
+      \verb https://github.com/GNUTADEO/Tuxilo/
+      \endverb
+    \endentry
+    \entry{postgis}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=691faf2bb20421975a56b0a89180ddc2}{%
+           family={{PostGIS Project Steering Committee}},
+           familyi={P\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {PostGIS Project}%
+      }
+      \strng{namehash}{691faf2bb20421975a56b0a89180ddc2}
+      \strng{fullhash}{691faf2bb20421975a56b0a89180ddc2}
+      \strng{fullhashraw}{691faf2bb20421975a56b0a89180ddc2}
+      \strng{bibnamehash}{691faf2bb20421975a56b0a89180ddc2}
+      \strng{authorbibnamehash}{691faf2bb20421975a56b0a89180ddc2}
+      \strng{authornamehash}{691faf2bb20421975a56b0a89180ddc2}
+      \strng{authorfullhash}{691faf2bb20421975a56b0a89180ddc2}
+      \strng{authorfullhashraw}{691faf2bb20421975a56b0a89180ddc2}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Accessed: 2025-12-14}
+      \field{title}{PostGIS: Spatial and Geographic Objects for PostgreSQL}
+      \field{year}{2025}
+      \verb{urlraw}
+      \verb https://postgis.net/
+      \endverb
+      \verb{url}
+      \verb https://postgis.net/
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

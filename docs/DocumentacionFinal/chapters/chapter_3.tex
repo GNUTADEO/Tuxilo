@@ -1,2 +1,19 @@
-\chapter{Agradecimientos}
-\noindent El presente \ac{TR} ...
+\chapter{Uso de datos y fuentes}
+\label{chp:3}
+
+\noindent Para poblar la base de datos PostGIS\cite{postgis}, se utilizó como fuente de datos un reporte de \textit{Detalle de embalses} publicado por XM, disponible en el enlace \url{https://paratec.xm.com.co/reportes/embalses}. Dicho reporte fue sometido a un proceso de limpieza y preprocesamiento utilizando las herramientas LibreOffice Calc\cite{libreoffice_calc} y GNU Emacs\cite{gnu_emacs}. En LibreOffice Calc se eliminaron columnas innecesarias y se facilitó la exportación del archivo al formato CSV, mientras que en GNU Emacs se corrigieron los valores decimales expresados con ``,'' y los valores nulos, representados como ``-'' en el conjunto de datos original, mediante el uso del comando \texttt{M-x replace-string}. Como resultado de este proceso, se obtuvo el archivo \url{https://github.com/GNUTADEO/Tuxilo/blob/main/data/XM/EmbalsesColombia.csv} (figura~\ref{fig:bat-embalses}).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{img/DatosEmbalsesColombia.png}
+    \caption{Archivo \texttt{EmbalsesColombia.csv} limpiado.}
+    \label{fig:bat-embalses}
+\end{figure}
+
+Por otra parte, también se encontraron y utilizaron los datos de los poligonos y áreas que abarcan los embalses, sacados de (\textbf{inserte fuente de datos y enlace}). Este archivo se puede ver dentro del repositorio en \url{https://github.com/GNUTADEO/Tuxilo/tree/main/data/geodata}, donde 
+
+
+
+
+La capa base de datos geográficos viene de la base de datos espacial de OpenStreetMap\cite{openstreetmap_about} teniendo en cuenta su uso mediante la Licencia Abierta de Bases de Datos (\acs{ODbL}, \textit{Open Database License}), los elementos representados sobre el mapa fueron incorporados como una capa vectorial superpuesta, para el caso de los marcadores, y,
+
