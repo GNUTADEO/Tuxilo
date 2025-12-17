@@ -6,7 +6,7 @@ set -e
 
 # Configuration
 SHAPEFILE="data/geodata/embalses.shp"
-OUTPUT_SQL="App/Deploy-2/init-embalses.sql"
+OUTPUT_SQL="App/Deploy-2/init-embalses-geom-shp2pgsql-2.sql"
 TABLE_NAME="embalses_geom"
 SCHEMA="public"
 
