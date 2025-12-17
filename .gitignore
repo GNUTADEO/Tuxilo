@@ -13,4 +13,6 @@ Secrets/
 *.out
 *.run.xml
 *.toc
-
+*.bbl
+*.blg
+.auctex-auto/
