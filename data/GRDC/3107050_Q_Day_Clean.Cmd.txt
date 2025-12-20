@@ -1,0 +1,6 @@
+# River:                 RIO GUAVIO
+# Station:               UBALA
+# Latitude (DD):       4.72
+# Longitude (DD):      -73.53
+
+YYYY-MM-DD;Value;month;Value_imputed
