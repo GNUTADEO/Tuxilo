@@ -15,9 +15,18 @@ async def get_all_embalses(
         db: AsyncSession = Depends(get_db),
 ):
     """Obtiene todos los embalses con sus coordenadas"""
-    query = text(
-        "SELECT id, nombre, latitud, longitud FROM embalses WHERE latitud IS NOT NULL AND longitud IS NOT NULL"
-    )
+    query = text("""
+    SELECT
+        id,
+        nombre,
+        latitud,
+        longitud
+    FROM embalses
+    WHERE latitud IS NOT NULL
+      AND longitud IS NOT NULL
+      AND nombre IS NOT NULL
+""")
+
     result = await db.execute(query)
     rows = result.fetchall()
     
@@ -43,7 +52,7 @@ async def get_embalses_geojson(db: AsyncSession = Depends(get_db)):
      FROM (
          SELECT jsonb_build_object(
              'type', 'Feature',
-             'id', gid,
+             'id', "GLOBALID",
              'geometry', ST_AsGeoJSON(ST_Transform(ST_SetSRID(geom, 9377), 4326))::jsonb,
              'properties', jsonb_build_object(
                  'nombre', "NOMBRE_GEO",
@@ -51,8 +60,9 @@ async def get_embalses_geojson(db: AsyncSession = Depends(get_db)):
                  'area_km2', ROUND(("SHAPE_Area"/1000000)::numeric, 2)
              )
          ) AS feature
-         FROM embalses_geom
+         FROM embalses_geom WHERE "NOMBRE_GEO" IS NOT NULL
      ) features;
     """)
     result = await db.execute(query)
     return result.scalar()
+
