@@ -18,8 +18,6 @@ WHERE NOT EXISTS (SELECT 1 FROM spatial_ref_sys WHERE srid = 9377);
 CREATE TABLE IF NOT EXISTS embalses (
     id SERIAL PRIMARY KEY,
     nombre VARCHAR(255),
-    operador VARCHAR(255),
-    region_hidrologica VARCHAR(255),
     latitud NUMERIC,
     longitud NUMERIC,
     geom GEOMETRY(POINT, 4326),
