@@ -1,0 +1,6 @@
+# River:                 RIO ATRATO
+# Station:               TAGACHI
+# Latitude (DD):       6.22
+# Longitude (DD):      -76.72
+
+YYYY-MM-DD;Value;month;Value_imputed
