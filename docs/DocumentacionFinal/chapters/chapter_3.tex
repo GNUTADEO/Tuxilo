@@ -1,7 +1,7 @@
 \chapter{Uso de datos y fuentes}
 \label{chp:3}
 
-Por otra parte, se identificaron y emplearon datos correspondientes a los polígonos y áreas de los embalses, los cuales fueron obtenidos a partir de (inserte aquí la fuente de datos y el enlace correspondiente). Estos datos se encuentran disponibles dentro del repositorio del proyecto, específicamente en la ruta \url{https://github.com/GNUTADEO/Tuxilo/tree/main/data/geodata}, donde se almacenan los distintos archivos resultantes de los procesos de consulta y tratamiento geoespacial.
+Se identificaron y emplearon datos correspondientes a los polígonos y áreas de los embalses, los cuales fueron obtenidos a partir de Colombia en Mapas y el \ac{IGAC} (\url{https://www.colombiaenmapas.gov.co/?u=0&t=39&servicio=1468})\cite{colombiaenmapas}. Estos datos se encuentran disponibles dentro del repositorio del proyecto, específicamente en la ruta \url{https://github.com/GNUTADEO/Tuxilo/tree/main/data/geodata}, donde se almacenan los distintos archivos resultantes de los procesos de consulta y tratamiento geoespacial.
 
 El archivo \texttt{embalses.shp} fue transformado en un \textit{script} SQL con el objetivo de permitir la correcta carga de la información en la base de datos espacial PostGIS. Este proceso se realizó mediante el uso del comando \lstinline[style=bash]|shp2pgsql|, junto con las instrucciones mostradas en el listado~\ref{code:1}. Como resultado, se generó el archivo \texttt{init-embalses-geom-shp2pgsql-2.sql}, el cual contiene las sentencias necesarias para la creación y carga de la tabla \texttt{embalses\_geom} dentro de la base de datos PostGIS.
 
@@ -16,6 +16,8 @@ Estos dos conjuntos de datos son expuestos a través de una \acs{API}, lo que pe
 La capa base de datos geográficos fue obtenida a partir de la base de datos espacial de OpenStreetMap~\cite{openstreetmap_about}, haciendo uso de la información conforme a los términos establecidos por la Licencia Abierta de Bases de Datos (\acs{ODbL}, \textit{Open Database License})~\cite{odbl_license}. Los elementos representados sobre el mapa fueron incorporados como capas vectoriales superpuestas, particularmente en el caso de los marcadores de ubicación.
 
 Adicionalmente, se generó una capa en formato GeoJSON~\cite{wiki_geojson}, obtenida mediante la consulta al \textit{endpoint} \texttt{/public/embalses/geojson}, lo que permite la representación visual de los polígonos correspondientes a los embalses. La integración y visualización de los datos cartográficos se realizó con ayuda de la librería Leaflet~\cite{leafletjs} para \acs{JS}, obteniendo como resultado una interfaz similar a la presentada en la figura~\ref{fig:mapa-embalses}.
+
+
 
 
 \begin{lstlisting}[style=python,caption={Archivo \texttt{App/Core/src/routers/embalses.py}},label={code:2}]
