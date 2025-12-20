@@ -1,58 +1,60 @@
 \chapter{Uso de datos y fuentes}
 \label{chp:3}
 
-\noindent Para poblar la base de datos PostGIS\cite{postgis}, se utilizó como fuente de datos un reporte de \textit{Detalle de embalses} publicado por XM, disponible en el enlace \url{https://paratec.xm.com.co/reportes/embalses}. Dicho reporte fue sometido a un proceso de limpieza y preprocesamiento utilizando las herramientas LibreOffice Calc\cite{libreoffice_calc} y GNU Emacs\cite{gnu_emacs}. En LibreOffice Calc se eliminaron columnas innecesarias y se facilitó la exportación del archivo al formato CSV, mientras que en GNU Emacs se corrigieron los valores decimales expresados con ``,'' y los valores nulos, representados como ``-'' en el conjunto de datos original, mediante el uso del comando \texttt{M-x replace-string}. Como resultado de este proceso, se obtuvo el archivo \url{https://github.com/GNUTADEO/Tuxilo/blob/main/data/XM/EmbalsesColombia.csv} (figura~\ref{fig:bat-embalses}).
+Por otra parte, se identificaron y emplearon datos correspondientes a los polígonos y áreas de los embalses, los cuales fueron obtenidos a partir de (inserte aquí la fuente de datos y el enlace correspondiente). Estos datos se encuentran disponibles dentro del repositorio del proyecto, específicamente en la ruta \url{https://github.com/GNUTADEO/Tuxilo/tree/main/data/geodata}, donde se almacenan los distintos archivos resultantes de los procesos de consulta y tratamiento geoespacial.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.75\linewidth]{img/DatosEmbalsesColombia.png}
-    \caption{Archivo \texttt{EmbalsesColombia.csv} limpiado.}
-    \label{fig:bat-embalses}
-\end{figure}
-
-Por otra parte, se identificaron y emplearon datos correspondientes a los polígonos y áreas de los embalses, los cuales fueron obtenidos de (inserte aquí la fuente de datos y el enlace correspondiente). Dichos datos se encuentran disponibles dentro del repositorio del proyecto, en la ruta \url{https://github.com/GNUTADEO/Tuxilo/tree/main/data/geodata}, donde se almacenan los distintos archivos resultantes de la consulta y el procesamiento geoespacial.
-
-El archivo \texttt{embalses.shp} fue transformado en un \textit{script} SQL con el fin de permitir la correcta carga de la información en la base de datos PostGIS. Este proceso se llevó a cabo utilizando el comando \lstinline[style=bash]|shp2pgsql|, junto con las instrucciones mostradas en el listado~\ref{code:1}. Como resultado, se generó el archivo \texttt{init-embalses-geom-shp2pgsql-2.sql}, el cual contiene las sentencias necesarias para la creación de la tabla \texttt{embalses\_geom} dentro de la base de datos PostGIS.
-
-Con el objetivo de evitar la ejecución manual de comandos extensos y gestionar adecuadamente las rutas de los archivos, se desarrolló un pequeño \textit{script} en Bash\cite{gnu_bash}, ubicado en la ruta \texttt{scripts/convert\_shp\_to\_sql.sh}, que automatiza este proceso de conversión.
+El archivo \texttt{embalses.shp} fue transformado en un \textit{script} SQL con el objetivo de permitir la correcta carga de la información en la base de datos espacial PostGIS. Este proceso se realizó mediante el uso del comando \lstinline[style=bash]|shp2pgsql|, junto con las instrucciones mostradas en el listado~\ref{code:1}. Como resultado, se generó el archivo \texttt{init-embalses-geom-shp2pgsql-2.sql}, el cual contiene las sentencias necesarias para la creación y carga de la tabla \texttt{embalses\_geom} dentro de la base de datos PostGIS.
 
 \begin{lstlisting}[style=bash, caption={Conversión de un archivo \texttt{.shp} a un script SQL}, label={code:1}]
-shp2pgsql -I -W UTF-8 -g geom -k embalses.shp > init-embalses-geom-shp2pgsql-2.sql
+  shp2pgsql -I -W UTF-8 -g geom -k embalses.shp > init-embalses-geom-shp2pgsql-2.sql
 \end{lstlisting}
 
-Estos dos conjuntos de datos se exponen a través de una \acs{API}, lo que permite su consulta y utilización por parte de modulos internos. La información correspondiente a los embalses puede consultarse mediante el \textit{endpoint} \texttt{/public/embalses/}, mientras que los polígonos asociados se encuentran disponibles en el \textit{endpoint} \texttt{/public/embalses/geojson}. Ambos \textit{endpoints} están accesibles a través del puerto 8000 del \textit{localhost} y su implementación está en el listado~\ref{code:2}.
+Una vez cargadas las geometrías de los archivos \texttt{.shp}, se procedió a calcular el centroide de cada polígono con el fin de obtener sus coordenadas representativas. A partir de estos centroides, se pobló la tabla \texttt{embalses}, almacenando las coordenadas de latitud y longitud correspondientes. El \textit{script} completo utilizado para la creación y población de ambas tablas se encuentra en el archivo \texttt{init-db.sql}, ubicado en el directorio \texttt{scripts/}.
 
-La capa base de datos geográficos se obtuvo a partir de la base de datos espacial de OpenStreetMap\cite{openstreetmap_about}, haciendo uso de la información conforme a los términos de la Licencia Abierta de Bases de Datos (\acs{ODbL}, \textit{Open Database License})\cite{odbl_license}. Los elementos representados sobre el mapa fueron incorporados como una capa vectorial superpuesta, particularmente en el caso de los marcadores. Adicionalmente, se generó una capa en formato GeoJSON\cite{wiki_geojson}, la cual se obtiene mediante la consulta al \textit{endpoint} \texttt{/public/embalses/geojson}, permitiendo así la representación de los polígonos correspondientes en el mapa. La integración con los datos del mapa se da con ayuda de la librería Leaflet\cite{leafletjs} para \acs{JS} teniendo un resultado final similar al de la figura~\ref{fig:mapa-embalses}. 
+Estos dos conjuntos de datos son expuestos a través de una \acs{API}, lo que permite su consulta y reutilización por parte de distintos módulos internos del sistema. La información general de los embalses puede consultarse mediante el \textit{endpoint} \texttt{/public/embalses/}, mientras que los polígonos asociados están disponibles a través del \textit{endpoint} \texttt{/public/embalses/geojson}. Ambos \textit{endpoints} se encuentran accesibles a través del puerto 8000 del \texttt{localhost}, y su implementación se muestra en el listado~\ref{code:2}.
+
+La capa base de datos geográficos fue obtenida a partir de la base de datos espacial de OpenStreetMap~\cite{openstreetmap_about}, haciendo uso de la información conforme a los términos establecidos por la Licencia Abierta de Bases de Datos (\acs{ODbL}, \textit{Open Database License})~\cite{odbl_license}. Los elementos representados sobre el mapa fueron incorporados como capas vectoriales superpuestas, particularmente en el caso de los marcadores de ubicación.
+
+Adicionalmente, se generó una capa en formato GeoJSON~\cite{wiki_geojson}, obtenida mediante la consulta al \textit{endpoint} \texttt{/public/embalses/geojson}, lo que permite la representación visual de los polígonos correspondientes a los embalses. La integración y visualización de los datos cartográficos se realizó con ayuda de la librería Leaflet~\cite{leafletjs} para \acs{JS}, obteniendo como resultado una interfaz similar a la presentada en la figura~\ref{fig:mapa-embalses}.
+
 
 \begin{lstlisting}[style=python,caption={Archivo \texttt{App/Core/src/routers/embalses.py}},label={code:2}]
-router = APIRouter(tags=["Embalses"], prefix="/embalses")
+  router = APIRouter(tags=["Embalses"], prefix="/embalses")
 
 
-@router.get(
-    "/",
-    operation_id="get_all_embalses",
-)
-async def get_all_embalses(
-        db: AsyncSession = Depends(get_db),
-):
-    """Obtiene todos los embalses con sus coordenadas"""
-    query = text(
-        "SELECT id, nombre, latitud, longitud FROM embalses WHERE latitud IS NOT NULL AND longitud IS NOT NULL"
-    )
-    result = await db.execute(query)
-    rows = result.fetchall()
-    
-    embalses = [
-        {
-            "id": row[0],
-            "nombre": row[1],
-            "latitud": float(row[2]) if row[2] else None,
-            "longitud": float(row[3]) if row[3] else None,
-        }
-        for row in rows
-    ]
-    
-    return {"embalses": embalses}
+  @router.get(
+  "/",
+  operation_id="get_all_embalses",
+  )
+  async def get_all_embalses(
+  db: AsyncSession = Depends(get_db),
+  ):
+  """Obtiene todos los embalses con sus coordenadas"""
+  query = text("""
+  SELECT
+  id,
+  nombre,
+  latitud,
+  longitud
+  FROM embalses
+  WHERE latitud IS NOT NULL
+  AND longitud IS NOT NULL
+  AND nombre IS NOT NULL
+  """)
+  result = await db.execute(query)
+  rows = result.fetchall()
+  
+  embalses = [
+  {
+    "id": row[0],
+    "nombre": row[1],
+    "latitud": float(row[2]) if row[2] else None,
+    "longitud": float(row[3]) if row[3] else None,
+  }
+  for row in rows
+  ]
+  
+  return {"embalses": embalses}
 
 @router.get("/geojson")
 async def get_embalses_geojson(db: AsyncSession = Depends(get_db)):
@@ -64,7 +66,7 @@ async def get_embalses_geojson(db: AsyncSession = Depends(get_db)):
      FROM (
          SELECT jsonb_build_object(
              'type', 'Feature',
-             'id', gid,
+             'id', "GLOBALID",
              'geometry', ST_AsGeoJSON(ST_Transform(ST_SetSRID(geom, 9377), 4326))::jsonb,
              'properties', jsonb_build_object(
                  'nombre', "NOMBRE_GEO",
@@ -72,40 +74,13 @@ async def get_embalses_geojson(db: AsyncSession = Depends(get_db)):
                  'area_km2', ROUND(("SHAPE_Area"/1000000)::numeric, 2)
              )
          ) AS feature
-         FROM embalses_geom
+         FROM embalses_geom WHERE "NOMBRE_GEO" IS NOT NULL
      ) features;
     """)
     result = await db.execute(query)
     return result.scalar()
 
 \end{lstlisting}
-
-Se identificaron inconsistencias en la geolocalización de los datos asociados a la ubicación de algunos embalses. En ciertos casos, la información espacial es correcta y el marcador se encuentra adecuadamente superpuesto sobre el mapa base, como se muestra en la Figura~\ref{fig:san-rafael}. No obstante, también se detectaron registros en los que el marcador aparece desplazado respecto al área correctamente georreferenciada del embalse, tal como se observa en la Figura~\ref{fig:guavio}. Por casos como el de esta última figura, se realizó un ajuste de la coordenadas de forma manual ayuda del software GNU Emacs\cite{gnu_emacs} y las coordenadas que aparecen en OpenStreetMap\cite{openstreetmap_about}, además de agregar algunos registros de embalses faltantes. Los registros modificados y agregados de los datos de XM fueron:
-
-\begin{itemize}
-  \item GUAVIO: de 4.4355,-73.29007 a 4.726273, -73.482141
-  \item Más.
-\end{itemize}
-
-% \begin{figure}[H]
-%   \centering
-%   \begin{subfigure}[b]{0.45\textwidth}
-%     \centering
-%     \includegraphics[width=\textwidth]{img/embalse-bien.png}
-%     \caption{Datos correctamente sobrepuestos sobre el mapa base, Embalse San Rafael.}
-%     \label{fig:san-rafael}
-%   \end{subfigure}
-%   \hfill
-%   \begin{subfigure}[b]{0.45\textwidth}
-%     \centering
-%     \includegraphics[width=\textwidth]{img/embalse-mal.png}
-%     \caption{Marcador del embalse (ícono azul) lejos del área correctamente georeferenciada (región azul).} 
-%     \label{fig:guavio}
-%   \end{subfigure}
-%   \caption{Comparación de marcador bien referenciado con su área y un embalse que no lo está.}
-%   \label{fig:embalses}
-% \end{figure}
-
 
 
 
