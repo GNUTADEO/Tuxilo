@@ -4,6 +4,7 @@
     
     let embalses = $state([]);
     let selectedEmbalseId = $state(null);
+    let showNearestStation = $state(false);
     
     function handleEmbalsesLoaded(loadedEmbalses) {
         embalses = loadedEmbalses;
@@ -12,6 +13,17 @@
     function handleEmbalseChange(event) {
         selectedEmbalseId = event.target.value ? Number(event.target.value) : null;
         console.log('Selected embalse ID:', selectedEmbalseId);
+        // Reset when changing embalse
+        showNearestStation = false;
+    }
+
+    function handleCorrer() {
+        if (selectedEmbalseId) {
+            showNearestStation = true;
+            console.log('Showing nearest station for embalse:', selectedEmbalseId);
+        } else {
+            alert('Por favor seleccione un embalse primero');
+        }
     }
 </script>
 
@@ -79,7 +91,7 @@
                     <input type="number" class="input input-bordered w-full" placeholder="0.0" />
                 </div>
 
-                <button class="btn btn-primary mt-4 w-full">Correr</button>
+                <button class="btn btn-primary mt-4 w-full" onclick={handleCorrer}>Correr</button>
 
             </div>
         </div>
@@ -91,7 +103,7 @@
 
         <!-- BIG MAP -->
         <div class="card bg-base-100 shadow-xl p-2 h-[65vh]">
-            <Map selectedEmbalseId={selectedEmbalseId} onEmbalsesLoaded={handleEmbalsesLoaded} />
+            <Map selectedEmbalseId={selectedEmbalseId} onEmbalsesLoaded={handleEmbalsesLoaded} showNearestStation={showNearestStation} />
         </div>
 
         <!-- SMALL TIMESERIES -->

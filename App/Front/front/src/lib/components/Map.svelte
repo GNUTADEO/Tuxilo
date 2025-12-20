@@ -9,17 +9,28 @@
 	  longitud: number;
   }
 
+  interface Station {
+	  station_id: string;
+	  station_name: string;
+	  river_name: string;
+	  latitude: number;
+	  longitude: number;
+	  distance_km?: number;
+  }
+
   interface Props {
 	  selectedEmbalseId?: number | null;
 	  onEmbalsesLoaded?: (embalses: Embalse[]) => void;
+	  showNearestStation?: boolean;
   }
 
-  let { selectedEmbalseId, onEmbalsesLoaded }: Props = $props();
+  let { selectedEmbalseId, onEmbalsesLoaded, showNearestStation = false }: Props = $props();
 
   let mapElement: HTMLDivElement;
   let map: L.Map;
   let markers: Map<number, L.Marker> = new Map();
   let embalses: Embalse[] = [];
+  let stationMarker: L.Marker | null = null;
 
   onMount(async () => {
 	  const L = await import('leaflet');
@@ -83,8 +94,54 @@
 			  map.setView([embalse.latitud, embalse.longitud], 14);
 			  markers.get(Number(selectedEmbalseId))?.openPopup();
 		  }
+
+		  // Fetch and show nearest station if showNearestStation is true
+		  if (showNearestStation) {
+			  fetchNearestStation(Number(selectedEmbalseId));
+		  } else {
+			  // Remove station marker if showNearestStation is false
+			  if (stationMarker && map) {
+				  map.removeLayer(stationMarker);
+				  stationMarker = null;
+			  }
+		  }
 	  }
   });
+
+  async function fetchNearestStation(embalseId: number) {
+	  try {
+		  const L = await import('leaflet');
+		  const response = await fetch(`http://localhost:8000/public/stations/nearest/${embalseId}`);
+		  const data = await response.json();
+		  
+		  if (data.station && map) {
+			  // Remove previous station marker if exists
+			  if (stationMarker) {
+				  map.removeLayer(stationMarker);
+			  }
+			  
+			  const station: Station = data.station;
+			  
+			  // Create custom icon for station
+			  const stationIcon = L.divIcon({
+				  className: 'custom-station-marker',
+				  html: `<div style="background-color: #ef4444; width: 30px; height: 30px; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.3);"></div>`,
+				  iconSize: [30, 30],
+				  iconAnchor: [15, 15]
+			  });
+			  
+			  stationMarker = L.marker([station.latitude, station.longitude], { icon: stationIcon })
+				  .addTo(map)
+				  .bindPopup(`<b>${station.station_name}</b><br>
+							  River: ${station.river_name}<br>
+							  Distance: ${station.distance_km} km`);
+			  
+			  console.log('Nearest station added:', station.station_name);
+		  }
+	  } catch (error) {
+		  console.error('Error fetching nearest station:', error);
+	  }
+  }
 
   onDestroy(() => {
 	  if (map) {
