@@ -1,6 +1,1 @@
-# River:                 RIO FONCE
-# Station:               SAN GIL
-# Latitude (DD):       6.55
-# Longitude (DD):      -73.13
-
 YYYY-MM-DD;Value;month;Value_imputed

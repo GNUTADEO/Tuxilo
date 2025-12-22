@@ -1,8 +1,3 @@
-# River:                 RIO DON DIEGO
-# Station:               PTE.CARRETERA
-# Latitude (DD):       11.27
-# Longitude (DD):      -73.67
-
 YYYY-MM-DD;Value;month;Value_imputed
 1973-12-01;43.92;12;43.92
 1973-12-02;40.33;12;40.33

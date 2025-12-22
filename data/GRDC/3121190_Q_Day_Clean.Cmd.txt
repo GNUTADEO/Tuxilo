@@ -1,8 +1,3 @@
-# River:                 RIO HACHA
-# Station:               FLORENCIA
-# Latitude (DD):       1.6
-# Longitude (DD):      -75.6
-
 YYYY-MM-DD;Value;month;Value_imputed
 1978-01-01;20.0;1;20.0
 1978-01-02;19.0;1;19.0

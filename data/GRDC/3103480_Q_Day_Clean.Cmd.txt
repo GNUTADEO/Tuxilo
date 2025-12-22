@@ -1,8 +1,3 @@
-# River:                 RIO LA MIEL
-# Station:               SAN MIGUEL
-# Latitude (DD):       5.78
-# Longitude (DD):      -74.67
-
 YYYY-MM-DD;Value;month;Value_imputed
 1975-01-01;140.0;1;140.0
 1975-01-02;155.0;1;155.0

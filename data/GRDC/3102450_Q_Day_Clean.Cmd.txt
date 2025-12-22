@@ -1,6 +1,1 @@
-# River:                 RIO ATRATO
-# Station:               BELLAVISTA
-# Latitude (DD):       6.57
-# Longitude (DD):      -76.87
-
 YYYY-MM-DD;Value;month;Value_imputed

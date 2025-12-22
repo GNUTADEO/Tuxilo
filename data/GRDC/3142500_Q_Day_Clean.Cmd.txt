@@ -1,8 +1,3 @@
-# River:                 RIO PATIA
-# Station:               PTE PUSMEO
-# Latitude (DD):       1.70625
-# Longitude (DD):      -77.51041
-
 YYYY-MM-DD;Value;month;Value_imputed
 1966-03-01;364.0;3;364.0
 1966-03-02;326.0;3;326.0

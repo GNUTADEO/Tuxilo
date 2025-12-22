@@ -1,8 +1,3 @@
-# River:                 RIO CAUCA
-# Station:               LA SALVAJINA
-# Latitude (DD):       2.85
-# Longitude (DD):      -76.72
-
 YYYY-MM-DD;Value;month;Value_imputed
 1946-08-01;61.8;8;61.8
 1946-08-02;55.3;8;55.3
