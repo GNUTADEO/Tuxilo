@@ -1,8 +1,3 @@
-# River:                 RIO DE LA PLATA
-# Station:               VEGA EL SALADO
-# Latitude (DD):       2.38
-# Longitude (DD):      -75.92
-
 YYYY-MM-DD;Value;month;Value_imputed
 1971-06-01;29.2;6;29.2
 1971-06-02;25.02;6;25.02

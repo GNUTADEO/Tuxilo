@@ -1,8 +1,3 @@
-# River:                 RIO NEVADO
-# Station:               GUICAN
-# Latitude (DD):       6.45
-# Longitude (DD):      -72.43
-
 YYYY-MM-DD;Value;month;Value_imputed
 1978-01-01;2.0;1;2.0
 1978-01-02;2.0;1;2.0

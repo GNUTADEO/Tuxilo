@@ -1,8 +1,3 @@
-# River:                 RIO SAN JUAN DE MICAY
-# Station:               ANGOSTURA
-# Latitude (DD):       2.87292
-# Longitude (DD):      -77.23125
-
 YYYY-MM-DD;Value;month;Value_imputed
 1978-01-01;427.0;1;427.0
 1978-01-02;416.0;1;416.0

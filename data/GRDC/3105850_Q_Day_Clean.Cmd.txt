@@ -1,8 +1,3 @@
-# River:                 RIO RANCHERIA
-# Station:               EL CERCADO
-# Latitude (DD):       10.92
-# Longitude (DD):      -72.95
-
 YYYY-MM-DD;Value;month;Value_imputed
 1961-07-01;3.35;7;3.35
 1961-07-02;3.49;7;3.49

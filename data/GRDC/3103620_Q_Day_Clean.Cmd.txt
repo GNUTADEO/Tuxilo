@@ -1,8 +1,3 @@
-# River:                 RIO VETAS
-# Station:               PTE.PANEGA
-# Latitude (DD):       7.33
-# Longitude (DD):      -72.98
-
 YYYY-MM-DD;Value;month;Value_imputed
 1978-01-01;1.0;1;1.0
 1978-01-02;1.0;1;1.0

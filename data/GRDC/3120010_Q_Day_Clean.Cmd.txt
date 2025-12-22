@@ -1,8 +1,3 @@
-# River:                 RIO PUTUMAYO
-# Station:               PUENTE TEXAS AUT [47017160]
-# Latitude (DD):       0.582694444
-# Longitude (DD):      -76.57694444
-
 YYYY-MM-DD;Value;month;Value_imputed
 1982-04-01;757.0;4;757.0
 1982-04-02;538.0;4;538.0

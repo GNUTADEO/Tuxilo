@@ -1,8 +1,3 @@
-# River:                 RIO NEGRO
-# Station:               GUADUERO
-# Latitude (DD):       5.2
-# Longitude (DD):      -74.57
-
 YYYY-MM-DD;Value;month;Value_imputed
 1974-08-01;8.12;8;8.12
 1974-08-02;3.457;8;3.457

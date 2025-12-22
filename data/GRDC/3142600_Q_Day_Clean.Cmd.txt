@@ -1,8 +1,3 @@
-# River:                 RIO BLANCO
-# Station:               CARLOSAMA
-# Latitude (DD):       0.88
-# Longitude (DD):      -77.66
-
 YYYY-MM-DD;Value;month;Value_imputed
 1956-01-01;7.5;1;7.5
 1956-01-02;8.2;1;8.2

@@ -1,8 +1,3 @@
-# River:                 RIO MAYO
-# Station:               LA CANADA
-# Latitude (DD):       1.63
-# Longitude (DD):      -77.0
-
 YYYY-MM-DD;Value;month;Value_imputed
 1961-01-01;7.4;1;7.4
 1961-01-02;6.7;1;6.7
