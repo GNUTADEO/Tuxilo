@@ -1,8 +1,3 @@
-# River:                 RIO CAUCA
-# Station:               JULUMITO
-# Latitude (DD):       2.47
-# Longitude (DD):      -76.62
-
 YYYY-MM-DD;Value;month;Value_imputed
 1964-05-01;17.66;5;17.66
 1964-05-02;17.15;5;17.15

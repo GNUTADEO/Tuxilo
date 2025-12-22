@@ -1,8 +1,3 @@
-# River:                 RIO CABRERA
-# Station:               SAN ALFONSO
-# Latitude (DD):       3.37
-# Longitude (DD):      -75.12
-
 YYYY-MM-DD;Value;month;Value_imputed
 1978-01-01;25.0;1;25.0
 1978-01-02;19.0;1;19.0

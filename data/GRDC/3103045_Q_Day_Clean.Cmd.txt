@@ -1,8 +1,3 @@
-# River:                 RIO LA TETA
-# Station:               BUENOS AIRES
-# Latitude (DD):       3.05
-# Longitude (DD):      -76.58
-
 YYYY-MM-DD;Value;month;Value_imputed
 1976-01-01;8.51;1;8.51
 1976-01-02;7.78;1;7.78

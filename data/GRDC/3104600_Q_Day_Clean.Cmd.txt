@@ -1,8 +1,3 @@
-# River:                 RIO TARRA
-# Station:               PTE.TARRA
-# Latitude (DD):       8.58
-# Longitude (DD):      -72.6
-
 YYYY-MM-DD;Value;month;Value_imputed
 1978-01-01;26.0;1;26.0
 1978-01-02;25.0;1;25.0

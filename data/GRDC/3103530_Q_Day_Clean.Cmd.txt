@@ -1,8 +1,3 @@
-# River:                 SAN JUAN, RIO
-# Station:               BORBUR
-# Latitude (DD):       5.65
-# Longitude (DD):      -74.07
-
 YYYY-MM-DD;Value;month;Value_imputed
 1975-08-01;64.0;8;64.0
 1975-08-02;58.1;8;58.1

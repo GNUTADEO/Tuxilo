@@ -1,8 +1,3 @@
-# River:                 RIO NARANJOS
-# Station:               SAN AGUSTIN
-# Latitude (DD):       1.87
-# Longitude (DD):      -76.23
-
 YYYY-MM-DD;Value;month;Value_imputed
 1978-01-01;14.0;1;14.0
 1978-01-02;11.0;1;11.0
