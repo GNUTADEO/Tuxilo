@@ -1,6 +1,0 @@
-Metadata-Version: 2.4
-Name: models
-Version: 0.1.0
-Summary: Stub models package for IIP
-Requires-Python: >=3.10
-Requires-Dist: sqlalchemy>=2.0.0
