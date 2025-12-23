@@ -1,8 +1,3 @@
-# River:                 RIO PRADO
-# Station:               BOQUERON
-# Latitude (DD):       3.75
-# Longitude (DD):      -74.9
-
 YYYY-MM-DD;Value;month;Value_imputed
 1959-03-01;8.0;3;8.0
 1959-03-02;50.0;3;50.0

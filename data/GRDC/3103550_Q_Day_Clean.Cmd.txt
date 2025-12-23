@@ -1,8 +1,3 @@
-# River:                 RIO SOGAMOSO
-# Station:               EL TABLAZO
-# Latitude (DD):       7.03958333333333
-# Longitude (DD):      -73.3395833333333
-
 YYYY-MM-DD;Value;month;Value_imputed
 1958-09-12;127.0;9;127.0
 1958-09-13;223.0;9;223.0

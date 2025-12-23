@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "folium>=0.20.0",
+    "kaleido>=1.2.0",
     "leafmap>=0.57.9",
     "marimo>=0.18.2",
     "plotly>=6.5.0",

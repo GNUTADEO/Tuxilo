@@ -1,8 +1,3 @@
-# River:                 RIO TOCAIMO
-# Station:               LA MATILDE
-# Latitude (DD):       10.1
-# Longitude (DD):      -73.16
-
 YYYY-MM-DD;Value;month;Value_imputed
 1978-01-01;0.0;1;0.0
 1978-01-02;0.0;1;0.0

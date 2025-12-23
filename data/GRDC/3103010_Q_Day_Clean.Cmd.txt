@@ -1,8 +1,3 @@
-# River:                 RIO MAGDALENA
-# Station:               NARINO - AUT [21237010]
-# Latitude (DD):       4.387777778
-# Longitude (DD):      -74.838375
-
 YYYY-MM-DD;Value;month;Value_imputed
 1978-01-01;699.0;1;699.0
 1978-01-02;627.0;1;627.0

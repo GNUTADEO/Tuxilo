@@ -1,8 +1,3 @@
-# River:                 RIO SUCIO
-# Station:               MUTATA
-# Latitude (DD):       7.23
-# Longitude (DD):      -76.43
-
 YYYY-MM-DD;Value;month;Value_imputed
 1979-01-01;93.0;1;93.0
 1979-01-02;83.0;1;83.0

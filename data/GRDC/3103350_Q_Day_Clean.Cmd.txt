@@ -1,8 +1,3 @@
-# River:                 RIO FUNDACION
-# Station:               FUNDACION
-# Latitude (DD):       10.5
-# Longitude (DD):      -74.13
-
 YYYY-MM-DD;Value;month;Value_imputed
 1978-01-01;8.0;1;8.0
 1978-01-02;8.0;1;8.0
