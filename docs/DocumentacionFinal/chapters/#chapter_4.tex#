@@ -2,7 +2,7 @@
 \label{chp:4}
 
 
-Para cumplir el requerimiento de software libre, el cuadro~\ref{tab:software} muestra todos los programas utilizados durante el proyecto con su respectiva descripción de uso y la licencia de dicho software, para esto último se toma en cuenta la definición de \ac{FLOSS} para incluir software que es abierto y libre dada por la \ac{FSF}\cite{gnu_free_sw}.
+Para cumplir el requerimiento de software libre, el cuadro~\ref{tab:software} muestra todos los programas utilizados durante el proyecto con su respectiva descripción de uso y la licencia de dicho software, para esto último se toma en cuenta la definición de \ac{FLOSS} para incluir software que es abierto y libre dada por la \ac{FSF}\cite{gnu_free_sw}. El único programa utilizado que no es \acs{FLOSS} es GitHub, utilizado para el hosting del código y la colaboración entre los miembros del grupo, sin embargo, el poseo no posee \textit{vendor lock-in}
 
 \begin{longtable}{|p{0.15\textwidth}|p{0.4\textwidth}|p{0.3\textwidth}|}
   \caption{Software utilizado, descripción y licencias}

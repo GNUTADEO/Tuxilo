@@ -22,47 +22,47 @@
 \definecolor{codegreen}{rgb}{0.00,0.45,0.10}
 
 \lstdefinestyle{base}{
-  basicstyle=\ttfamily\small,
-  numbers=left,
-  numberstyle=\tiny\color{codegray},
-  stepnumber=1,
-  numbersep=6pt,
-  frame=single,
-  framerule=0.4pt,
-  breaklines=true,
-  breakatwhitespace=true,
-  tabsize=2,
-  showstringspaces=false,
-  captionpos=b,
-  keywordstyle=\bfseries\color{codeblue},
-  commentstyle=\itshape\color{codegray},
-  stringstyle=\color{codegreen},
+basicstyle=\ttfamily\small,
+numbers=left,
+numberstyle=\tiny\color{codegray},
+stepnumber=1,
+numbersep=6pt,
+frame=single,
+framerule=0.4pt,
+breaklines=true,
+breakatwhitespace=true,
+tabsize=2,
+showstringspaces=false,
+captionpos=b,
+keywordstyle=\bfseries\color{codeblue},
+commentstyle=\itshape\color{codegray},
+stringstyle=\color{codegreen},
 }
 
 \lstdefinestyle{bash}{
-  style=base,
-  language=bash,
-  morekeywords={sudo,apt,systemctl,chmod,chown,grep,awk,sed,make,git,shp2pgsql},
+style=base,
+language=bash,
+morekeywords={sudo,apt,systemctl,chmod,chown,grep,awk,sed,make,git,shp2pgsql},
 }
 
 \lstdefinestyle{javascript}{
-  style=base,
-  language=JavaScript,
-  morekeywords={const,let,async,await,import,export,from},
+style=base,
+language=JavaScript,
+morekeywords={const,let,async,await,import,export,from},
 }
 
 \lstdefinestyle{python}{
-  style=base,
-  language=Python,
-  morekeywords={self,True,False,None},
+style=base,
+language=Python,
+morekeywords={self,True,False,None},
 }
 
 
 \lstdefinestyle{sql}{
-  style=base,
-  language=SQL,
-  keywords={SELECT,FROM,WHERE,JOIN,INSERT,UPDATE,DELETE,CREATE,ALTER,DROP},
-  keywordstyle=\bfseries\color{codeblue},
+style=base,
+language=SQL,
+keywords={SELECT,FROM,WHERE,JOIN,INSERT,UPDATE,DELETE,CREATE,ALTER,DROP},
+keywordstyle=\bfseries\color{codeblue},
 }
 
 
@@ -72,26 +72,35 @@
 
 \usepackage{pdflscape}
 \usepackage{subcaption}
+\usepackage{longtable}
 \usepackage{acro}
 \DeclareAcronym{TR}{
-  short = TR,
-  long = Informe Técnico
+short = TR,
+long = Informe Técnico
 }
 \DeclareAcronym{ODbL}{
-  short = ODbL,
-  long = Open Database License
+short = ODbL,
+long = Open Database License
 }
 \DeclareAcronym{API}{
-  short = API,
-  long = Application Programming Interface
+short = API,
+long = Application Programming Interface
 }
 \DeclareAcronym{JS}{
-  short = JS,
-  long = JavaScript
+short = JS,
+long = JavaScript
 }
 \DeclareAcronym{IGAC}{
-  short = IGAC,
-  long = Instituto Geográfico Agustín Codazzi
+short = IGAC,
+long = Instituto Geográfico Agustín Codazzi
+}
+\DeclareAcronym{FLOSS}{
+short = FLOSS,
+long = Free/Libre and Open Source Software
+}
+\DeclareAcronym{FSF}{
+short = FSF,
+long = Free Software Foundation
 }
 %\usepackage{natbib}
 \usepackage{amsmath}
