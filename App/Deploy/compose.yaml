@@ -21,6 +21,7 @@ services:
 
   frontend:
     container_name: tuxhydro_frontend
+    restart: unless-stopped
     build:
       context: ../Front
       dockerfile: Dockerfile.dev
@@ -34,6 +35,7 @@ services:
 
   api_core:
     container_name: tuxhydro_api_core
+    restart: unless-stopped
     build:
       context: ../Core
       dockerfile: Dockerfile.core
@@ -63,6 +65,7 @@ services:
     container_name: gis_db
     env_file: ./.env
     image: postgis/postgis
+    restart: unless-stopped
     secrets:
       - postgres_password
     environment:
