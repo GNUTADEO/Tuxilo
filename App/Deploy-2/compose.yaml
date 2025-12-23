@@ -83,8 +83,8 @@ services:
       - ../../scripts/init-embalses-geom-shp2pgsql.sql:/docker-entrypoint-initdb.d/01-init-embalses-geom.sql:ro
       - ../../scripts/init-db.sql:/docker-entrypoint-initdb.d/02-init.sql:ro
       - ../../scripts/init-grdc-data.sql:/docker-entrypoint-initdb.d/03-init-grdc-data.sql:ro
-      - ../../data/GRDC/grdc_stations.csv:/tmp/grdc_stations.csv:ro
-      - ../../data/GRDC/grdc_flow.csv:/tmp/grdc_flow.csv:ro
+      - ../../data/Caudal/caudal_stations.csv:/tmp/grdc_stations.csv:ro
+      - ../../data/Caudal/caudal_flow.csv:/tmp/grdc_flow.csv:ro
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${PG_DB_USER} -d ${PG_DB_NAME}"]
       interval: 5s
