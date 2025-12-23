@@ -78,14 +78,14 @@ services:
       - "${PORT_DB_PG}:5432" # Quitar exposición de db para prod
     volumes:
       - postgresql:/var/lib/postgresql/data
-      - ../../scripts/01_create_embalses_geometry.sql:/docker-entrypoint-initdb.d/01_create_embalses_geometry.sql:ro
-      - ../../scripts/02_create_embalses_points.sql:/docker-entrypoint-initdb.d/02_create_embalses_points.sql:ro
-      - ../../scripts/03_create_flow_tables.sql:/docker-entrypoint-initdb.d/03_create_flow_tables.sql:ro
-      - ../../scripts/04_create_rain_tables.sql:/docker-entrypoint-initdb.d/04_create_rain_tables.sql:ro
-      - ../../scripts/01_populate_embalses_geometry.sql:/docker-entrypoint-initdb.d/01_populate_embalses_geometry.sql:ro
-      - ../../scripts/02_populate_embalses_points.sql:/docker-entrypoint-initdb.d/02_populate_embalses_points.sql:ro
-      - ../../scripts/03_populate_flow_data.sql:/docker-entrypoint-initdb.d/03_populate_flow_data.sql:ro
-      - ../../scripts/04_populate_rain_data.sql:/docker-entrypoint-initdb.d/04_populate_rain_data.sql:ro
+      - ../../scripts/ddl/01_create_embalses_geometry.sql:/docker-entrypoint-initdb.d/01_create_embalses_geometry.sql:ro
+      - ../../scripts/ddl/02_create_embalses_points.sql:/docker-entrypoint-initdb.d/02_create_embalses_points.sql:ro
+      - ../../scripts/ddl/03_create_flow_tables.sql:/docker-entrypoint-initdb.d/03_create_flow_tables.sql:ro
+      - ../../scripts/ddl/04_create_rain_tables.sql:/docker-entrypoint-initdb.d/04_create_rain_tables.sql:ro
+      - ../../scripts/dml/01_populate_embalses_geometry.sql:/docker-entrypoint-initdb.d/01_populate_embalses_geometry.sql:ro
+      - ../../scripts/dml/02_populate_embalses_points.sql:/docker-entrypoint-initdb.d/02_populate_embalses_points.sql:ro
+      - ../../scripts/dml/03_populate_flow_data.sql:/docker-entrypoint-initdb.d/03_populate_flow_data.sql:ro
+      - ../../scripts/dml/04_populate_rain_data.sql:/docker-entrypoint-initdb.d/04_populate_rain_data.sql:ro
       - ../../data/Caudal/caudal_stations.csv:/tmp/grdc_stations.csv:ro
       - ../../data/Caudal/caudal_flow.csv:/tmp/grdc_flow.csv:ro
     healthcheck:
