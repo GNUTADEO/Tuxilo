@@ -1,2 +1,72 @@
 \chapter{Herramientas, requerimientos de software y arquitectura}
 \label{chp:4}
+
+
+Para cumplir el requerimiento de software libre, el cuadro~\ref{tab:software} muestra todos los programas utilizados durante el proyecto con su respectiva descripción de uso y la licencia de dicho software, para esto último se toma en cuenta la definición de \ac{FLOSS} para incluir software que es abierto y libre dada por la \ac{FSF}\cite{gnu_free_sw}. El único programa utilizado que no es \acs{FLOSS} es GitHub, utilizado para el hosting del código y la colaboración entre los miembros del grupo, sin embargo, el proyecto no posee \textit{vendor lock-in}, por lo tanto, se puede (y se recomienda) migrar todo a una instancia de Gitea\cite{gitea_about} con infraestructura propia y así el proyecto sea 100\% software libre.
+
+\begin{longtable}{|p{0.15\textwidth}|p{0.4\textwidth}|p{0.3\textwidth}|}
+  \caption{Software utilizado, descripción y licencias}
+  \label{tab:software} \\
+  \hline
+  \textbf{Software} & \textbf{Descripción} & \textbf{Licencia} \\ 
+  \hline
+  \endfirsthead
+
+  \hline
+  \textbf{Software} & \textbf{Descripción} & \textbf{Licencia} \\ 
+  \hline
+  \endhead
+
+  \hline
+  \multicolumn{3}{r}{\emph{Continúa en la siguiente página}} \\
+  \endfoot
+
+  \hline
+  \endlastfoot
+
+  Python & Lenguaje de programación usado durante todo el proyecto 
+                                           & PSFL (Open Source)\cite{python_license} \\ \hline
+
+  Docker & Software de virtualización para ayudar al despliegue de todos los servicios 
+                                           & Apache 2.0 (Open Source)\cite{moby_license} \\ \hline
+
+  PostGIS & Modulo para soporte de objetos geográficos a PostgreSQL 
+                                           & GPL-2 (Libre)\cite{postgis} \\ \hline
+
+  NGINX & Usado como servidor web dentro del proyecto 
+                                           & BSD-2 (Open Source)\cite{nginx_license} \\ \hline
+
+  GitHub & Servicio de hosting y colaboración para alojar el código 
+                                           & Propietario\cite{wiki_github} \\ \hline
+
+  QGIS & Análisis de datos geoespaciales 
+                                           & GPL-2 (Libre)\cite{qgis_license} \\ \hline
+
+  Marimo & Notebooks para trabajar, limpiar y procesar datos 
+                                           & Apache 2.0 (Open Source)\cite{marimo_license} \\ \hline
+
+  Svelte & Framework de \acs{JS} usado para el front-end del proyecto 
+                                           & MIT (Open Source)\cite{svelte_license} \\ \hline
+
+  Leaflet & Librería de \acs{JS} para mostrar y montar capas de datos geográficos teniendo como capa base OSM 
+                                           & BSD-2 (Open Source)\cite{leaflet_license} \\ \hline
+
+  FastAPI & Framework de Python utilizado para desarrollar las \acs{API} del proyecto 
+                                           & MIT (Open Source)\cite{fastapi_license} \\ \hline
+
+  Drawio & Aplicación utilizada para dibujar la arquitectura & Apache 2.0 (Open Source)\cite{drawio_license} \\ \hline
+
+  GNU Emacs & Editor de texto utilizado para editar archivos de datos, usado por sus macros & GPL-3 (Libre)\cite{wiki_gnu_emacs} \\ \hline
+
+  \LaTeX & Sistema de software para la creación del presente documento & LPPL (Libre)\cite{latex_lppl} \\ \hline
+
+  Bash & Lenguaje de scripting usado para automatizar scripts & GPL-3 (Libre)\cite{wiki_bash_shell} \\ \hline
+
+  GNU Make & Utilidad usada para compilar algunos archivos del proyecto & GPL-3 (Libre)\cite{gnu_make_manual} \\ \hline
+
+  LibreOffice Calc & Hojas de cálculo para realizar operaciones con datos & MPL-2 (Open Source)\cite{libreoffice_calc} \\ \hline
+  
+\end{longtable}
+
+
+
