@@ -1,37 +1,49 @@
 services:
-  
   nginx:
     image: nginx:latest
-    container_name: pgadmin_nginx
+    container_name: tuxhydro_nginx
     restart: unless-stopped
+    cap_add:
+      - "NET_BIND_SERVICE"
     networks:
       - nginx_net
-      - pgadmin_net
     ports:
-      - "${PORT_PGADMIN}:80"
-      - "${PORT_FRONT}:3000"
+      - "${PORT_FRONT}:5173"
+      - "${PORT_CORE}:8000"
+      - "${PORT_PGADMIN}:8081"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      api_core:
+        condition: service_started
+      frontend:
+        condition: service_started
 
-  front_tuxhydro:
-    container_name: front_tuxhydro
-    image: spanishhans/apps:tuxhydro_front
+  frontend:
+    container_name: tuxhydro_frontend
+    build:
+      context: ../Front
+      dockerfile: Dockerfile.dev
     env_file: ./.env
     networks:
       - nginx_net
-  
-  api_auth:
-    container_name: tuxhydro_api_auth
-    image: spanishhans/apps:Auth
+      - api_net
+    volumes:
+      - ../Front/front/src:/usr/src/app/src
+      - ../Front/front/static:/usr/src/app/static
+
+  api_core:
+    container_name: tuxhydro_api_core
+    build:
+      context: ../Core
+      dockerfile: Dockerfile.core
     env_file: ./.env
     secrets:
-      - jwt_private_key
-      - jwt_public_key
-      - fernet_password
       - postgres_password
     networks:
-      - gis_net
+      - api_net
       - nginx_net
+      - gis_net
     depends_on:
       db:
         condition: service_healthy
@@ -42,33 +54,10 @@ services:
     restart: unless-stopped
     env_file: ./.env
     networks:
-      - pgadmin_net
+      - gis_net
+      - nginx_net
     volumes:
       - pgadmin:/var/lib/pgadmin
-  
-  influxdb3-core:
-    container_name: influxdb3-core
-    image: influxdb:3-core
-    secrets:
-      - postgres_password
-    ports:
-      - "${PORT_DB_IF}:5432"
-    networks:
-      - time_net
-    command:
-      - influxdb3
-      - serve
-      - --node-id=node0
-      - --object-store=file
-      - --data-dir=/var/lib/influxdb3/data
-      - --plugin-dir=/var/lib/influxdb3/plugins
-    volumes:
-      - type: bind
-        source: ~/.influxdb3/core/data
-        target: /var/lib/influxdb3/data
-      - type: bind
-        source: ~/.influxdb3/core/plugins
-        target: /var/lib/influxdb3/plugins
 
   db:
     container_name: gis_db
@@ -77,18 +66,22 @@ services:
     secrets:
       - postgres_password
     environment:
-      POSTGRES_USER: ${PG_DB_USER}
-      POSTGRES_DB: ${PG_DB_NAME}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
-    ports:
-      - "${PORT_DB_PG}:5432"
     networks:
       - gis_net
-      - pgadmin_net
+    ports:
+      - "${PORT_DB_PG}:5432" # Quitar exposición de db para prod
     volumes:
       - postgresql:/var/lib/postgresql/data
+      - ../../scripts/init-embalses-geom-shp2pgsql.sql:/docker-entrypoint-initdb.d/01-init-embalses-geom.sql:ro
+      - ../../scripts/init-db.sql:/docker-entrypoint-initdb.d/02-init.sql:ro
+      - ../../scripts/init-grdc-data.sql:/docker-entrypoint-initdb.d/03-init-grdc-data.sql:ro
+      - ../../data/Caudal/caudal_stations.csv:/tmp/grdc_stations.csv:ro
+      - ../../data/Caudal/caudal_flow.csv:/tmp/grdc_flow.csv:ro
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${PG_DB_USER} -d ${PG_DB_NAME}"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
       interval: 5s
       timeout: 3s
       retries: 5
@@ -97,22 +90,18 @@ networks:
   nginx_net:
     driver: bridge
     name: net_nginx_tuxhydro
-  
+
   front_net:
     driver: bridge
     name: net_front_tuxhydro
-  
+
+  api_net:
+    driver: bridge
+    name: net_api_tuxhydro
+
   gis_net:
     driver: bridge
     name: net_gis_tuxhydro
-  
-  time_net:
-    driver: bridge
-    name: net_time_tuxhydro
-
-  pgadmin_net:
-    driver: bridge
-    name: net_pgadmin_tuxhydro
 
 volumes:
   postgresql:
@@ -123,10 +112,4 @@ volumes:
 
 secrets:
   postgres_password:
-    file: ./Secrets/postgres_password
-  jwt_private_key:
-    file: ./Secrets/jwt_private.pem
-  jwt_public_key:
-    file: ./Secrets/jwt_public.pem
-  fernet_password:
-    file: ./Secrets/fernet_password
+    file: ../Secrets/postgres_password

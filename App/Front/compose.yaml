@@ -1,6 +1,6 @@
 services:
   front_tuxhydro:
-    image: spanishhans/apps:tuxhydro_front
+    image: Tuxhydro-Front
     build:
       context: .
       dockerfile: Dockerfile
