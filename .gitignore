@@ -2,6 +2,7 @@
 .venv/
 .marimo/
 __pycache__/
+__marimo__/
 Secrets/
 
 # Archivos
