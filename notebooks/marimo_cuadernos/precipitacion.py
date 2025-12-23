@@ -153,5 +153,78 @@ def _(Plotter, mapa_estaciones_inv):
     return
 
 
+@app.cell
+def _():
+    first_half = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio']
+    second_half = ['Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+
+    return first_half, second_half
+
+
+@app.cell
+def _(first_half, mapa_estaciones_inv, pd, pivotes, second_half):
+    for est in mapa_estaciones_inv:
+
+        pivot = pivotes[mapa_estaciones_inv[est]]
+    
+        semestres = pd.DataFrame({
+            '1s': pivot[first_half].mean(axis=1),
+            '2s': pivot[second_half].mean(axis=1),
+        })
+    
+        df_semestres = (
+            semestres
+            .reset_index(names='year')
+            .melt(
+                id_vars='year',
+                var_name='semestre',
+                value_name='valor'
+            )
+        )
+    
+        # 🔹 ADD THIS: enforce semester order
+        df_semestres['semestre'] = pd.Categorical(
+            df_semestres['semestre'],
+            categories=['1s', '2s'],
+            ordered=True
+        )
+    
+        # 🔹 ADD THIS: sort properly
+        df_semestres = df_semestres.sort_values(
+            by=['year', 'semestre']
+        )
+    
+        station_id = mapa_estaciones_inv[est]
+    
+        # build Periodo AFTER sorting
+        df_semestres['Periodo'] = (
+            df_semestres['year'].astype(str)
+            + '-'
+            + df_semestres['semestre'].astype(str)
+        )
+    
+        df_semestres['estacion'] = station_id
+    
+        df_final = df_semestres[['Periodo', 'estacion', 'valor']]
+    
+        df_final.rename(
+            columns={
+                'estacion': 'Codigo EC',
+                'valor': 'Precipitación',
+            },
+            inplace=True
+        )
+        print(df_final)
+        df_final.to_csv(f'../../data/Precipitación/data/limpios/{est}.csv', index=False)
+
+    return
+
+
+@app.cell
+def _(mapa_estaciones_inv, pivotes, selector):
+    pivotes[mapa_estaciones_inv[selector]].info(verbose=True)
+    return
+
+
 if __name__ == "__main__":
     app.run()
