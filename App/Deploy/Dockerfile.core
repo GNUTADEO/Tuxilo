@@ -18,7 +18,7 @@ COPY ../Packages/shared_db.zip ./shared_db.zip
 COPY ../Packages/shared_models.zip ./shared_models.zip
 COPY ../Packages/shared_schemas.zip ./shared_schemas.zip
 COPY ../Packages/shared_utils.zip ./shared_utils.zip
-COPY Deploy-2/models_stub.zip ./models_stub.zip
+COPY ./models_stub.zip ./models_stub.zip
 
 RUN pip install --no-cache-dir ./shared_db.zip \
     && pip install --no-cache-dir ./shared_models.zip \

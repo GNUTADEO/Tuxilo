@@ -1,5 +1,7 @@
 # Directorios
 .venv/
+.marimo/
+
 Secrets/
 
 # Archivos

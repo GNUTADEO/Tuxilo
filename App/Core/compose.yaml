@@ -1,6 +1,6 @@
 services:
   api_core:
-    image: labcapital/apps:IIP-Core
+    image: Tuxhydro-Core
     build:
       context: .
       dockerfile: Dockerfile
