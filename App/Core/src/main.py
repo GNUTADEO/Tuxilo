@@ -13,13 +13,6 @@ from routers.stations import router as router_stations
 
 VERSION = "0.1.0"
 COOKIES_SECURE = False
-LOGLEVEL = os.environ["LOGLEVEL"].lower() in (
-    "debug",
-    "info",
-    "warning",
-    "error",
-    "critical",
-)
 
 PUBLIC_ORIGINS = ["*"]
 PUBLIC_METHODS = ["*"]

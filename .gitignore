@@ -1,11 +1,12 @@
 # Directorios
 .venv/
 .marimo/
-
+__pycache__/
 Secrets/
 
 # Archivos
 .env
+*.lock
 
 # Cosas del LaTeX
 *.aux
@@ -18,3 +19,7 @@ Secrets/
 *.bbl
 *.blg
 .auctex-auto/
+
+# Front
+node_modules
+.svelte-kit
