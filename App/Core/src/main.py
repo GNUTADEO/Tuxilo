@@ -15,6 +15,8 @@ from routers.actor_segments import router as router_actor_segments
 from routers.actors import router as router_actors
 from routers.forms import router as router_forms
 from routers.results import router as router_results
+from routers.embalses import router as router_embalses
+from routers.stations import router as router_stations
 
 from shared_schemas import (
     ItemError,
@@ -155,9 +157,18 @@ Tenga en cuenta que algunos endpoints están protegidos por autenticación y aut
 # MIDDLEWARE
 ##############################################################################################
 
+api.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=COOKIES_SECURE,
+    allow_methods=["*"],
+    allow_headers=["*"],
+    max_age=86400,
+)
+
 api_node.add_middleware(
     CORSMiddleware,
-    allow_origins=NODE_ORIGINS,
+    allow_origins=["*"],# NODE_ORIGINS,
     allow_credentials=COOKIES_SECURE,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -238,7 +249,7 @@ api.mount("/public", api_public)
 ##############################################################################################
 # Montaje de frontend en la aplicación principal
 ##############################################################################################
-public_routers = [router_actors, router_actor_segments, router_forms, router_results]
+public_routers = [router_actors, router_actor_segments, router_forms, router_results, router_embalses, router_stations]
 
 node_routers = []
 

@@ -1,0 +1,106 @@
+\documentclass[12pt]{article}
+
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{array}
+\usepackage{geometry}
+\usepackage{longtable}
+\usepackage{booktabs}
+
+\geometry{letterpaper, margin=1in}
+
+\title{Plan de Trabajo Tuxilo\\
+\large Análisis de la influencia de los índices oceánicos en los aportes hídricos en los embalses en Colombia}
+\author{Alvarado Becerra Ludwig\\Jiménez Quintero Nicolle Tatiana\\Martínez Guerrero Juan José\\Ojeda Mejía María Sofía}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Objetivo General}
+Desarrollar una herramienta de simulación interactiva que permita visualizar y analizar la influencia de los índices oceánicos (ONI, TSM, MEI) sobre los aportes hídricos y niveles de los embalses en Colombia, facilitando la comprensión de las dinámicas climáticas y su impacto en la generación hidroeléctrica del país.
+
+\section{Objetivos Específicos}
+\begin{itemize}
+    \item Implementar un sistema de visualización geoespacial que represente los embalses de Colombia y sus niveles de aporte hídrico en tiempo real.
+    \item Diseñar un panel de control interactivo que permita modificar los valores de los índices oceánicos (ONI, TSM, MEI) y visualizar su impacto en los embalses.
+    \item Desarrollar algoritmos de simulación basados en análisis de correlaciones históricas entre fenómenos climáticos y aportes hídricos.
+\end{itemize}
+
+\section{Actividades y Cronograma}
+
+\begin{longtable}{p{4.5cm} p{3.5cm} p{3cm} p{3cm}}
+\toprule
+\textbf{Actividad} & \textbf{Responsable} & \textbf{Fecha Inicio} & \textbf{Fecha Fin} \\
+\midrule
+\endfirsthead
+
+\toprule
+\textbf{Actividad} & \textbf{Responsable} & \textbf{Fecha Inicio} & \textbf{Fecha Fin} \\
+\midrule
+\endhead
+
+\multicolumn{4}{l}{\textbf{Fase 1: Preparación y Modelado}} \\
+\midrule
+Finalización del modelo predictivo & Ludwig, Tatiana y Sofía & 15/12/2025 & 19/12/2025 \\
+Revisión del modelo y pruebas iniciales & Ludwig, Tatiana y Sofía & 17/12/2025 & 19/12/2025 \\
+\midrule
+
+\multicolumn{4}{l}{\textbf{Fase 2: Carga y Gestión de Datos}} \\
+\midrule
+Procesamiento final de datos & Tatiana y Sofía & 19/12/2025 & 20/12/2025 \\
+Carga de datos en la base de datos & Tatiana y Sofía & 20/12/2025 & 21/12/2025 \\
+Verificación de integridad de datos & Juan José y Ludwig & 21/12/2025 & 21/12/2025 \\
+\midrule
+
+\multicolumn{4}{l}{\textbf{Fase 3: Infraestructura y Automatización}} \\
+\midrule
+Montaje del sistema en Celery & Juan José y Ludwig & 22/12/2025 & 22/12/2025 \\
+Pruebas del pipeline & Juan José y Ludwig & 22/12/2025 & 22/12/2025 \\
+\midrule
+
+\multicolumn{4}{l}{\textbf{Fase 4: Integración}} \\
+\midrule
+Integración del modelo con la API & Juan José y Ludwig & 23/12/2025 & 23/12/2025 \\
+Integración frontend-backend & Juan José y Ludwig  & 23/12/2025 & 23/12/2025 \\
+Pruebas de integración completas & Todos & 23/12/2025 & 24/12/2025 \\
+\midrule
+
+\multicolumn{4}{l}{\textbf{Fase 5: Ajustes Finales y Entrega}} \\
+\midrule
+Ajustes y optimización final & Todos & 24/12/2025 & 25/12/2025 \\
+Documentación y notas técnicas & Todos & 24/12/2025 & 25/12/2025 \\
+Revisión final y validación del equipo & Todos & 25/12/2025 & 26/12/2025 \\
+Entrega final del proyecto & Todos & 26/12/2025 & 26/12/2025 \\
+\bottomrule
+\end{longtable}
+
+
+\section{Recursos Necesarios}
+
+\subsection{Recursos Humanos}
+\begin{itemize}
+    \item Los 4 integrantes del grupo cuyos roles ya están asignados.
+    \item Acceso a consultoría con expertos en hidrología y climatología. Además de un ingeniero de sistemas con conocimientos en Celery o tecnologías de \textit{Distributed Task Queue}.
+\end{itemize}
+
+\subsection{Recursos Tecnológicos}
+\begin{itemize}
+    \item \textbf{Datos}: Datasets de IDEAM (caudales, precipitación), índices oceánicos (ONI, TSM, MEI), datos de embalses colombianos.
+    \item \textbf{Software}: Python (pandas, numpy, scikit-learn), FastAPI para backend, JavaScript/SVELTE para frontend, bibliotecas de mapas (Leaflet, Mapbox), Celery, FastAPI, Redis, InfluxDB, PostGIS.
+    \item \textbf{Hardware}: Servidores para despliegue de la aplicación y la capacidad de cómputo.
+    \item \textbf{Herramientas}: Git para control de versiones, Marimo para notebooks de análisis, Docker para containerización.
+\end{itemize}
+
+\subsection{Recursos de Información}
+\begin{itemize}
+    \item Base de datos histórica de IDEAM (estaciones hidrométricas y meteorológicas).
+    \item Datos de índices oceánicos de fuentes internacionales (NOAA, NCAR).
+    \item Información geoespacial de embalses y cuencas hidrográficas de Colombia.
+    \item Literatura científica sobre fenómenos El Niño/La Niña y su impacto en Colombia.
+\end{itemize}
+
+
+
+\end{document}

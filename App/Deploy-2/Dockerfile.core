@@ -1,0 +1,55 @@
+# =================================================
+# Stage 1: Start application
+# =================================================
+FROM python:3.14-slim-bookworm
+WORKDIR /api
+RUN apt-get update && apt-get install -y \
+    gcc\
+    g++\
+    libpq-dev\
+    curl\
+    jq\
+    && rm -rf /var/lib/apt/lists/*
+
+# -----------------------------
+# 2. Install shared packages from local files
+# -----------------------------
+COPY ../Packages/shared_db.zip ./shared_db.zip
+COPY ../Packages/shared_models.zip ./shared_models.zip
+COPY ../Packages/shared_schemas.zip ./shared_schemas.zip
+COPY ../Packages/shared_utils.zip ./shared_utils.zip
+COPY Deploy-2/models_stub.zip ./models_stub.zip
+
+RUN pip install --no-cache-dir ./shared_db.zip \
+    && pip install --no-cache-dir ./shared_models.zip \
+    && pip install --no-cache-dir ./shared_schemas.zip \
+    && pip install --no-cache-dir ./shared_utils.zip \
+    && pip install --no-cache-dir ./models_stub.zip \
+    && rm *.zip
+
+# -----------------------------
+# 3. Config virtual environment
+# -----------------------------
+COPY ../Core/src/pyproject.toml ./pyproject.toml
+RUN pip install --no-cache-dir -e .
+
+# -----------------------------
+# 4. Copy app
+# -----------------------------
+COPY ../Core/src/main.py ./main.py
+COPY ../Core/src/db ./db
+COPY ../Core/src/handlers ./handlers
+COPY ../Core/src/routers ./routers
+COPY ../Core/src/schemas ./schemas
+
+# -----------------------------
+# 5. setup entrypoint
+# -----------------------------
+COPY ../Core/entrypoint_core.sh /entrypoint_core.sh
+RUN chmod +x /entrypoint_core.sh
+ENTRYPOINT ["/entrypoint_core.sh"]
+
+# -----------------------------
+# 6. Run uvicorn
+# -----------------------------
+CMD ["sh", "-c", "uvicorn main:api --host 0.0.0.0 --port ${PORT_CORE:-8000}"]

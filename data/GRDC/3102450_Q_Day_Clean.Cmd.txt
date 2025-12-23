@@ -1,0 +1,1 @@
+YYYY-MM-DD;Value;month;Value_imputed
