@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Script to convert embalses.shp to PostGIS SQL format
 # This reproduces the init-embalses-geom.sql file
 

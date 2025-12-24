@@ -7,7 +7,7 @@
 -- Latitude (DD):       9.224444444
 -- Longitude (DD):      -75.83444444
 
-CREATE TABLE IF NOT EXISTS stations (
+CREATE TABLE IF NOT EXISTS rain_stations (
     station_id VARCHAR(50) PRIMARY KEY,
     river_name VARCHAR(255) NOT NULL,
     station_name VARCHAR(255) NOT NULL,
@@ -16,8 +16,8 @@ CREATE TABLE IF NOT EXISTS stations (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE INDEX IF NOT EXISTS idx_stations_river ON stations(river_name);
-CREATE INDEX IF NOT EXISTS idx_stations_name ON stations(station_name);
+CREATE INDEX IF NOT EXISTS idx_stations_river ON rain_stations(river_name);
+CREATE INDEX IF NOT EXISTS idx_stations_name ON rain_stations(station_name);
 
 -- =====================================================
 -- GRDC Daily Flow Data Table
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS grdc_daily_flow (
     month_number SMALLINT NOT NULL,
     flow_value_imputed DECIMAL(12, 3),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (station_id) REFERENCES stations(station_id) ON DELETE CASCADE,
+    FOREIGN KEY (station_id) REFERENCES rain_stations(station_id) ON DELETE CASCADE,
     UNIQUE (station_id, observation_date)
 );
 
