@@ -1,98 +1,56 @@
 \chapter{Uso de datos y fuentes}
 \label{chp:3}
 
-Se identificaron y emplearon datos correspondientes a los polígonos y áreas de los embalses, los cuales fueron obtenidos a partir de Colombia en Mapas y el \ac{IGAC} (\url{https://www.colombiaenmapas.gov.co/?u=0&t=39&servicio=1468})\cite{colombiaenmapas}. Estos datos se encuentran disponibles dentro del repositorio del proyecto, específicamente en la ruta \url{https://github.com/GNUTADEO/Tuxilo/tree/main/data/geodata}, donde se almacenan los distintos archivos resultantes de los procesos de consulta y tratamiento geoespacial.
+\section{Datos geoespaciales}
+\label{sec:chp3-1}
 
-El archivo \texttt{embalses.shp} fue transformado en un \textit{script} SQL con el objetivo de permitir la correcta carga de la información en la base de datos espacial PostGIS. Este proceso se realizó mediante el uso del comando \lstinline[style=bash]|shp2pgsql|, junto con las instrucciones mostradas en el listado~\ref{code:1}. Como resultado, se generó el archivo \texttt{init-embalses-geom-shp2pgsql-2.sql}, el cual contiene las sentencias necesarias para la creación y carga de la tabla \texttt{embalses\_geom} dentro de la base de datos PostGIS.
+Para el desarrollo del proyecto se identificaron y utilizaron datos geoespaciales correspondientes a los polígonos y áreas de los embalses a nivel nacional. Esta información fue obtenida a partir de la plataforma \textit{Colombia en Mapas} y de los datos oficiales suministrados por el \ac{IGAC}\cite{colombiaenmapas}. Los insumos geográficos empleados se encuentran disponibles dentro del repositorio del proyecto, específicamente en el directorio \texttt{data/geodata/}, donde se almacenan los archivos resultantes de los procesos de consulta, transformación y tratamiento espacial.
 
-\begin{lstlisting}[style=bash, caption={Conversión de un archivo \texttt{.shp} a un script SQL}, label={code:1}]
-  shp2pgsql -I -W UTF-8 -g geom -k embalses.shp > init-embalses-geom-shp2pgsql-2.sql
-\end{lstlisting}
+Los datos originales, proporcionados en formato \texttt{.shp}, fueron preparados para su integración en una base de datos espacial PostGIS\cite{postgis}. Para ello, se realizó una conversión de las capas vectoriales a sentencias SQL compatibles con PostgreSQL, permitiendo la creación y carga estructurada de las tablas correspondientes. Este procedimiento asegura la correcta preservación de los atributos y geometrías, así como la incorporación de índices espaciales que optimizan las consultas posteriores. Dichas sentencias SQL se pueden encontrar en el archivo \url{init-embalses-geom-shp2pgsql.sql} del directorio \texttt{scripts/}.
 
-Una vez cargadas las geometrías de los archivos \texttt{.shp}, se procedió a calcular el centroide de cada polígono con el fin de obtener sus coordenadas representativas. A partir de estos centroides, se pobló la tabla \texttt{embalses}, almacenando las coordenadas de latitud y longitud correspondientes. El \textit{script} completo utilizado para la creación y población de ambas tablas se encuentra en el archivo \texttt{init-db.sql}, ubicado en el directorio \texttt{scripts/}.
+Una vez almacenadas las geometrías de los embalses en la base de datos, se calcularon los centroides de cada polígono con el objetivo de obtener coordenadas representativas de ubicación. Estas coordenadas de latitud y longitud fueron utilizadas para poblar una tabla adicional que contiene la información general de cada embalse, facilitando su consulta desde otros componentes del sistema. Tanto la definición de las tablas como los procesos de inserción y cálculo geométrico se encuentran documentados y automatizados mediante scripts SQL incluidos en el repositorio en los archivos \texttt{init-db.sql} y {\raggedright \texttt{init-grdc-data.sql}}.
 
-Estos dos conjuntos de datos son expuestos a través de una \acs{API}, lo que permite su consulta y reutilización por parte de distintos módulos internos del sistema. La información general de los embalses puede consultarse mediante el \textit{endpoint} \texttt{/public/embalses/}, mientras que los polígonos asociados están disponibles a través del \textit{endpoint} \texttt{/public/embalses/geojson}. Ambos \textit{endpoints} se encuentran accesibles a través del puerto 8000 del \texttt{localhost}, y su implementación se muestra en el listado~\ref{code:2}.
+Los conjuntos de datos generados son expuestos a través de una \acs{API} REST, lo que permite su consumo por diferentes módulos del proyecto y su reutilización en futuros desarrollos. En particular, se dispone de un servicio para la consulta de la información general de los embalses en el endpoint \texttt{/public/embalses/} (identificador, nombre y coordenadas) y de otro servicio para la obtención de los polígonos en formato GeoJSON, adecuado para aplicaciones de visualización y análisis geoespacial (endpoint \texttt{public/embalses/geojson}). Estos servicios se ejecutan localmente y forman parte de la arquitectura de la aplicación.
 
-La capa base de datos geográficos fue obtenida a partir de la base de datos espacial de OpenStreetMap~\cite{openstreetmap_about}, haciendo uso de la información conforme a los términos establecidos por la Licencia Abierta de Bases de Datos (\acs{ODbL}, \textit{Open Database License})~\cite{odbl_license}. Los elementos representados sobre el mapa fueron incorporados como capas vectoriales superpuestas, particularmente en el caso de los marcadores de ubicación.
+Como capa base cartográfica se empleó la base de datos espacial de OpenStreetMap\cite{openstreetmap_about}, haciendo uso de su información conforme a los términos establecidos por la Licencia Abierta de Bases de Datos (\acs{ODbL})\cite{odbl_license}. Sobre esta capa base se integraron los datos propios del proyecto como capas vectoriales superpuestas, permitiendo la representación espacial de los embalses y sus atributos asociados.
 
-Adicionalmente, se generó una capa en formato GeoJSON~\cite{wiki_geojson}, obtenida mediante la consulta al \textit{endpoint} \texttt{/public/embalses/geojson}, lo que permite la representación visual de los polígonos correspondientes a los embalses. La integración y visualización de los datos cartográficos se realizó con ayuda de la librería Leaflet~\cite{leafletjs} para \acs{JS}, obteniendo como resultado una interfaz similar a la presentada en la figura~\ref{fig:mapa-embalses}.
-
-
-
-
-\begin{lstlisting}[style=python,caption={Archivo \texttt{App/Core/src/routers/embalses.py}},label={code:2}]
-  router = APIRouter(tags=["Embalses"], prefix="/embalses")
-
-
-  @router.get(
-  "/",
-  operation_id="get_all_embalses",
-  )
-  async def get_all_embalses(
-  db: AsyncSession = Depends(get_db),
-  ):
-  """Obtiene todos los embalses con sus coordenadas"""
-  query = text("""
-  SELECT
-  id,
-  nombre,
-  latitud,
-  longitud
-  FROM embalses
-  WHERE latitud IS NOT NULL
-  AND longitud IS NOT NULL
-  AND nombre IS NOT NULL
-  """)
-  result = await db.execute(query)
-  rows = result.fetchall()
-  
-  embalses = [
-  {
-    "id": row[0],
-    "nombre": row[1],
-    "latitud": float(row[2]) if row[2] else None,
-    "longitud": float(row[3]) if row[3] else None,
-  }
-  for row in rows
-  ]
-  
-  return {"embalses": embalses}
-
-@router.get("/geojson")
-async def get_embalses_geojson(db: AsyncSession = Depends(get_db)):
-    query = text("""
-                  SELECT jsonb_build_object(
-         'type', 'FeatureCollection',
-         'features', jsonb_agg(feature)
-     )
-     FROM (
-         SELECT jsonb_build_object(
-             'type', 'Feature',
-             'id', "GLOBALID",
-             'geometry', ST_AsGeoJSON(ST_Transform(ST_SetSRID(geom, 9377), 4326))::jsonb,
-             'properties', jsonb_build_object(
-                 'nombre', "NOMBRE_GEO",
-                 'proyecto', "PROYECTO",
-                 'area_km2', ROUND(("SHAPE_Area"/1000000)::numeric, 2)
-             )
-         ) AS feature
-         FROM embalses_geom WHERE "NOMBRE_GEO" IS NOT NULL
-     ) features;
-    """)
-    result = await db.execute(query)
-    return result.scalar()
-
-\end{lstlisting}
-
-
-
+Adicionalmente, se generó una capa dinámica en formato GeoJSON\cite{wiki_geojson}, obtenida mediante la consulta a la \acs{API}, lo que posibilita la visualización directa de los polígonos de los embalses sin necesidad de almacenar archivos intermedios. La integración y representación gráfica de la información geográfica se realizó mediante la librería Leaflet\cite{leafletjs} para \acs{JS}, obteniendo como resultado una interfaz cartográfica interactiva, similar a la presentada en la figura~\ref{fig:mapa-embalses}. Esta aproximación permite una exploración visual eficiente de los datos y facilita su interpretación espacial.
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{img/integracion.png}
-  \caption{Mapa hecho con Leaflet con datos base de OpenStreetMap y capas extra de embalses de Colombia.}
+  \caption{Mapa elaborado con Leaflet utilizando datos base de OpenStreetMap y capas vectoriales correspondientes a los embalses de Colombia.}
   \label{fig:mapa-embalses}
 \end{figure}
+
+\section{Información hidrológica de caudales}
+\label{sec:chp3-2}
+
+Esta información se sacó del \ac{GRDC} (\url{https://portal.grdc.bafg.de/applications/public.html?publicuser=PublicUser#dataDownload/Subregions})\cite{grdc_portal} seleccionando todas las regiones que cubren a Colombia (figura~\ref{fig:grdc-colombia}) generando un archivo comprimido enviado al correo del solicitante. Este archivo se descomprime y se pueden ver dentro de \url{data/GRDC} con un nombre tipo \url{ID_Q_Day_Clean.Cmd.txt} donde \url{ID} es el identificador de la estación metereológica, un ejemplo de cómo vienen los datos están en la figura~\ref{fig:grdc-sample}.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{img/grdc-colombia.png}
+  \caption{Regiones que cubren a Colombia dentro del portal del GRDC.}
+  \label{fig:grdc-colombia}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{img/grdc-sample.png}
+  \caption{Archivo \texttt{GRDC/3102010\_Q\_Day.Cmd.txt}}
+  \label{fig:grdc-sample}
+\end{figure}
+
+Una vez realizada la descarga de los datos, se llevó a cabo un proceso de depuración y limpieza, debido a que una proporción significativa de las estaciones presentaba ausencia de registros de caudal, series temporales desactualizadas o valores nulos. Con el fin de garantizar la consistencia y representatividad del conjunto de datos, se priorizaron aquellas estaciones que contaran con información a partir del año 2015.
+
+Para el tratamiento de los valores faltantes, se aplicó una aproximación estadística basada en la distribución de los valores no nulos de cada serie. A partir de dicha distribución, se generaron muestras aleatorias (\textit{sampling}) que permitieron reemplazar los valores nulos, preservando así las características estadísticas originales de los datos. El procedimiento completo de análisis y limpieza se encuentra documentado en el archivo \url{analisis_limpieza_caudal.py}, ubicado en el directorio \url{notebooks/}. Como resultado de este proceso, se obtuvieron los conjuntos de datos finales almacenados en el directorio \url{data/Caudal/}.
+
+A partir del archivo \url{stationbasins.geojson}, disponible en el directorio \url{data/GRDC/}, se extrajeron las coordenadas geográficas correspondientes a cada estación meteorológica. Esta información fue procesada y consolidada en el archivo \url{caudal_stations.csv}, localizado en \url{data/Caudal/}, el cual contiene el identificador de la estación, su nombre, el río asociado y sus coordenadas de latitud y longitud. Dicho archivo en formato \url{.csv} se empleó posteriormente para la población de la tabla \url{stations} en la base de datos.
+
+Por último, el archivo \url{caudal_flow.csv}, ubicado en el directorio \url{data/Caudal/}, corresponde a la integración de los registros diarios de caudal provenientes de todas las estaciones seleccionadas. Este conjunto de datos se utilizó para la carga y población de la tabla \url{grdc_daily_flow} en la base de datos.
+
+
 
 
 

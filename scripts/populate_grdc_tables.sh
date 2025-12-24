@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Script to populate GRDC tables from Clean CSV files
 # Processes all *_Q_Day_Clean.Cmd.txt files in data/GRDC directory
 

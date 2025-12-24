@@ -2,7 +2,9 @@
 \label{chp:4}
 
 
-Para cumplir el requerimiento de software libre, el cuadro~\ref{tab:software} muestra todos los programas utilizados durante el proyecto con su respectiva descripción de uso y la licencia de dicho software, para esto último se toma en cuenta la definición de \ac{FLOSS} para incluir software que es abierto y libre dada por la \ac{FSF}\cite{gnu_free_sw}. El único programa utilizado que no es \acs{FLOSS} es GitHub, utilizado para el hosting del código y la colaboración entre los miembros del grupo, sin embargo, el proyecto no posee \textit{vendor lock-in}, por lo tanto, se puede (y se recomienda) migrar todo a una instancia de Gitea\cite{gitea_about} con infraestructura propia y así el proyecto sea 100\% software libre.
+Para dar cumplimiento al requerimiento de uso de software libre, el cuadro~\ref{tab:software} presenta el conjunto de programas empleados durante el desarrollo del proyecto, junto con una breve descripción de su uso y la licencia correspondiente. Para la clasificación de las licencias se adopta la definición de \ac{FLOSS}, que incluye software libre y de código abierto, según lo establecido por la \ac{FSF}\cite{gnu_free_sw}.
+
+El único software utilizado que no se enmarca dentro de la categoría \acs{FLOSS} es GitHub, el cual fue empleado como plataforma de alojamiento del código fuente y como herramienta de colaboración entre los integrantes del equipo. No obstante, el proyecto no presenta \textit{vendor lock-in}, ya que la dependencia de esta plataforma no es estructural. En consecuencia, es posible —y se recomienda— migrar el repositorio y los flujos de trabajo a una instancia propia de Gitea\cite{gitea_about}, lo que permitiría que el proyecto sea completamente desarrollado y gestionado con software libre y abierto.
 
 \begin{longtable}{|p{0.15\textwidth}|p{0.4\textwidth}|p{0.3\textwidth}|}
   \caption{Software utilizado, descripción y licencias}
@@ -65,6 +67,8 @@ Para cumplir el requerimiento de software libre, el cuadro~\ref{tab:software} mu
   GNU Make & Utilidad usada para compilar algunos archivos del proyecto & GPL-3 (Libre)\cite{gnu_make_manual} \\ \hline
 
   LibreOffice Calc & Hojas de cálculo para realizar operaciones con datos & MPL-2 (Open Source)\cite{libreoffice_calc} \\ \hline
+
+  Git & Software de control de versiones distribuido para el desarrollo de todo el proyecto & GPL-2 (Libre)\cite{git_about} \\ \hline 
   
 \end{longtable}
 
