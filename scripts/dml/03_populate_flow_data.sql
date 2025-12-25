@@ -3,14 +3,14 @@
 -- Imports daily flow data
 -- ============================================
 -- Load stations data
-\COPY flow_stations (station_id, river_name, station_name, latitude, longitude) FROM '/tmp/grdc_stations.csv' WITH CSV HEADER;
+\COPY geodata.flow_stations (station_id, river_name, station_name, latitude, longitude) FROM '/tmp/grdc_stations.csv' WITH CSV HEADER;
 
 -- Load daily flow data
-\COPY grdc_daily_flow (station_id, observation_date, flow_value, month_number, flow_value_imputed) FROM '/tmp/grdc_flow.csv' WITH CSV HEADER;
+\COPY geodata.grdc_daily_flow (station_id, observation_date, flow_value, month_number, flow_value_imputed) FROM '/tmp/grdc_flow.csv' WITH CSV HEADER;
 
 -- Log completion
 DO $$
 BEGIN
-    RAISE NOTICE 'Flow_stations table populated with % rows', (SELECT COUNT(*) FROM flow_stations);
-    RAISE NOTICE 'GRDC daily flow table populated with % rows', (SELECT COUNT(*) FROM grdc_daily_flow);
+    RAISE NOTICE 'Flow_stations table populated with % rows', (SELECT COUNT(*) FROM geodata.flow_stations);
+    RAISE NOTICE 'GRDC daily flow table populated with % rows', (SELECT COUNT(*) FROM geodata.grdc_daily_flow);
 END $$;
