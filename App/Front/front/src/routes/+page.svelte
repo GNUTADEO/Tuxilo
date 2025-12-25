@@ -2,14 +2,14 @@
 	import Map from '$lib/components/Map.svelte';
 
 	let embalses = $state([]);
-	// let semestres = $state([]);
+	let semestres = $state([]);
 	let selectedEmbalseId = $state(null);
 	let selectedSemestreId = $state(null);
 	let showNearestStation = $state(false);
 
 	function handleLoaded(loadedEmbalses) {
 		embalses = loadedEmbalses;
-		// semestres = loadedSemestres;
+		semestres = loadedSemestres;
 	}
 
 	function handleEmbalseChange(event) {
@@ -19,12 +19,12 @@
 		showNearestStation = false;
 	}
 	
-	// function handleSemestreChange(event) {
-	// 	selectedSemestreId = event.target.value ? Number(event.target.value) : null;
-	// 	console.log('Selected semestre ID:', selectedSemestreId);
-	// 	// Reset when changing embalse
-	// 	showNearestStation = false;
-	// }
+	function handleSemestreChange(event) {
+		selectedSemestreId = event.target.value ? Number(event.target.value) : null;
+		console.log('Selected semestre ID:', selectedSemestreId);
+		// Reset when changing embalse
+		showNearestStation = false;
+	}
 
 	function handleCorrer() {
 		if (selectedEmbalseId && selectedSemestreId) {
@@ -68,11 +68,11 @@
 					<select
 						id="sel-semestre"
 						class="select select-bordered w-full"
-						onchange={handleEmbalseChange}
+						onchange={handleSemestreChange}
 					>
 						<option value="">Seleccione un semestre</option>
-						{#each embalses as embalses (embalses.id)}
-							<option value={embalses.id}>{embalses.nombre}</option>
+						{#each semestres as semestre (semestre.id)}
+							<option value={semestre.id}>{semestre.nombre}</option>
 						{/each}
 					</select>
 				</div>

@@ -7,6 +7,14 @@
 	let markers = new Map<number, any>();
 	let stationMarker: any = null;
 	let embalses: Embalse[] = [];
+	let semestres: Semestre[] = [];
+
+	interface Semestre {
+		id: number;
+		nombre: string;
+		latitud: number;
+		longitud: number;
+	}
 
 	interface Embalse {
 		id: number;
@@ -47,13 +55,18 @@
 
 		// Fetch embalses from API
 		try {
-			const response = await fetch('http://localhost:8000/public/embalses/');
-			const response_geojson = await fetch('http://localhost:8000/public/embalses/geojson');
+			const embalses_response = await fetch('http://localhost:8000/public/embalses/');
+			const embalses_response_geojson = await fetch('http://localhost:8000/public/embalses/geojson');
+			
+			const semestres_response = await fetch('http://localhost:8000/public/embalses/');
 
-			const data = await response.json();
-			const geojson = await response_geojson.json();
+			const embalses_data = await embalses_response.json();
+			const embalses_geojson = await embalses_response_geojson.json();
+			
+			const semestres_data = await semestres_response.json();
 
-			embalses = data.embalses;
+			embalses = embalses_data.embalses;
+			semestres = semestres_data.semestres;
 
 			// Add markers for each embalse
 			embalses.forEach((embalse) => {
@@ -63,7 +76,7 @@
 				markers.set(embalse.id, marker);
 			});
 
-			L.geoJSON(geojson, {
+			L.geoJSON(embalses_geojson, {
 				style: { color: '#3388ff', weight: 2, fillOpacity: 0.4 },
 				onEachFeature: (feature, layer) => {
 					layer.bindPopup(`<b>${feature.properties.nombre}</b><br>
