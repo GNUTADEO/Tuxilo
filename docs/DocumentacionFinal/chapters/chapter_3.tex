@@ -23,8 +23,12 @@ Adicionalmente, se generó una capa dinámica en formato GeoJSON\cite{wiki_geojs
   \label{fig:mapa-embalses}
 \end{figure}
 
-\section{Información hidrológica de caudales}
+\section{Información hidrológica}
 \label{sec:chp3-2}
+
+
+\subsection{Caudales}
+
 
 Esta información se sacó del \ac{GRDC} (\url{https://portal.grdc.bafg.de/applications/public.html?publicuser=PublicUser#dataDownload/Subregions})\cite{grdc_portal} seleccionando todas las regiones que cubren a Colombia (figura~\ref{fig:grdc-colombia}) generando un archivo comprimido enviado al correo del solicitante. Este archivo se descomprime y se pueden ver dentro de \url{data/GRDC} con un nombre tipo \url{ID_Q_Day_Clean.Cmd.txt} donde \url{ID} es el identificador de la estación metereológica, un ejemplo de cómo vienen los datos están en la figura~\ref{fig:grdc-sample}.
 
@@ -51,7 +55,10 @@ A partir del archivo \url{stationbasins.geojson}, disponible en el directorio \u
 Por último, el archivo \url{caudal_flow.csv}, ubicado en el directorio \url{data/Caudal/}, corresponde a la integración de los registros diarios de caudal provenientes de todas las estaciones seleccionadas. Este conjunto de datos se utilizó para la carga y población de la tabla \url{grdc_daily_flow} en la base de datos.
 
 
+\subsection{Precipitación}
 
+
+Los datos fueron sacados del IDEAM
 
 
 
