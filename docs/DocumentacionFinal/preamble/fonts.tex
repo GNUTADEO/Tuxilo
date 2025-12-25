@@ -4,6 +4,16 @@
 % Install fonts from /usr/local/texlive/<version>/texmf-dist/fonts/opentype/public
 \usepackage{fontspec}
 
+% Main font (roman/serif) - using TeX Gyre Adventor for consistency
+\setmainfont[
+    Ligatures=TeX,
+    Extension=.otf,
+    UprightFont=*-regular,
+    BoldFont=*-bold,
+    ItalicFont=*-italic,
+    BoldItalicFont=*-bolditalic,
+]{texgyreadventor}
+
 % Sans-serif font
 \setsansfont[
     Ligatures=TeX,

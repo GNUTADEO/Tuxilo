@@ -1,8 +1,0 @@
-services:
-  front_tuxhydro:
-    image: Tuxhydro-Front
-    build:
-      context: .
-      dockerfile: Dockerfile
-    profiles:
-      - prod

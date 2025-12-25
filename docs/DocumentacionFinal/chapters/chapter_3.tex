@@ -4,7 +4,7 @@
 \section{Datos geoespaciales}
 \label{sec:chp3-1}
 
-Para el desarrollo del proyecto se identificaron y utilizaron datos geoespaciales correspondientes a los polígonos y áreas de los embalses a nivel nacional. Esta información fue obtenida a partir de la plataforma \textit{Colombia en Mapas} y de los datos oficiales suministrados por el \ac{IGAC}\cite{colombiaenmapas}. Los insumos geográficos empleados se encuentran disponibles dentro del repositorio del proyecto, específicamente en el directorio \texttt{data/geodata/}, donde se almacenan los archivos resultantes de los procesos de consulta, transformación y tratamiento espacial.
+Para el desarrollo del proyecto se identificaron y utilizaron datos geoespaciales correspondientes a los polígonos y áreas de los embalses a nivel nacional. Esta información fue obtenida a partir de la plataforma \textit{Colombia en Mapas} y de los datos oficiales suministrados por el \ac{IGAC}\cite{colombiaenmapas}. Los insumos geográficos empleados se encuentran disponibles dentro del repositorio del proyecto, específicamente en el directorio \texttt{data/geodata/}.
 
 Los datos originales, proporcionados en formato \texttt{.shp}, fueron preparados para su integración en una base de datos espacial PostGIS\cite{postgis}. Para ello, se realizó una conversión de las capas vectoriales a sentencias SQL compatibles con PostgreSQL, permitiendo la creación y carga estructurada de las tablas correspondientes. Este procedimiento asegura la correcta preservación de los atributos y geometrías, así como la incorporación de índices espaciales que optimizan las consultas posteriores. Dichas sentencias SQL se pueden encontrar en el archivo \url{init-embalses-geom-shp2pgsql.sql} del directorio \texttt{scripts/}.
 
@@ -23,8 +23,12 @@ Adicionalmente, se generó una capa dinámica en formato GeoJSON\cite{wiki_geojs
   \label{fig:mapa-embalses}
 \end{figure}
 
-\section{Información hidrológica de caudales}
+\section{Información hidrológica}
 \label{sec:chp3-2}
+
+
+\subsection{Caudales}
+
 
 Esta información se sacó del \ac{GRDC} (\url{https://portal.grdc.bafg.de/applications/public.html?publicuser=PublicUser#dataDownload/Subregions})\cite{grdc_portal} seleccionando todas las regiones que cubren a Colombia (figura~\ref{fig:grdc-colombia}) generando un archivo comprimido enviado al correo del solicitante. Este archivo se descomprime y se pueden ver dentro de \url{data/GRDC} con un nombre tipo \url{ID_Q_Day_Clean.Cmd.txt} donde \url{ID} es el identificador de la estación metereológica, un ejemplo de cómo vienen los datos están en la figura~\ref{fig:grdc-sample}.
 
@@ -51,7 +55,10 @@ A partir del archivo \url{stationbasins.geojson}, disponible en el directorio \u
 Por último, el archivo \url{caudal_flow.csv}, ubicado en el directorio \url{data/Caudal/}, corresponde a la integración de los registros diarios de caudal provenientes de todas las estaciones seleccionadas. Este conjunto de datos se utilizó para la carga y población de la tabla \url{grdc_daily_flow} en la base de datos.
 
 
+\subsection{Precipitación}
 
+
+Los datos fueron sacados del IDEAM
 
 
 

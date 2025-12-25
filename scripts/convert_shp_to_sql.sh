@@ -6,9 +6,9 @@ set -e
 
 # Configuration
 SHAPEFILE="data/geodata/embalses.shp"
-OUTPUT_SQL="App/Deploy-2/init-embalses-geom-shp2pgsql-2.sql"
-TABLE_NAME="embalses_geom"
-SCHEMA="public"
+OUTPUT_SQL="scripts/init-embalses-geom-shp2pgsql-2.sql"
+TABLE_NAME="embalses_polygons"
+SCHEMA="geodata"
 
 # Check if shapefile exists
 if [ ! -f "$SHAPEFILE" ]; then

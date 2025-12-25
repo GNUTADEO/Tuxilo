@@ -4,7 +4,7 @@
 
 Para dar cumplimiento al requerimiento de uso de software libre, el cuadro~\ref{tab:software} presenta el conjunto de programas empleados durante el desarrollo del proyecto, junto con una breve descripción de su uso y la licencia correspondiente. Para la clasificación de las licencias se adopta la definición de \ac{FLOSS}, que incluye software libre y de código abierto, según lo establecido por la \ac{FSF}\cite{gnu_free_sw}.
 
-El único software utilizado que no se enmarca dentro de la categoría \acs{FLOSS} es GitHub, el cual fue empleado como plataforma de alojamiento del código fuente y como herramienta de colaboración entre los integrantes del equipo. No obstante, el proyecto no presenta \textit{vendor lock-in}, ya que la dependencia de esta plataforma no es estructural. En consecuencia, es posible —y se recomienda— migrar el repositorio y los flujos de trabajo a una instancia propia de Gitea\cite{gitea_about}, lo que permitiría que el proyecto sea completamente desarrollado y gestionado con software libre y abierto.
+El único software utilizado que no se enmarca dentro de la categoría \acs{FLOSS} es GitHub, el cual fue empleado como plataforma de alojamiento del código fuente y como herramienta de colaboración entre los integrantes del equipo. No obstante, el proyecto no presenta \textit{vendor lock-in}, ya que la dependencia de esta plataforma no es estructural. En consecuencia, es posible -y se recomienda- migrar el repositorio y los flujos de trabajo a una instancia propia de Gitea\cite{gitea_about}, lo que permitiría que el proyecto sea completamente desarrollado y gestionado con software libre y abierto.
 
 \begin{longtable}{|p{0.15\textwidth}|p{0.4\textwidth}|p{0.3\textwidth}|}
   \caption{Software utilizado, descripción y licencias}
@@ -26,35 +26,25 @@ El único software utilizado que no se enmarca dentro de la categoría \acs{FLOS
   \hline
   \endlastfoot
 
-  Python & Lenguaje de programación usado durante todo el proyecto 
-                                           & PSFL (Open Source)\cite{python_license} \\ \hline
+  Python & Lenguaje de programación usado durante todo el proyecto & PSFL (Open Source)\cite{python_license} \\ \hline
 
-  Docker & Software de virtualización para ayudar al despliegue de todos los servicios 
-                                           & Apache 2.0 (Open Source)\cite{moby_license} \\ \hline
+  Docker & Software de virtualización para ayudar al despliegue de todos los servicios & Apache 2.0 (Open Source)\cite{moby_license} \\ \hline
 
-  PostGIS & Modulo para soporte de objetos geográficos a PostgreSQL 
-                                           & GPL-2 (Libre)\cite{postgis} \\ \hline
+  PostGIS & Modulo para soporte de objetos geográficos a PostgreSQL & GPL-2 (Libre)\cite{postgis} \\ \hline
 
-  NGINX & Usado como servidor web dentro del proyecto 
-                                           & BSD-2 (Open Source)\cite{nginx_license} \\ \hline
+  NGINX & Usado como servidor web dentro del proyecto & BSD-2 (Open Source)\cite{nginx_license} \\ \hline
 
-  GitHub & Servicio de hosting y colaboración para alojar el código 
-                                           & Propietario\cite{wiki_github} \\ \hline
+  GitHub & Servicio de hosting y colaboración para alojar el código & Propietario\cite{wiki_github} \\ \hline
 
-  QGIS & Análisis de datos geoespaciales 
-                                           & GPL-2 (Libre)\cite{qgis_license} \\ \hline
+  QGIS & Análisis de datos geoespaciales & GPL-2 (Libre)\cite{qgis_license} \\ \hline
 
-  Marimo & Notebooks para trabajar, limpiar y procesar datos 
-                                           & Apache 2.0 (Open Source)\cite{marimo_license} \\ \hline
+  Marimo & Notebooks para trabajar, limpiar y procesar datos & Apache 2.0 (Open Source)\cite{marimo_license} \\ \hline
 
-  Svelte & Framework de \acs{JS} usado para el front-end del proyecto 
-                                           & MIT (Open Source)\cite{svelte_license} \\ \hline
+  Svelte & Framework de \acs{JS} usado para el front-end del proyecto & MIT (Open Source)\cite{svelte_license} \\ \hline
 
-  Leaflet & Librería de \acs{JS} para mostrar y montar capas de datos geográficos teniendo como capa base OSM 
-                                           & BSD-2 (Open Source)\cite{leaflet_license} \\ \hline
+  Leaflet & Librería de \acs{JS} para mostrar y montar capas de datos geográficos teniendo como capa base OSM & BSD-2 (Open Source)\cite{leaflet_license} \\ \hline
 
-  FastAPI & Framework de Python utilizado para desarrollar las \acs{API} del proyecto 
-                                           & MIT (Open Source)\cite{fastapi_license} \\ \hline
+  FastAPI & Framework de Python utilizado para desarrollar las \acs{API} del proyecto & MIT (Open Source)\cite{fastapi_license} \\ \hline
 
   Drawio & Aplicación utilizada para dibujar la arquitectura & Apache 2.0 (Open Source)\cite{drawio_license} \\ \hline
 
@@ -68,9 +58,69 @@ El único software utilizado que no se enmarca dentro de la categoría \acs{FLOS
 
   LibreOffice Calc & Hojas de cálculo para realizar operaciones con datos & MPL-2 (Open Source)\cite{libreoffice_calc} \\ \hline
 
-  Git & Software de control de versiones distribuido para el desarrollo de todo el proyecto & GPL-2 (Libre)\cite{git_about} \\ \hline 
+  Git & Software de control de versiones distribuido para el desarrollo de todo el proyecto & GPL-2 (Libre)\cite{git_about} \\ \hline
+
+  Aiofiles & Operaciones asincrónicas para leer y escribir archivos & Apache 2.0 (Open Source)\cite{aiofiles} \\ \hline
+
+  Openpyxl & Librería de python para leer y escribir archivos de Excel & MIT (Open Source)\cite{openpyxl}  \\ \hline
+
+  Pandas & Manipular y analizar datos relacionales y etiquetados & BSD-3 (Open Source)\cite{pandas} \\ \hline
+
+  Requests & Enviar solicitudes HTTP & Apache 2.0 (Open Source)\cite{psf_requests} \\ \hline
+
+  SQLAlchemy & Conjunto de herramientas de SQL para Python & MIT (Open Source)\cite{sqlalchemy} \\ \hline
+
+  GeoAlchemy2 & Conjunto de herramientas para trabajar con bases de datos espaciales en Python & MIT (Open Souce)\cite{geoalchemy2} \\ \hline
+
+  Uvicorn & Servidor web ASGI para Python & BSD-3 (Open Source)\cite{uvicorn} \\ \hline
+
+  Plotly & Librería gráfica para Python & MIT (Open Source)\cite{plotly_py} \\ \hline
+
+  PydataXM & Extraer información del mercado energético de Colombia & MIT (Open Source)\cite{api_xm} \\ \hline
+
+  Numpy & Librería para computación científica en Python & BSD-3 (Open Source)\cite{numpy_org} \\ \hline
+
+  Matplotlib & Crear visualizaciones estáticas e interactivas en Python & BSD (Open Source)\cite{matplotlib_license} \\ \hline
+
+  Seaborn & Librería de visualización & BSD-3 (Open Source)\cite{seaborn_github} \\ \hline
+
+  Bun & Conjunto de herramientas para JS y TS & MIT (Open Source)\cite{bun_github} \\ \hline
+
+  DaisyUI & Librería de componentes para Tailwind CSS & MIT (Open Source)\cite{daisyui_github} \\ \hline
+
+  Vite & Desarrollo frontend & MIT (Open Source)\cite{vite_github} \\ \hline
+
+  TypeScript & Sistema de tipado para ayudar a JS & Apache 2.0 (Open Source)\cite{typescript_github} \\ \hline
+
+  TailwindCSS & Framework para construir UI & MIT (Open Source)\cite{tailwindcss_github} \\ \hline
   
 \end{longtable}
+
+En conclusión, la distribución de licencias \acs{FLOSS} y propietaria se puede ver en la figura~\ref{fig:clasificacion} donde se muestra que un 97.1\% de las librerías y programas usados en el proyecto son \acs{FLOSS}.
+
+
+\begin{figure}[H]
+    \centering
+
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../../output/figures/distribucion_licencias.png}
+        \caption{Distribución de licencias utilizadas en el proyecto}
+        \label{fig:licencias}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../../output/figures/propietario_floss.png}
+        \caption{Distribución de licencias FLOSS y propietarias en el proyecto}
+        \label{fig:clasificacion}
+    \end{subfigure}
+
+    \caption{Análisis de licencias de software utilizadas en el proyecto}
+    \label{fig:licencias_subfiguras}
+\end{figure}
+
+
 
 
 

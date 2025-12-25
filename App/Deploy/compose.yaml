@@ -8,7 +8,8 @@ services:
     networks:
       - nginx_net
     ports:
-      - "${PORT_FRONT}:5173"
+      - "5173:5173" # Borrar luego
+      - "${PORT_FRONT}:3000"
       - "${PORT_CORE}:8000"
       - "${PORT_PGADMIN}:8081"
     volumes:
@@ -16,29 +17,41 @@ services:
     depends_on:
       api_core:
         condition: service_started
-      frontend:
-        condition: service_started
 
   frontend:
     container_name: tuxhydro_frontend
+    image: tuxhydro_frontend
     restart: unless-stopped
     build:
       context: ../Front
-      dockerfile: Dockerfile.dev
+      dockerfile: ./dockerfiles/prod/Dockerfile
+    env_file: ./.env
+    networks:
+      - nginx_net
+      - api_net
+  
+  frontend_dev: # Borrar luego
+    container_name: tuxhydro_frontend_dev
+    image: tuxhydro_frontend_dev
+    restart: unless-stopped
+    build:
+      context: ../Front
+      dockerfile: ./dockerfiles/dev/Dockerfile
     env_file: ./.env
     networks:
       - nginx_net
       - api_net
     volumes:
-      - ../Front/front/src:/usr/src/app/src
-      - ../Front/front/static:/usr/src/app/static
+      - ../Front/front/src:/app/src
+      - ../Front/front/static:/app/static
 
   api_core:
     container_name: tuxhydro_api_core
+    image: tuxhydro_api_core
     restart: unless-stopped
     build:
       context: ../Core
-      dockerfile: Dockerfile.core
+      dockerfile: Dockerfile
     env_file: ./.env
     secrets:
       - postgres_password
@@ -78,6 +91,7 @@ services:
       - "${PORT_DB_PG}:5432" # Quitar exposición de db para prod
     volumes:
       - postgresql:/var/lib/postgresql/data
+      - ../../scripts/ddl/00_prep.sql:/docker-entrypoint-initdb.d/00_prep.sql:ro
       - ../../scripts/ddl/01_create_embalses_geometry.sql:/docker-entrypoint-initdb.d/01_create_embalses_geometry.sql:ro
       - ../../scripts/ddl/02_create_embalses_points.sql:/docker-entrypoint-initdb.d/02_create_embalses_points.sql:ro
       - ../../scripts/ddl/03_create_flow_tables.sql:/docker-entrypoint-initdb.d/03_create_flow_tables.sql:ro
