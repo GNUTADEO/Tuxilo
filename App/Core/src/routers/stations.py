@@ -14,23 +14,6 @@ from models import FlowStation, RainStation, ReservoirDot, ReservoirPolygon
 router = APIRouter(tags=["Stations"], prefix="/stations")
 
 
-
-
-@router.get("/test-orm")
-async def test_orm(
-    db: AsyncSession = Depends(get_db),
-):
-    stmt = (
-        select(
-            FlowStation
-        )
-    )
-
-    result = await db.execute(stmt)
-
-    return result.scalars().all()
-
-
 @router.get(
     "/",
     operation_id="get_all_stations",
