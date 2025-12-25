@@ -1,8 +1,12 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
+
+from sqlalchemy import select
 from sqlalchemy import text
 
 from shared_db import get_db
+
+from models import FlowStation, RainStation, ReservoirDot, ReservoirPolygon
 
 router = APIRouter(tags=["Embalses"], prefix="/embalses")
 
@@ -15,27 +19,28 @@ async def get_all_embalses(
         db: AsyncSession = Depends(get_db),
 ):
     """Obtiene todos los embalses con sus coordenadas"""
-    query = text("""
-    SELECT
-        reservoir_id,
-        nombre,
-        latitud,
-        longitud
-    FROM embalses_points
-    WHERE latitud IS NOT NULL
-      AND longitud IS NOT NULL
-      AND nombre IS NOT NULL
-""")
+    stmt = (
+        select(
+            ReservoirDot.reservoir_id,
+            ReservoirDot.nombre,
+            ReservoirDot.latitud,
+            ReservoirDot.longitud
+        ).where(
+            ReservoirDot.latitud.is_not(None),
+            ReservoirDot.longitud.is_not(None),
+            ReservoirDot.nombre.is_not(None)
+        )
+    )
 
-    result = await db.execute(query)
-    rows = result.fetchall()
+    result = await db.execute(stmt)
+    rows = result.mappings().all()
     
     embalses = [
         {
-            "id": row[0],
-            "nombre": row[1],
-            "latitud": float(row[2]) if row[2] else None,
-            "longitud": float(row[3]) if row[3] else None,
+            "id": row["reservoir_id"],
+            "nombre": row["nombre"],
+            "latitud": float(row["latitud"]) if row["latitud"] else None,
+            "longitud": float(row["longitud"]) if row["longitud"] else None,
         }
         for row in rows
     ]
