@@ -20,9 +20,8 @@ services:
 
   frontend:
     container_name: tuxhydro_frontend
+    image: tuxhydro_frontend
     restart: unless-stopped
-    profiles:
-      - prod
     build:
       context: ../Front
       dockerfile: ./dockerfiles/prod/Dockerfile
@@ -33,9 +32,8 @@ services:
   
   frontend_dev: # Borrar luego
     container_name: tuxhydro_frontend_dev
+    image: tuxhydro_frontend_dev
     restart: unless-stopped
-    profiles:
-      - dev
     build:
       context: ../Front
       dockerfile: ./dockerfiles/dev/Dockerfile
@@ -49,6 +47,7 @@ services:
 
   api_core:
     container_name: tuxhydro_api_core
+    image: tuxhydro_api_core
     restart: unless-stopped
     build:
       context: ../Core
