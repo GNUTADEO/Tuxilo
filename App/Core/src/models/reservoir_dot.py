@@ -8,7 +8,7 @@ from geoalchemy2 import Geometry
 from .base import Base
 
 class ReservoirDot(Base):
-    __tablename__ = "reservoir_dot"
+    __tablename__ = "embalses_points"
     __table_args__ = {"schema": "geodata", "extend_existing": True}
 
     reservoir_id: Mapped[int] = mapped_column(
