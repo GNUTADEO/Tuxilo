@@ -1,3 +1,4 @@
+from this import s
 from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import text
@@ -18,39 +19,18 @@ router = APIRouter(tags=["Stations"], prefix="/stations")
 async def test_orm(
     db: AsyncSession = Depends(get_db),
 ):
-    point_9377 = ST_Transform(
-        ST_SetSRID(
-            ST_MakePoint(
-                FlowStation.longitude,
-                FlowStation.latitude
-            ),
-            4326
-        ),
-        9377
-    )
-
     stmt = (
         select(
-            FlowStation.station_id,
-            FlowStation.station_name,
-            FlowStation.river_name,
-            ReservoirPolygon.reservoir_id,
-            ReservoirPolygon.nombre.label("reservoir_name"),
-        )
-        .join(
-            ReservoirPolygon,
-            ST_Intersects(ReservoirPolygon.geom, point_9377)
+            FlowStation
         )
         .where(
-            FlowStation.latitude.is_not(None),
-            FlowStation.longitude.is_not(None),
+            FlowStation.station_name == "Example Station",
         )
-        .order_by(ReservoirPolygon.nombre, FlowStation.station_name)
     )
 
     result = await db.execute(stmt)
 
-    return result.mappings().all()
+    return result.scalars().all()
 
 
 @router.get(
@@ -61,30 +41,32 @@ async def get_all_stations(
         db: AsyncSession = Depends(get_db),
 ):
     """Obtiene todas las estaciones con sus coordenadas"""
-    query = text("""
-    SELECT
-        station_id,
-        station_name,
-        river_name,
-        latitude,
-        longitude
-    FROM flow_stations
-    WHERE latitude IS NOT NULL
-      AND longitude IS NOT NULL
-      AND station_name IS NOT NULL
-    ORDER BY station_name
-""")
+    stmt = (
+        select(
+            FlowStation.station_id,
+            FlowStation.station_name,
+            FlowStation.river_name,
+            FlowStation.latitude,
+            FlowStation.longitude
+        )
+        .where(
+            FlowStation.latitude.is_not(None),
+            FlowStation.longitude.is_not(None),
+            FlowStation.station_name.is_not(None)
+        )
+        .order_by(FlowStation.station_name)
+    )
 
-    result = await db.execute(query)
-    rows = result.fetchall()
+    result = await db.execute(stmt)
+    rows = result.mappings().all()
     
     stations = [
         {
-            "station_id": row[0],
-            "station_name": row[1],
-            "river_name": row[2],
-            "latitude": float(row[3]) if row[3] else None,
-            "longitude": float(row[4]) if row[4] else None,
+            "station_id": row['station_id'],
+            "station_name": row['station_name'],
+            "river_name": row['river_name'],
+            "latitude": float(row['latitude']) if row['latitude'] else None,
+            "longitude": float(row['longitude']) if row['longitude'] else None,
         }
         for row in rows
     ]
@@ -98,6 +80,12 @@ async def get_nearest_station(
     db: AsyncSession = Depends(get_db)
 ):
     """Obtiene la estación más cercana a un embalse específico"""
+    stmt = (
+        select(
+            
+        )
+    )
+    
     query = text("""
     WITH embalse_point AS (
         SELECT geom
