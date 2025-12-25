@@ -2,8 +2,9 @@ from this import s
 from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import text
-
 from sqlalchemy import select
+from sqlalchemy import cast
+from geoalchemy2 import Geography
 from geoalchemy2.functions import ST_Intersects, ST_Transform, ST_SetSRID, ST_MakePoint, ST_Distance
 
 from shared_db import get_db
@@ -78,11 +79,18 @@ async def get_nearest_station(
 ):
     """Get the FlowStation nearest to a specific ReservoirDot"""
 
-    # Subquery: get the geometry of the embalse
+    # Subquery to get the embalse geometry
+    embalse_subq = select(ReservoirDot.geom).where(
+        ReservoirDot.reservoir_id == embalse_id
+    ).limit(1).scalar_subquery()
 
+    # Calculate distance
+    distance_km = (ST_Distance(
+        cast(ST_Transform(embalse_subq, 4326), Geography),
+        cast(ST_SetSRID(ST_MakePoint(FlowStation.longitude, FlowStation.latitude), 4326), Geography)
+    ) / 1000).label("distance_km")
 
-
-    # Build the query
+    # Build the query with distance calculation
     stmt = (
         select(
             FlowStation.station_id,
@@ -90,11 +98,13 @@ async def get_nearest_station(
             FlowStation.river_name,
             FlowStation.latitude,
             FlowStation.longitude,
+            distance_km
         )
         .where(
             FlowStation.latitude.is_not(None),
             FlowStation.longitude.is_not(None)
         )
+        .order_by(distance_km)
         .limit(1)
     )
 
@@ -113,5 +123,6 @@ async def get_nearest_station(
             "river_name": row["river_name"],
             "latitude": float(row["latitude"]) if row["latitude"] else None,
             "longitude": float(row["longitude"]) if row["longitude"] else None,
+            "distance_km": round(float(row["distance_km"]), 2) if row["distance_km"] else None,
         }
     }
