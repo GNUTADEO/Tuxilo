@@ -8,6 +8,7 @@ Secrets/
 # Archivos
 .env
 *.lock
+!bun.lock
 
 # Cosas del LaTeX
 *.aux
