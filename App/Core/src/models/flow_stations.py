@@ -7,7 +7,7 @@ from .base import Base
 
 class FlowStation(Base):
     __tablename__ = "flow_stations"
-    __table_args__ = {"schema": "geodata"}
+    __table_args__ = {"schema": "geodata", "extend_existing": True}
 
     station_id: Mapped[str] = mapped_column(String(50), primary_key=True)
 

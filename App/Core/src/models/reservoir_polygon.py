@@ -1,14 +1,14 @@
 from datetime import datetime
 
 from geoalchemy2 import Geometry
-from sqlalchemy import DECIMAL, Date, DateTime, Float, Numeric, String, text
+from sqlalchemy import Date, DateTime, Float, Numeric, String, text
 from sqlalchemy.orm import Mapped, mapped_column
 
 from .base import Base
 
 class ReservoirPolygon(Base):
     __tablename__ = "reservoir_polygon"
-    __table_args__ = {"schema": "geodata"}
+    __table_args__ = {"schema": "geodata", "extend_existing": True}
 
     reservoir_id: Mapped[str | None] = mapped_column(String(38), primary_key=True)
 
