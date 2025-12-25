@@ -1,5 +1,5 @@
 <script>
-	import Map from '$lib/common/Map.client.svelte';
+	import Map from '$lib/components/Map.svelte';
 
 	let embalses = $state([]);
 	let selectedEmbalseId = $state(null);

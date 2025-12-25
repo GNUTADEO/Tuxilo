@@ -8,8 +8,8 @@ services:
     networks:
       - nginx_net
     ports:
-      - "3000:3000"
-      - "${PORT_FRONT}:5173"
+      - "5173:5173" # Borrar luego
+      - "${PORT_FRONT}:3000"
       - "${PORT_CORE}:8000"
       - "${PORT_PGADMIN}:8081"
     volumes:
@@ -17,14 +17,12 @@ services:
     depends_on:
       api_core:
         condition: service_started
-      frontend:
-        condition: service_started
 
   frontend:
     container_name: tuxhydro_frontend
     restart: unless-stopped
-    # profiles:
-    #   - prod
+    profiles:
+      - prod
     build:
       context: ../Front
       dockerfile: ./dockerfiles/prod/Dockerfile
@@ -33,11 +31,11 @@ services:
       - nginx_net
       - api_net
   
-  frontend_dev:
+  frontend_dev: # Borrar luego
     container_name: tuxhydro_frontend_dev
     restart: unless-stopped
-    # profiles:
-    #   - dev
+    profiles:
+      - dev
     build:
       context: ../Front
       dockerfile: ./dockerfiles/dev/Dockerfile
@@ -46,8 +44,8 @@ services:
       - nginx_net
       - api_net
     volumes:
-      - ../Front/front/src:/usr/src/app/src
-      - ../Front/front/static:/usr/src/app/static
+      - ../Front/front/src:/app/src
+      - ../Front/front/static:/app/static
 
   api_core:
     container_name: tuxhydro_api_core
