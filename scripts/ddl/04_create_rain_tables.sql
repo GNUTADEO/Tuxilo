@@ -9,11 +9,11 @@
 
 CREATE TABLE IF NOT EXISTS rain_stations (
     station_id VARCHAR(50) PRIMARY KEY,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     river_name VARCHAR(255) NOT NULL,
     station_name VARCHAR(255) NOT NULL,
-    latitude DECIMAL(10, 8) NOT NULL,
-    longitude DECIMAL(11, 8) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    latitude DECIMAL(10, 8) NOT NULL, --Por qué decimal y no NUMERIC?
+    longitude DECIMAL(11, 8) NOT NULL --Por qué decimal y no NUMERIC?
 );
 
 CREATE INDEX IF NOT EXISTS idx_stations_river ON rain_stations(river_name);
@@ -28,12 +28,12 @@ CREATE INDEX IF NOT EXISTS idx_stations_name ON rain_stations(station_name);
 
 CREATE TABLE IF NOT EXISTS grdc_daily_flow (
     id BIGSERIAL PRIMARY KEY,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     station_id VARCHAR(50) NOT NULL,
     observation_date DATE NOT NULL,
     flow_value DECIMAL(12, 3),
     month_number SMALLINT NOT NULL,
     flow_value_imputed DECIMAL(12, 3),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (station_id) REFERENCES rain_stations(station_id) ON DELETE CASCADE,
     UNIQUE (station_id, observation_date)
 );
