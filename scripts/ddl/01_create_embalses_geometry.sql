@@ -12,4 +12,4 @@ CREATE TABLE embalses_polygons (
     shape_area NUMERIC,
     geom GEOMETRY(MULTIPOLYGON, 9377)
 );
-ALTER TABLE embalses_polygons ADD PRIMARY KEY ("reservoir_id");
+ALTER TABLE embalses_polygons ADD PRIMARY KEY (reservoir_id);
