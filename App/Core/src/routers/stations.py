@@ -3,8 +3,8 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import text
 
-from sqlalchemy import select, func
-from geoalchemy2.functions import ST_Intersects, ST_Transform, ST_SetSRID, ST_MakePoint
+from sqlalchemy import select
+from geoalchemy2.functions import ST_Intersects, ST_Transform, ST_SetSRID, ST_MakePoint, ST_Distance
 
 from shared_db import get_db
 
@@ -80,51 +80,49 @@ async def get_nearest_station(
     db: AsyncSession = Depends(get_db)
 ):
     """Obtiene la estación más cercana a un embalse específico"""
+
+    # Subquery to get the embalse geometry
+    embalse_subq = select(ReservoirDot.geom).where(
+        ReservoirDot.reservoir_id == embalse_id
+    ).limit(1).subquery()
+
+    # Transform embalse geom to 4326
+    embalse_geom_4326 = ST_Transform(embalse_subq.c.geom, 4326)
+
+    # Compute distance for all FlowStations
     stmt = (
         select(
-            
+            FlowStation.station_id,
+            FlowStation.station_name,
+            FlowStation.river_name,
+            FlowStation.latitude,
+            FlowStation.longitude,
+            (ST_Distance(
+                embalse_geom_4326.cast("geography"),
+                ST_SetSRID(ST_MakePoint(FlowStation.longitude, FlowStation.latitude), 4326).cast("geography")
+            ) / 1000).label("distance_km")
         )
+        .where(
+            FlowStation.latitude.is_not(None),
+            FlowStation.longitude.is_not(None)
+        )
+        .order_by("distance_km")
+        .limit(1)
     )
-    
-    query = text("""
-    WITH embalse_point AS (
-        SELECT geom
-        FROM embalses_points
-        WHERE reservoir_id = :embalse_id
-    )
-    SELECT
-        s.station_id,
-        s.station_name,
-        s.river_name,
-        s.latitude,
-        s.longitude,
-        ST_Distance(
-            ST_Transform(e.geom, 4326)::geography,
-            ST_SetSRID(ST_MakePoint(s.longitude, s.latitude), 4326)::geography
-        ) / 1000 as distance_km
-    FROM flow_stations s, embalse_point e
-    WHERE s.latitude IS NOT NULL
-      AND s.longitude IS NOT NULL
-    ORDER BY ST_Distance(
-        ST_Transform(e.geom, 4326)::geography,
-        ST_SetSRID(ST_MakePoint(s.longitude, s.latitude), 4326)::geography
-    )
-    LIMIT 1
-    """)
 
-    result = await db.execute(query, {"embalse_id": embalse_id})
-    row = result.fetchone()
-    
+    result = await db.execute(stmt)
+    row = result.mappings().first()
+
     if not row:
         return {"station": None}
-    
+
     station = {
-        "station_id": row[0],
-        "station_name": row[1],
-        "river_name": row[2],
-        "latitude": float(row[3]) if row[3] else None,
-        "longitude": float(row[4]) if row[4] else None,
-        "distance_km": round(float(row[5]), 2) if row[5] else None,
+        "station_id": row["station_id"],
+        "station_name": row["station_name"],
+        "river_name": row["river_name"],
+        "latitude": float(row["latitude"]) if row["latitude"] else None,
+        "longitude": float(row["longitude"]) if row["longitude"] else None,
+        "distance_km": float(row["distance_km"]),
     }
-    
+
     return {"station": station}
