@@ -6,7 +6,7 @@ set -e
 
 # Configuration
 DATA_DIR="data/GRDC"
-OUTPUT_SQL="App/Deploy-2/init-grdc-data.sql"
+OUTPUT_SQL="scripts/init-grdc-data.sql"
 TEMP_STATIONS="/tmp/grdc_stations.csv"
 TEMP_FLOW="/tmp/grdc_flow.csv"
 

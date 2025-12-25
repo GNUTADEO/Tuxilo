@@ -1,13 +1,8 @@
--- ============================================
--- Database initialization script
--- Creates embalses table and imports data
--- ============================================
--- Create the embalses table with geometry support
-CREATE TABLE IF NOT EXISTS embalses (
-    id SERIAL PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS embalses_points (
+    reservoir_id SERIAL PRIMARY KEY,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     nombre VARCHAR(255),
     latitud NUMERIC,
     longitud NUMERIC,
-    geom GEOMETRY(POINT, 4326),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    geom GEOMETRY(POINT, 4326)
 );

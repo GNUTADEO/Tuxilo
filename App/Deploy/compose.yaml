@@ -78,6 +78,7 @@ services:
       - "${PORT_DB_PG}:5432" # Quitar exposición de db para prod
     volumes:
       - postgresql:/var/lib/postgresql/data
+      - ../../scripts/ddl/00_prep.sql:/docker-entrypoint-initdb.d/00_prep.sql:ro
       - ../../scripts/ddl/01_create_embalses_geometry.sql:/docker-entrypoint-initdb.d/01_create_embalses_geometry.sql:ro
       - ../../scripts/ddl/02_create_embalses_points.sql:/docker-entrypoint-initdb.d/02_create_embalses_points.sql:ro
       - ../../scripts/ddl/03_create_flow_tables.sql:/docker-entrypoint-initdb.d/03_create_flow_tables.sql:ro

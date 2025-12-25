@@ -1,18 +1,15 @@
-SET CLIENT_ENCODING TO UTF8;
-SET STANDARD_CONFORMING_STRINGS TO ON;
-BEGIN;
-CREATE EXTENSION IF NOT EXISTS postgis;
-CREATE TABLE "public"."embalses_geom" (
-"NOMBRE_GEO" varchar(50),
-"PROYECTO" varchar(30),
-"SYMBOL" varchar(254),
-"FECHA" date,
-"RULEID" float8,
-"FECHA_1" date,
-"PK_CUE" numeric,
-"GLOBALID" varchar(38),
-"SHAPE_Leng" numeric,
-"SHAPE_Area" numeric);
-ALTER TABLE "public"."embalses_geom" ADD PRIMARY KEY ("GLOBALID");
-SELECT AddGeometryColumn('public','embalses_geom','geom','0','MULTIPOLYGON',2);
-COMMIT;
+CREATE TABLE embalses_polygons (
+    reservoir_id VARCHAR(38),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    nombre VARCHAR(50),
+    proyecto VARCHAR(30),
+    symbol VARCHAR(254),
+    fecha DATE,
+    ruleid float8,
+    fecha_1 DATE,
+    pk_cue NUMERIC,
+    shape_leng NUMERIC,
+    shape_area NUMERIC,
+    geom GEOMETRY(MULTIPOLYGON, 9377)
+);
+ALTER TABLE embalses_polygons ADD PRIMARY KEY ("reservoir_id");
