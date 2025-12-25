@@ -7,10 +7,10 @@ from sqlalchemy.orm import Mapped, mapped_column
 from .base import Base
 
 class ReservoirPolygon(Base):
-    __tablename__ = "reservoir_polygon"
+    __tablename__ = "embalses_polygons"
     __table_args__ = {"schema": "geodata", "extend_existing": True}
 
-    reservoir_id: Mapped[str | None] = mapped_column(String(38), primary_key=True)
+    reservoir_id: Mapped[str] = mapped_column(String(38), primary_key=True)
 
     created_at: Mapped[datetime] = mapped_column(
         DateTime, server_default=text("CURRENT_TIMESTAMP"), nullable=False
