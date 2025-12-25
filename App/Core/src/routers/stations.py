@@ -23,9 +23,6 @@ async def test_orm(
         select(
             FlowStation
         )
-        .where(
-            FlowStation.station_name == "Example Station",
-        )
     )
 
     result = await db.execute(stmt)
@@ -79,17 +76,13 @@ async def get_nearest_station(
     embalse_id: int,
     db: AsyncSession = Depends(get_db)
 ):
-    """Obtiene la estación más cercana a un embalse específico"""
+    """Get the FlowStation nearest to a specific ReservoirDot"""
 
-    # Subquery to get the embalse geometry
-    embalse_subq = select(ReservoirDot.geom).where(
-        ReservoirDot.reservoir_id == embalse_id
-    ).limit(1).subquery()
+    # Subquery: get the geometry of the embalse
 
-    # Transform embalse geom to 4326
-    embalse_geom_4326 = ST_Transform(embalse_subq.c.geom, 4326)
 
-    # Compute distance for all FlowStations
+
+    # Build the query
     stmt = (
         select(
             FlowStation.station_id,
@@ -97,32 +90,28 @@ async def get_nearest_station(
             FlowStation.river_name,
             FlowStation.latitude,
             FlowStation.longitude,
-            (ST_Distance(
-                embalse_geom_4326.cast("geography"),
-                ST_SetSRID(ST_MakePoint(FlowStation.longitude, FlowStation.latitude), 4326).cast("geography")
-            ) / 1000).label("distance_km")
         )
         .where(
             FlowStation.latitude.is_not(None),
             FlowStation.longitude.is_not(None)
         )
-        .order_by("distance_km")
         .limit(1)
     )
 
+    # Execute
     result = await db.execute(stmt)
     row = result.mappings().first()
 
     if not row:
         return {"station": None}
 
-    station = {
-        "station_id": row["station_id"],
-        "station_name": row["station_name"],
-        "river_name": row["river_name"],
-        "latitude": float(row["latitude"]) if row["latitude"] else None,
-        "longitude": float(row["longitude"]) if row["longitude"] else None,
-        "distance_km": float(row["distance_km"]),
+    # Return clean dict
+    return {
+        "station": {
+            "station_id": row["station_id"],
+            "station_name": row["station_name"],
+            "river_name": row["river_name"],
+            "latitude": float(row["latitude"]) if row["latitude"] else None,
+            "longitude": float(row["longitude"]) if row["longitude"] else None,
+        }
     }
-
-    return {"station": station}
