@@ -4,10 +4,12 @@
 	let embalses = $state([]);
 	let semestres = $state([]);
 	let selectedEmbalseId = $state(null);
+	let selectedSemestreId = $state(null);
 	let showNearestStation = $state(false);
 
-	function handleEmbalsesLoaded(loadedEmbalses) {
+	function handleLoaded(loadedEmbalses) {
 		embalses = loadedEmbalses;
+		semestres = loadedSemestres;
 	}
 
 	function handleEmbalseChange(event) {
@@ -16,9 +18,16 @@
 		// Reset when changing embalse
 		showNearestStation = false;
 	}
+	
+	function handleSemestreChange(event) {
+		selectedSemestreId = event.target.value ? Number(event.target.value) : null;
+		console.log('Selected semestre ID:', selectedSemestreId);
+		// Reset when changing embalse
+		showNearestStation = false;
+	}
 
 	function handleCorrer() {
-		if (selectedEmbalseId) {
+		if (selectedEmbalseId && selectedSemestreId) {
 			showNearestStation = true;
 			console.log('Showing nearest station for embalse:', selectedEmbalseId);
 		} else {
@@ -40,7 +49,7 @@
 					</label>
 
 					<select
-						id="embalse-1"
+						id="sel-embalse"
 						class="select select-bordered w-full"
 						onchange={handleEmbalseChange}
 					>
@@ -57,13 +66,13 @@
 					</label>
 
 					<select
-						id="embalse-2"
+						id="sel-semestre"
 						class="select select-bordered w-full"
-						onchange={handleEmbalseChange}
+						onchange={handleSemestreChange}
 					>
 						<option value="">Seleccione un semestre</option>
-						{#each embalses as embalse (embalse.id)}
-							<option value={embalse.id}>{embalse.nombre}</option>
+						{#each semestre as semestre (semestre.id)}
+							<option value={semestre.id}>{semestre.nombre}</option>
 						{/each}
 					</select>
 				</div>
@@ -77,7 +86,7 @@
 
 	<div class="flex flex-1 flex-col gap-4">
 		<div class="card bg-base-100 h-[65vh] p-2 shadow-xl">
-			<Map {selectedEmbalseId} onEmbalsesLoaded={handleEmbalsesLoaded} {showNearestStation} />
+			<Map {selectedEmbalseId} onEmbalsesLoaded={handleLoaded} {showNearestStation} />
 		</div>
 	</div>
 
