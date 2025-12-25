@@ -71,18 +71,8 @@
 						onchange={handleEmbalseChange}
 					>
 						<option value="">Seleccione un semestre</option>
-<<<<<<< HEAD
-<<<<<<< HEAD
-						{#each embalses as embalse (embalse.id)}
-							<option value={embalse.id}>{embalse.nombre}</option>
-=======
-						{#each semestre as semestre (semestre.id)}
-							<option value={semestre.id}>{semestre.nombre}</option>
->>>>>>> deploy
-=======
 						{#each embalses as embalses (embalses.id)}
 							<option value={embalses.id}>{embalses.nombre}</option>
->>>>>>> deploy
 						{/each}
 					</select>
 				</div>
