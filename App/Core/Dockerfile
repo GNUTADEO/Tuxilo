@@ -32,6 +32,7 @@ RUN pip install --no-cache-dir -e .
 # -----------------------------
 COPY src/main.py ./main.py
 COPY src/routers ./routers
+COPY src/models ./models
 
 # -----------------------------
 # 5. setup entrypoint

@@ -14,26 +14,26 @@ WHERE NOT EXISTS (SELECT 1 FROM spatial_ref_sys WHERE srid = 9377);
 -- This script runs after 02-init-embalses-geom.sql
 
 -- Populate embalses table from embalses_polygons centroids
-INSERT INTO embalses_points (nombre, latitud, longitud, geom)
+INSERT INTO geodata.embalses_points (nombre, latitud, longitud, geom)
 SELECT 
     nombre as nombre,
     ST_Y(ST_Transform(ST_Centroid(geom), 4326)) as latitud,
     ST_X(ST_Transform(ST_Centroid(geom), 4326)) as longitud,
     ST_Transform(ST_Centroid(geom), 4326) as geom
-FROM embalses_polygons
+FROM geodata.embalses_polygons
 WHERE geom IS NOT NULL;
 
 -- Create spatial index for fast queries
-CREATE INDEX IF NOT EXISTS idx_embalses_geom ON embalses_points USING GIST(geom);
+CREATE INDEX IF NOT EXISTS idx_embalses_geom ON geodata.embalses_points USING GIST(geom);
 
 -- Grant permissions
-GRANT ALL PRIVILEGES ON TABLE embalses_points TO postgres;
-GRANT USAGE, SELECT ON SEQUENCE embalses_points_reservoir_id_seq TO postgres;
+GRANT ALL PRIVILEGES ON TABLE geodata.embalses_points TO postgres;
+GRANT USAGE, SELECT ON SEQUENCE geodata.embalses_points_reservoir_id_seq TO postgres;
 
 -- Log completion
 DO $$
 BEGIN
-    RAISE NOTICE 'embalses_points table created and populated with % rows', (SELECT COUNT(*) FROM embalses_points);
+    RAISE NOTICE 'embalses_points table created and populated with % rows', (SELECT COUNT(*) FROM geodata.embalses_points);
 END $$;
 
 -- Add MAGNA-SIRGAS 2018 / Origen-Nacional (EPSG:9377) for coordinate transformation

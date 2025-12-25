@@ -2,6 +2,7 @@
 	import Map from '$lib/components/Map.svelte';
 
 	let embalses = $state([]);
+	let semestres = $state([]);
 	let selectedEmbalseId = $state(null);
 	let showNearestStation = $state(false);
 
@@ -33,7 +34,7 @@
 			<h1 class="mb-4 text-2xl font-bold">Controles</h1>
 
 			<div class="flex flex-row gap-4">
-				<div class="form-control">
+				<div class="form-control w-1/2">
 					<label class="label" for="embalse-1">
 						<span class="label-text font-semibold">Embalse</span>
 					</label>
@@ -50,9 +51,9 @@
 					</select>
 				</div>
 
-				<div class="form-control">
+				<div class="form-control w-1/2">
 					<label class="label" for="embalse-1">
-						<span class="label-text font-semibold">Embalse</span>
+						<span class="label-text font-semibold">Semestre</span>
 					</label>
 
 					<select
@@ -60,7 +61,7 @@
 						class="select select-bordered w-full"
 						onchange={handleEmbalseChange}
 					>
-						<option value="">Seleccione un embalse</option>
+						<option value="">Seleccione un semestre</option>
 						{#each embalses as embalse (embalse.id)}
 							<option value={embalse.id}>{embalse.nombre}</option>
 						{/each}

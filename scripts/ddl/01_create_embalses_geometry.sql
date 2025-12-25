@@ -1,4 +1,4 @@
-CREATE TABLE embalses_polygons (
+CREATE TABLE geodata.embalses_polygons (
     reservoir_id VARCHAR(38),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     nombre VARCHAR(50),
@@ -12,4 +12,4 @@ CREATE TABLE embalses_polygons (
     shape_area NUMERIC,
     geom GEOMETRY(MULTIPOLYGON, 9377)
 );
-ALTER TABLE embalses_polygons ADD PRIMARY KEY (reservoir_id);
+ALTER TABLE geodata.embalses_polygons ADD PRIMARY KEY (reservoir_id);
