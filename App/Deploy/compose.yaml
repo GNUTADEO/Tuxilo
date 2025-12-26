@@ -59,6 +59,8 @@ services:
       - api_net
       - nginx_net
       - gis_net
+    volumes:
+      - ../Front/front/static/graphs:/api/graphs:ro
     depends_on:
       db:
         condition: service_healthy
