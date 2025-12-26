@@ -14,7 +14,6 @@ CREATE TABLE IF NOT EXISTS geodata.rain_stations (
     longitude DECIMAL(11, 8) NOT NULL --Por qué decimal y no NUMERIC?
 );
 
-CREATE INDEX IF NOT EXISTS idx_stations_river ON geodata.rain_stations(river_name);
 CREATE INDEX IF NOT EXISTS idx_stations_name ON geodata.rain_stations(station_name);
 
 -- =====================================================

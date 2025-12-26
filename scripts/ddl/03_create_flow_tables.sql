@@ -14,7 +14,6 @@ CREATE TABLE IF NOT EXISTS geodata.flow_stations (
     longitude DECIMAL(11, 8) NOT NULL 
 );
 
-CREATE INDEX IF NOT EXISTS idx_stations_river ON geodata.flow_stations(river_name);
 CREATE INDEX IF NOT EXISTS idx_stations_name ON geodata.flow_stations(station_name);
 
 -- =====================================================
