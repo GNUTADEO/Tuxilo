@@ -1,16 +1,13 @@
-import json
 
 from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from sqlalchemy import select
-from sqlalchemy import text
 
-from geoalchemy2.functions import ST_AsGeoJSON, ST_Transform
 
 from shared_db import get_db
 
-from models import FlowData, RainData
+from models import FlowData, RainData, PredictedData
 
 router = APIRouter(tags=["Data"], prefix="/data")
 
@@ -20,22 +17,24 @@ router = APIRouter(tags=["Data"], prefix="/data")
 )
 async def get_all_semesters(db: AsyncSession = Depends(get_db)):
     """Obtiene todos los semestres del modelo"""
+    stmt = (
+        select(
+            PredictedData,
+        )
+    )
 
-    start_year = 2025
-    end_year = 2029
-    semesters_per_year = [1, 2]
-
-    semestres_list = []
-
-    for year in range(start_year, end_year + 1):
-        for sem in semesters_per_year:
-            sem_id = f"{year}-{sem}"
-            semestres_list.append({
-                "id": sem_id,
-                "nombre": sem_id
-            })
-
-    return {"semestres": semestres_list}
+    result = await db.execute(stmt)
+    rows = result.scalars().all()  # <-- ORM objects
+    
+    features = [
+        {
+            "id": row.id,
+            "periodo": row.periodo,
+        }
+        for row in rows
+    ]
+    
+    return {"features": features}
 
 
 @router.get(
@@ -45,27 +44,59 @@ async def get_all_semesters(db: AsyncSession = Depends(get_db)):
 async def get_all_flow_data(
         db: AsyncSession = Depends(get_db),
 ):
-    """Obtiene todos los embalses con sus coordenadas"""
+    """Obtiene todos los datos de caudal"""
     stmt = (
         select(
             FlowData,
         )
         .where(
-            FlowData.flow_value.is_not(None)
+            FlowData.value.is_not(None)
         )
     )
 
     result = await db.execute(stmt)
     rows = result.scalars().all()  # returns list of FlowData objects
     
-    embalses = [
+    datapoints = [
         {
             "id": row.id,
             "station_id": row.station_id,
             "date": row.observation_date,
-            "value": row.flow_value,
+            "value": row.value,
         }
         for row in rows
     ]
     
-    return {"embalses": embalses}
+    return {"datapoints": datapoints}
+
+@router.get(
+    "/rain",
+    operation_id="get_all_rain_data",
+)
+async def get_all_rain_data(
+        db: AsyncSession = Depends(get_db),
+):
+    """Obtiene todos los datos de precipitación"""
+    stmt = (
+        select(
+            RainData,
+        )
+        .where(
+            RainData.value.is_not(None)
+        )
+    )
+
+    result = await db.execute(stmt)
+    rows = result.scalars().all()  # returns list of FlowData objects
+    
+    datapoints = [
+        {
+            "id": row.id,
+            "station_id": row.station_id,
+            "date": row.observation_date,
+            "value": row.value,
+        }
+        for row in rows
+    ]
+    
+    return {"datapoints": datapoints}

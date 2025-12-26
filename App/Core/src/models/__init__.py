@@ -5,6 +5,7 @@ from .reservoir_polygon import ReservoirPolygon
 
 from .flow import FlowData
 from .precipitation import RainData
+from .predicted import PredictedData
 
 __all__ = [
     "FlowStation",
@@ -13,4 +14,5 @@ __all__ = [
     "ReservoirPolygon",
     "FlowData",
     "RainData",
+    "PredictedData",
 ]

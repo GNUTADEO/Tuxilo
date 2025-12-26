@@ -14,11 +14,12 @@ WHERE NOT EXISTS (SELECT 1 FROM spatial_ref_sys WHERE srid = 9377);
 -- This script runs after 02-init-embalses-geom.sql
 
 -- Populate embalses table from embalses_polygons centroids
-INSERT INTO geodata.embalses_points (nombre, latitud, longitud, geom)
+INSERT INTO geodata.embalses_points (id, name, latitude, longitude, geom)
 SELECT 
-    nombre as nombre,
-    ST_Y(ST_Transform(ST_Centroid(geom), 4326)) as latitud,
-    ST_X(ST_Transform(ST_Centroid(geom), 4326)) as longitud,
+    id as id,
+    name as name,
+    ST_Y(ST_Transform(ST_Centroid(geom), 4326)) as latitude,
+    ST_X(ST_Transform(ST_Centroid(geom), 4326)) as longitude,
     ST_Transform(ST_Centroid(geom), 4326) as geom
 FROM geodata.embalses_polygons
 WHERE geom IS NOT NULL;
@@ -28,7 +29,7 @@ CREATE INDEX IF NOT EXISTS idx_embalses_geom ON geodata.embalses_points USING GI
 
 -- Grant permissions
 GRANT ALL PRIVILEGES ON TABLE geodata.embalses_points TO postgres;
-GRANT USAGE, SELECT ON SEQUENCE geodata.embalses_points_reservoir_id_seq TO postgres;
+GRANT USAGE, SELECT ON SEQUENCE geodata.embalses_points_id_seq TO postgres;
 
 -- Log completion
 DO $$
