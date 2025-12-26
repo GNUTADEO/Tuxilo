@@ -15,10 +15,10 @@ router = APIRouter(tags=["Stations"], prefix="/stations")
 
 
 @router.get(
-    "/",
-    operation_id="get_all_stations",
+    "/flow",
+    operation_id="get_all_flow_stations",
 )
-async def get_all_stations(
+async def get_all_flow_stations(
         db: AsyncSession = Depends(get_db),
 ):
     """Obtiene todas las estaciones con sus coordenadas"""
@@ -55,8 +55,49 @@ async def get_all_stations(
     return {"stations": stations}
 
 
-@router.get("/nearest/{embalse_id}")
-async def get_nearest_station(
+@router.get(
+    "/rain",
+    operation_id="get_all_rain_stations",
+)
+async def get_all_rain_stations(
+        db: AsyncSession = Depends(get_db),
+):
+    """Obtiene todas las estaciones con sus coordenadas"""
+    stmt = (
+        select(
+            RainStation.station_id,
+            RainStation.station_name,
+            RainStation.river_name,
+            RainStation.latitude,
+            RainStation.longitude
+        )
+        .where(
+            RainStation.latitude.is_not(None),
+            RainStation.longitude.is_not(None),
+            RainStation.station_name.is_not(None)
+        )
+        .order_by(RainStation.station_name)
+    )
+
+    result = await db.execute(stmt)
+    rows = result.mappings().all()
+    
+    stations = [
+        {
+            "station_id": row['station_id'],
+            "station_name": row['station_name'],
+            "river_name": row['river_name'],
+            "latitude": float(row['latitude']) if row['latitude'] else None,
+            "longitude": float(row['longitude']) if row['longitude'] else None,
+        }
+        for row in rows
+    ]
+    
+    return {"stations": stations}
+
+
+@router.get("/flow/nearest/{embalse_id}")
+async def get_nearest_flow_station(
     embalse_id: int,
     db: AsyncSession = Depends(get_db)
 ):

@@ -10,6 +10,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from routers.embalses import router as router_embalses
 from routers.stations import router as router_stations
+from routers.data import router as router_data
 
 VERSION = "0.1.0"
 COOKIES_SECURE = False
@@ -78,6 +79,7 @@ api_public.add_middleware(
 api.mount("/public", api_public)
 api_public.include_router(router_embalses)
 api_public.include_router(router_stations)
+api_public.include_router(router_data)
 
 ##############################################################################################
 # Validador en /
