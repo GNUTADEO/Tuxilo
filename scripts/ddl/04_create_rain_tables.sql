@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS geodata.rain_stations (
     longitude DECIMAL(11, 8) NOT NULL --Por qué decimal y no NUMERIC?
 );
 
-CREATE INDEX IF NOT EXISTS idx_stations_name ON geodata.rain_stations(station_name);
+CREATE INDEX IF NOT EXISTS idx_rain_stations_name ON geodata.rain_stations(station_name);
 
 -- =====================================================
 -- GRDC Daily Flow Data Table
@@ -32,5 +32,5 @@ CREATE TABLE IF NOT EXISTS geodata.rain_data (
     UNIQUE (station_id, observation_date)
 );
 
-CREATE INDEX IF NOT EXISTS idx_grdc_station_date ON geodata.rain_data(station_id, observation_date);
-CREATE INDEX IF NOT EXISTS idx_grdc_date ON geodata.rain_data(observation_date);
+CREATE INDEX IF NOT EXISTS idx_rain_station_date ON geodata.rain_data(station_id, observation_date);
+CREATE INDEX IF NOT EXISTS idx_rain_date ON geodata.rain_data(observation_date);
