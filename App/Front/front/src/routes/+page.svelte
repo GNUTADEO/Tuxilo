@@ -10,7 +10,7 @@
 	function handleLoadedEmbalses(loadedEmbalses) {
 		embalses = loadedEmbalses;
 	}
-	
+
 	function handleLoadedSemestres(loadedSemestres) {
 		semestres = loadedSemestres;
 	}
@@ -85,22 +85,24 @@
 				<button class="btn btn-primary mt-4 w-full" onclick={handleCorrer}>Consultar</button>
 			</div>
 		</div>
-	</div>
 
-	<div class="flex flex-1 flex-col gap-4">
-		<div class="card bg-base-100 h-[65vh] p-2 shadow-xl">
-		<Map
-            {selectedEmbalseId}
-            onEmbalsesLoaded={(e) => embalses = e}
-            onSemestresLoaded={(s) => semestres = s}
-            {showNearestStation}
-        />
+		<div class="card bg-base-100 h-[65vh] w-full p-4 shadow-xl">
+    		<Map
+                {selectedEmbalseId}
+                onEmbalsesLoaded={(e) => embalses = e}
+                onSemestresLoaded={(s) => semestres = s}
+                {showNearestStation}
+            />
 		</div>
-	</div>
 
-	<div class="flex flex-1 flex-col gap-4">
-		<div class="card bg-base-100 h-[25vh] p-2 shadow-xl">
-			<img class="h-10 w-auto object-contain" src="/working-cat.jpg" alt="Go to dashboard" />
-		</div>
+		<div class="card bg-base-100 w-full p-4 shadow-xl">
+            <iframe
+                src="/graphs/ACO_21160040_21160040.html"
+                class="w-full border-0 rounded-xl"
+                style="min-height: 620px"
+            ></iframe>
+        </div>
+
+
 	</div>
 </div>
