@@ -58,7 +58,7 @@
 			const embalses_response = await fetch('http://localhost:8000/public/embalses/');
 			const embalses_response_geojson = await fetch('http://localhost:8000/public/embalses/geojson');
 			
-			const semestres_response = await fetch('http://localhost:8000/public/embalses/');
+			const semestres_response = await fetch('http://localhost:8000/public/data/semestres');
 
 			const embalses_data = await embalses_response.json();
 			const embalses_geojson = await embalses_response_geojson.json();
