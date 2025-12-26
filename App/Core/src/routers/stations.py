@@ -1,15 +1,13 @@
-from this import s
 from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import text
 from sqlalchemy import select
 from sqlalchemy import cast
 from geoalchemy2 import Geography
-from geoalchemy2.functions import ST_Intersects, ST_Transform, ST_SetSRID, ST_MakePoint, ST_Distance
+from geoalchemy2.functions import ST_Transform, ST_SetSRID, ST_MakePoint, ST_Distance
 
 from shared_db import get_db
 
-from models import FlowStation, RainStation, ReservoirDot, ReservoirPolygon
+from models import FlowStation, RainStation, ReservoirDot
 
 router = APIRouter(tags=["Stations"], prefix="/stations")
 

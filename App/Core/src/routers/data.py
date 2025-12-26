@@ -1,12 +1,9 @@
-import json
 
 from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from sqlalchemy import select
-from sqlalchemy import text
 
-from geoalchemy2.functions import ST_AsGeoJSON, ST_Transform
 
 from shared_db import get_db
 
