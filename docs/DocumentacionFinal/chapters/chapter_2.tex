@@ -15,9 +15,11 @@ A continuación, se describen de manera detallada cada una de las etapas que com
 \subsection{Precipitación}
 
 \subsection{Caudales}
-Con base en los resultados obtenidos en la predicción de la precipitación, se estima el caudal de manera empírica a partir de relaciones lluvia–escorrentía, utilizando datos históricos de caudal y precipitación mensuales provenientes de estaciones hidrometeorológicas cercanas a cada embalse. Este enfoque se fundamenta en la premisa de que la precipitación constituye el principal aporte al caudal superficial y que su relación con la escorrentía puede representarse mediante expresiones matemáticas simplificadas, especialmente en contextos donde la disponibilidad de información detallada del balance hídrico es limitada [CITA]. 
+Con base en los resultados obtenidos en la predicción de la precipitación, se estima el caudal de manera empírica a partir de relaciones lluvia–escorrentía, utilizando datos históricos de caudal y precipitación mensuales provenientes de estaciones hidrometeorológicas cercanas a cada embalse quienes se encuentran en el repositorio como \url{data/Calculo_caudal/Caudal_Consolidado_Completo.csv}. Este enfoque se fundamenta en la premisa de que la precipitación constituye el principal aporte al caudal superficial y que su relación con la escorrentía puede representarse mediante expresiones matemáticas simplificadas, especialmente en contextos donde la disponibilidad de información detallada del balance hídrico es limitada\cite{sitterson2018_overview_rainfall_runoff}. 
 
-En este sentido, se emplea un modelo empírico de tipo potencia que relaciona el caudal con la precipitación mediante coeficientes de ajuste, los cuales integran las características hidrológicas de la cuenca, tales como su tamaño y su respuesta ante eventos de lluvia, según la siguiente expresión:
+En este sentido, se emplea un modelo empírico de tipo potencia, evidenciado en el repositorio como \url{    Tuxilo/notebooks
+
+/CORRECTED_CAUDAL_CALCULATION.py}, que relaciona el caudal con la precipitación mediante coeficientes de ajuste, los cuales integran las características hidrológicas de la cuenca, tales como su tamaño y su respuesta ante eventos de lluvia, según la siguiente expresión:
 
 \begin{equation}
 Q_{i,t} = a_r \cdot \left( P_{i,t} + P_{i,t-1} + P_{i,t-2} \right)^{b_r} \cdot \left( \frac{A_r}{A_i} \right)
@@ -36,7 +38,7 @@ Donde:
     \item $i$ identifica cada uno de los embalses analizados.
 \end{itemize}
 
-Para la estimación de los coeficientes $a_r$ y $b_r$, se aplicó una regresión lineal en escala logarítmica, considerando la precipitación acumulada en una ventana temporal de tres meses, definida como:
+Para la estimación de los coeficientes $a_r$ y $b_r$, se aplicó una regresión lineal en escala logarítmica, considerando la precipitación acumulada en una ventana temporal de tres meses, código presente en \url{***}, definida como:
 
 \begin{equation}
 P_{\text{cum}}(t) = P(t) + P(t-1) + P(t-2)
