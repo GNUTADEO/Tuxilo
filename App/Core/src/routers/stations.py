@@ -26,7 +26,6 @@ async def get_all_flow_stations(
         select(
             FlowStation.station_id,
             FlowStation.station_name,
-            FlowStation.river_name,
             FlowStation.latitude,
             FlowStation.longitude
         )
@@ -45,7 +44,6 @@ async def get_all_flow_stations(
         {
             "station_id": row['station_id'],
             "station_name": row['station_name'],
-            "river_name": row['river_name'],
             "latitude": float(row['latitude']) if row['latitude'] else None,
             "longitude": float(row['longitude']) if row['longitude'] else None,
         }
@@ -67,7 +65,6 @@ async def get_all_rain_stations(
         select(
             RainStation.station_id,
             RainStation.station_name,
-            RainStation.river_name,
             RainStation.latitude,
             RainStation.longitude
         )
@@ -86,7 +83,6 @@ async def get_all_rain_stations(
         {
             "station_id": row['station_id'],
             "station_name": row['station_name'],
-            "river_name": row['river_name'],
             "latitude": float(row['latitude']) if row['latitude'] else None,
             "longitude": float(row['longitude']) if row['longitude'] else None,
         }
@@ -119,7 +115,6 @@ async def get_nearest_flow_station(
         select(
             FlowStation.station_id,
             FlowStation.station_name,
-            FlowStation.river_name,
             FlowStation.latitude,
             FlowStation.longitude,
             distance_km
@@ -144,7 +139,6 @@ async def get_nearest_flow_station(
         "station": {
             "station_id": row["station_id"],
             "station_name": row["station_name"],
-            "river_name": row["river_name"],
             "latitude": float(row["latitude"]) if row["latitude"] else None,
             "longitude": float(row["longitude"]) if row["longitude"] else None,
             "distance_km": round(float(row["distance_km"]), 2) if row["distance_km"] else None,
