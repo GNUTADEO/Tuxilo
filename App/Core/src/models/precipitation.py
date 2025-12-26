@@ -8,7 +8,7 @@ from .base import Base
 
 class RainData(Base):
     __tablename__ = "rain_data"
-    __table_args__ = {"schema": "geodata", "extend_existing": True}
+    __table_args__ = {"schema": "data", "extend_existing": True}
 
     id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True)
     station_id: Mapped[str] = mapped_column(

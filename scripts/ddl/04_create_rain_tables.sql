@@ -23,7 +23,7 @@ CREATE INDEX IF NOT EXISTS idx_rain_stations_name ON geodata.rain_stations(stati
 -- YYYY-MM-DD;Value;month;Value_imputed
 -- 1970-03-01;146.3;3;146.3
 
-CREATE TABLE IF NOT EXISTS geodata.rain_data (
+CREATE TABLE IF NOT EXISTS data.rain_data (
     id BIGSERIAL PRIMARY KEY,
     station_id VARCHAR(50) NOT NULL,
     observation_date DATE NOT NULL,
@@ -32,5 +32,5 @@ CREATE TABLE IF NOT EXISTS geodata.rain_data (
     UNIQUE (station_id, observation_date)
 );
 
-CREATE INDEX IF NOT EXISTS idx_rain_station_date ON geodata.rain_data(station_id, observation_date);
-CREATE INDEX IF NOT EXISTS idx_rain_date ON geodata.rain_data(observation_date);
+CREATE INDEX IF NOT EXISTS idx_rain_station_date ON data.rain_data(station_id, observation_date);
+CREATE INDEX IF NOT EXISTS idx_rain_date ON data.rain_data(observation_date);

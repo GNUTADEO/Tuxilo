@@ -8,7 +8,7 @@ from .base import Base
 
 class FlowData(Base):
     __tablename__ = "grdc_daily_flow"
-    __table_args__ = {"schema": "geodata", "extend_existing": True}
+    __table_args__ = {"schema": "data", "extend_existing": True}
 
     id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True)
     station_id: Mapped[str] = mapped_column(

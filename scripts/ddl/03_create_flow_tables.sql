@@ -23,7 +23,7 @@ CREATE INDEX IF NOT EXISTS idx_stations_name ON geodata.flow_stations(station_na
 -- YYYY-MM-DD;Value;month;Value_imputed
 -- 1970-03-01;146.3;3;146.3
 
-CREATE TABLE IF NOT EXISTS geodata.grdc_daily_flow (
+CREATE TABLE IF NOT EXISTS data.grdc_daily_flow (
     id BIGSERIAL PRIMARY KEY,
     station_id VARCHAR(50) NOT NULL,
     observation_date DATE NOT NULL,
@@ -32,5 +32,5 @@ CREATE TABLE IF NOT EXISTS geodata.grdc_daily_flow (
     UNIQUE (station_id, observation_date)
 );
 
-CREATE INDEX IF NOT EXISTS idx_grdc_station_date ON geodata.grdc_daily_flow(station_id, observation_date);
-CREATE INDEX IF NOT EXISTS idx_grdc_date ON geodata.grdc_daily_flow(observation_date);
+CREATE INDEX IF NOT EXISTS idx_grdc_station_date ON data.grdc_daily_flow(station_id, observation_date);
+CREATE INDEX IF NOT EXISTS idx_grdc_date ON data.grdc_daily_flow(observation_date);
