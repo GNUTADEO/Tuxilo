@@ -1,8 +1,7 @@
 CREATE TABLE IF NOT EXISTS geodata.embalses_points (
     reservoir_id SERIAL PRIMARY KEY,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     nombre VARCHAR(255),
-    latitud NUMERIC,
-    longitud NUMERIC,
+    latitud DECIMAL(10, 8),
+    longitud DECIMAL(11, 8),
     geom GEOMETRY(POINT, 4326)
 );
