@@ -54,13 +54,20 @@ donde los parámetros $a_r$ y $b_r$ se obtienen a partir del ajuste por mínimos
 
 Para la obtención de las áreas $A_r$ y $A_i$, se utilizó la información geográfica de zonificación hidrográfica y el Modelo Digital de Elevación (DEM), descritas en el capítulo siguiente. El cálculo del área $A_r$ se realizó en QGIS mediante la herramienta de cálculo de campos, aplicando la expresión $area/1000000$, posterior a la separación de las macrocuencas y a la aplicación de la herramienta \textit{merge}.  
 
-Para la estimación del área $A_i$, se hizo uso de las herramientas del \textit{toolbox} del aplicativo GRASS GIS, correspondientes a los procesos de análisis hidrológico sobre datos ráster y vectoriales \cite{alonso2016_puedo_grass_gis}. En primer lugar, se empleó la función \texttt{r.fill.dir} para corregir depresiones y espacios en blanco presentes en el archivo ráster del DEM. Posteriormente, se utilizó la herramienta \texttt{r.watershed} para obtener la dirección de flujo y la red de drenaje de la cuenca a partir del relieve, considerando una escala mínima de análisis de 1000 unidades, como se muestra en la figura~\ref{fig:flow_dir}. Finalmente, se aplicó la herramienta \texttt{r.water.outlet}, en la cual se definió el punto de descarga correspondiente al embalse, permitiendo delimitar el área de influencia de drenaje asociada a cada uno, dando como resultado un archivo vectorial en formato \texttt{.shp}.
+Para la estimación del área $A_i$, se hizo uso de las herramientas del \textit{toolbox} del aplicativo GRASS GIS, correspondientes a los procesos de análisis hidrológico sobre datos ráster y vectoriales \cite{alonso2016_puedo_grass_gis}. En primer lugar, se empleó la función \texttt{r.fill.dir} para corregir depresiones y espacios en blanco presentes en el archivo ráster del DEM. Posteriormente, se utilizó la herramienta \texttt{r.watershed} para obtener la dirección de flujo y la red de drenaje de la cuenca a partir del relieve, considerando una escala mínima de análisis de 1000 unidades, como se muestra en la figura~\ref{fig:flow_dir}. Finalmente, se aplicó la herramienta \texttt{r.water.outlet}, en la cual se definió el punto de descarga correspondiente al embalse, permitiendo delimitar el área de influencia de drenaje asociada a cada uno, dando como resultado un archivo vectorial en formato \texttt{.shp} como lo muestra la figura ~\ref{fig:cuencas}
  
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{img/flow_dir.jpeg}
   \caption{Flow direction y drenajes obtenidos por el DEM de la región.}
   \label{fig:flow_dir}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{img/cuencas.jpeg}
+  \caption{Cuencas de drenaje}
+  \label{fig:cuencas}
 \end{figure}
 
 Posterior a dicho cálculo, se realiza una comparación entre el caudal estimado para cada embalse y la tendencia de los caudales históricos, registrada en el repositorio ***. Esta comparación permite identificar los períodos en los que el caudal proyectado se sitúa por encima de la tendencia histórica, lo cual se asocia con una fase de aumento del aporte hídrico y, por ende, con una posible subida del nivel del embalse. En contraste, cuando el caudal proyectado se ubica por debajo de la línea de tendencia histórica, se interpreta como una disminución de los aportes, lo que sugiere una reducción del volumen almacenado en el embalse.
