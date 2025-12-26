@@ -86,7 +86,7 @@
 			</div>
 		</div>
 
-		<div class="card bg-base-100 h-[65vh] w-full p-4 shadow-xl">
+		<div class="card bg-base-100 h-[45vh] w-full p-4 shadow-xl">
     		<Map
                 {selectedEmbalseId}
                 onEmbalsesLoaded={(e) => embalses = e}
