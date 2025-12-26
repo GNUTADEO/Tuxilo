@@ -1,2 +1,48 @@
 \chapter{Resumen}
-\noindent Tuxilo!\cite{tuxilo-github}
+
+El presente documento describe el desarrollo e implementación de Tuxhydro, una solución analítica y predictiva diseñada para evaluar la relación entre índices oceánicos globales y el comportamiento hidrológico de embalses en Colombia. El sistema aborda la necesidad de herramientas de apoyo a la toma de decisiones en el sector hidroeléctrico frente a la variabilidad climática, especialmente aquella asociada al fenómeno ENSO (El Niño-Oscilación del Sur).
+
+\section*{Problemática y Contexto}
+
+Colombia depende en aproximadamente 70\% de la generación hidroeléctrica para su producción energética, lo que hace al sistema particularmente vulnerable a variaciones climáticas. La ausencia de herramientas analíticas que integren sistemáticamente índices oceánicos con datos hidrológicos limita la capacidad de anticipación ante eventos de sequía o exceso hídrico que afectan la operación de embalses.
+
+\section*{Solución Propuesta}
+
+Tuxilo\cite{tuxilo-github} implementa un modelo analítico que integra datos históricos de índices oceánicos (ONI, MEI, TSA, TNA, SOI) con series temporales de precipitación y caudal de 19 estaciones hidrométricas en la región Andina. El sistema consta de tres componentes principales:
+
+\begin{enumerate}
+    \item \textbf{Análisis de correlación}: Identificación de relaciones estadísticas entre índices climáticos y variables hidrológicas mediante análisis mensual estratificado, determinando rezagos temporales óptimos entre 2 y 4 meses.
+    
+    \item \textbf{Modelo predictivo}: Estimación de caudales proyectados para el período 2025-2029 mediante un modelo empírico lluvia-escorrentía calibrado con datos históricos, utilizando regresión no lineal en escala logarítmica.
+    
+    \item \textbf{Aplicación web interactiva}: Interfaz cartográfica desarrollada con SvelteKit y Leaflet que permite visualizar proyecciones de caudal para 11 embalses principales, indicando escenarios de aumento (verde) o disminución (rojo) respecto a la media histórica.
+\end{enumerate}
+
+\section*{Metodología}
+
+El desarrollo se estructuró en etapas secuenciales:
+
+\begin{itemize}
+    \item \textbf{Recopilación de datos}: Obtención de series temporales de índices oceánicos (NOAA), datos de caudal (GRDC), precipitación (IDEAM) y geometrías de embalses (IGAC).
+    
+    \item \textbf{Procesamiento y limpieza}: Tratamiento de valores nulos mediante imputación estadística preservando distribuciones originales, consolidación de formatos y validación de continuidad temporal.
+    
+    \item \textbf{Análisis geoespacial}: Cálculo de áreas de drenaje utilizando GRASS GIS con el DEM de Colombia, aplicando herramientas \texttt{r.watershed} y \texttt{r.water.outlet}.
+    
+    \item \textbf{Calibración del modelo}: Ajuste de coeficientes $a_r$ y $b_r$ mediante regresión lineal considerando precipitación acumulada en ventanas de 3 meses para capturar efectos de retardo hidrológico.
+    
+    \item \textbf{Implementación tecnológica}: Arquitectura basada en contenedores Docker con PostgreSQL+PostGIS para datos geoespaciales, API REST con FastAPI y frontend reactivo con SvelteKit.
+\end{itemize}
+
+\section*{Resultados Principales}
+
+El análisis de correlación reveló que el índice MEI presenta la relación más fuerte con los caudales en la región Andina ($r = -0.146$, $p < 0.05$, rezago de 4 meses), confirmando la influencia significativa del ENSO. El 78\% de las estaciones analizadas mostraron correlaciones estadísticamente significativas con este índice.
+
+\section*{Arquitectura del Sistema}
+
+La solución se implementa mediante Docker Compose orquestando cinco servicios principales: base de datos PostgreSQL con PostGIS para almacenamiento geoespacial, servidor API con FastAPI exponiendo endpoints REST, aplicación web SvelteKit con mapas interactivos Leaflet, proxy inverso NGINX para enrutamiento, y pgAdmin para administración de base de datos. La inicialización automatizada mediante scripts SQL garantiza reproducibilidad completa del entorno.
+
+\section*{Contribución y Software Libre}
+
+El proyecto utiliza 97.1\% de herramientas FLOSS (Free/Libre and Open Source Software), promoviendo transparencia y replicabilidad. Todo el código fuente, documentación técnica y datos se encuentran disponibles bajo licencias abiertas en el repositorio GitHub, facilitando su adopción institucional, extensión funcional y contribuciones de la comunidad científica.
+

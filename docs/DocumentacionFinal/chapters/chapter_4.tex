@@ -121,10 +121,78 @@ En conclusión, la distribución de licencias \acs{FLOSS} y propietaria se puede
     \label{fig:licencias_subfiguras}
 \end{figure}
 
+\begin{landscape}
+\thispagestyle{plain}
+
+\section{Arquitectura}
+
+
+
+\end{landscape}
+
+
+
 
 \section{Flujo general}
 
+\subsection{Interfaz de visualización geográfica}
+\label{subsec:chp7-4-1}
 
+La aplicación web principal presenta un mapa interactivo de Colombia que muestra la ubicación de los embalses analizados. La interfaz consta de los siguientes componentes:
+
+\begin{itemize}
+    \item \textbf{Mapa base}: Utiliza capas de OpenStreetMap\cite{openstreetmap_about} con datos geoespaciales cargados desde la API
+    \item \textbf{Polígonos de embalses}: Representan el área de cada embalse, con popups informativos al hacer clic
+    \item \textbf{Panel de controles}: Permite seleccionar un embalse y un período semestral de análisis
+    \item \textbf{Gráficos de precipitación}: Muestra las series temporales de precipitación para la estación más cercana al embalse seleccionado
+\end{itemize}
+
+\subsection{Flujo de consulta y análisis}
+\label{subsec:chp7-4-2}
+
+El proceso típico de consulta sigue los siguientes pasos:
+
+\begin{enumerate}
+    \item \textbf{Selección de embalse}: Utilizar el menú desplegable superior para elegir un embalse de interés
+    \item \textbf{Selección de período}: Elegir un semestre específico (por ejemplo, 2025-1S)
+    \item \textbf{Consultar}: Hacer clic en el botón ``Consultar'' para obtener la proyección de caudal
+    \item \textbf{Interpretación visual}: El sistema colorea el polígono del embalse según el resultado:
+    \begin{itemize}
+        \item \textbf{Verde}: Indica aumento proyectado del caudal (por encima de la media histórica)
+        \item \textbf{Rojo}: Indica disminución proyectada del caudal (por debajo de la media histórica)
+    \end{itemize}
+    \item \textbf{Información detallada}: Al hacer clic sobre el polígono coloreado, se muestra un popup con el cambio exacto de caudal en m³/s, indicando si se trata de un aumento o disminución respecto a la media
+\end{enumerate}
+
+\subsection{Interpretación de resultados}
+\label{subsec:chp7-4-3}
+
+Los resultados de la proyección se basan en la relación histórica entre índices oceánicos, precipitación y caudales. La interpretación de los valores debe considerar lo siguiente:
+
+\begin{itemize}
+    \item \textbf{Valores positivos de cambio}: Sugieren condiciones favorables para la generación hidroeléctrica, con mayor disponibilidad de recurso hídrico
+    \item \textbf{Valores negativos de cambio}: Alertan sobre posibles escenarios de sequía o reducción del aporte hídrico
+    \item \textbf{Magnitud del cambio}: La diferencia en m³/s permite cuantificar la severidad del escenario proyectado
+\end{itemize}
+
+Es importante considerar que estas proyecciones son estimaciones estadísticas basadas en patrones históricos y están sujetas a incertidumbre. Se recomienda utilizarlas como herramienta de apoyo a la toma de decisiones, complementándolas con otros análisis técnicos y pronósticos meteorológicos actualizados.
+
+\subsection{Consulta de datos mediante API}
+\label{subsec:chp7-4-4}
+
+La API REST expuesta por el sistema permite acceder programáticamente a los datos. Los endpoints principales son:
+
+\begin{itemize}
+    \item \texttt{GET /public/embalses/points}: Lista todos los embalses con sus coordenadas
+    \item \texttt{GET /public/embalses/polygons}: Obtiene las geometrías de los embalses en formato GeoJSON
+    \item \texttt{GET /public/estaciones/flow}: Lista las estaciones de medición de caudal
+    \item \texttt{GET /public/estaciones/rain}: Lista las estaciones de medición de precipitación
+    \item \texttt{GET /public/data/semestres}: Obtiene la lista de períodos semestrales disponibles
+    \item \texttt{GET /public/data/q\_proyectado/\{embalse\_id\}/\{periodo\}}: Obtiene la proyección de caudal para un embalse y período específicos
+    \item \texttt{GET /public/data/media/\{graph\_file\}}: Obtiene el valor medio histórico de precipitación
+\end{itemize}
+
+La documentación completa de la API, con ejemplos de uso y esquemas de respuesta, está disponible en la interfaz Swagger en \url{http://localhost:8000/docs}.
 
 
 \section{Configuraciones a ajustar}

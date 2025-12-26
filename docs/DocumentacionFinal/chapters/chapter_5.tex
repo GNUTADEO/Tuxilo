@@ -2,4 +2,417 @@
 \label{chp:5}
 
 
-Todo el código fuente se encuentra en el repostorio \url{https://github.com/GNUTADEO/Tuxilo/} en la rama \texttt{main}, ahí se encuentra todo el desarrollo, resultados, documentos y scripts necesarios para poder contribuir al proyecto.
+Todo el código fuente se encuentra en el repostorio \url{https://github.com/GNUTADEO/Tuxilo/} en la rama \texttt{main}, ahí se encuentra todo el desarrollo, resultados, documentos y scripts necesarios para poder contribuir al proyecto bajo los términos de la licencia GPL-v3\cite{gpl3_license}.
+
+\section{Frontend}
+\label{sec:chp5-frontend}
+
+El frontend de Tuxilo está desarrollado con SvelteKit, un framework moderno de JavaScript que proporciona una experiencia de desarrollo optimizada y un rendimiento excepcional en producción. La aplicación se encuentra en el directorio \texttt{App/Front/front/}.
+
+\subsection{Estructura del Frontend}
+
+Los archivos principales que se deben editar para modificar el frontend son:
+
+\begin{itemize}
+    \item \textbf{src/routes/+page.svelte}: Página principal de la aplicación que contiene la lógica de selección de embalses, semestres y la consulta de datos proyectados.
+    \item \textbf{src/routes/+layout.svelte}: Layout principal que define la estructura común de todas las páginas (navbar y footer).
+    \item \textbf{src/lib/components/Map.svelte}: Componente del mapa interactivo usando Leaflet para visualizar embalses, estaciones de lluvia y caudal.
+    \item \textbf{src/lib/commons/Navbar.svelte}: Componente de la barra de navegación superior.
+    \item \textbf{src/lib/commons/Footer.svelte}: Componente del pie de página.
+\end{itemize}
+
+\subsection{Configuración y Dependencias}
+
+El archivo \texttt{package.json} contiene todas las dependencias del proyecto. Las principales tecnologías utilizadas son:
+
+\begin{itemize}
+    \item SvelteKit 2.x como framework principal
+    \item Vite como bundler y servidor de desarrollo
+    \item Tailwind CSS 4.x para estilos
+    \item Leaflet para mapas interactivos
+    \item DaisyUI como biblioteca de componentes
+\end{itemize}
+
+\subsection{Scripts de Desarrollo}
+
+Para trabajar con el frontend, utilice los siguientes comandos desde el directorio \texttt{App/Front/front/}:
+
+\begin{lstlisting}[style=bash]
+# Instalar dependencias
+npm install
+
+# Ejecutar servidor de desarrollo
+npm run dev
+
+# Compilar para produccion
+npm run build
+
+# Previsualizar build de produccion
+npm run preview
+
+# Verificar tipos y sintaxis
+npm run check
+\end{lstlisting}
+
+\subsection{Conexión con el Backend}
+
+El frontend se comunica con el backend a través de peticiones HTTP a la API REST. La URL base de la API es \url{http://localhost:8000/public/}. Los principales endpoints consultados son:
+
+\begin{itemize}
+    \item \url{/embalses/points}: Obtiene las coordenadas de todos los embalses
+    \item \url{/embalses/polygons}: Obtiene los polígonos de los embalses
+    \item \url{/estaciones/flow}: Obtiene las estaciones de caudal
+    \item \url{/estaciones/rain}: Obtiene las estaciones de precipitación
+    \item \url{/data/q_proyectado/{embalse_id}/{periodo}}: Obtiene el caudal proyectado
+    \item \url{/data/media/{graph_filename}}: Extrae valores de gráficos HTML
+\end{itemize}
+
+\section{Backend}
+\label{sec:chp5-backend}
+
+El backend de Tuxilo está desarrollado con FastAPI, un framework moderno de Python para construir APIs REST de alto rendimiento. La aplicación backend se encuentra en el directorio \url{App/Core/}.
+
+\subsection{Estructura del Backend}
+
+Los archivos principales del backend están organizados de la siguiente manera:
+
+\subsubsection{Archivo Principal}
+
+\begin{itemize}
+    \item \textbf{src/main.py}: Punto de entrada de la aplicación FastAPI. Define las APIs principales, configura CORS y monta los routers.
+\end{itemize}
+
+Ejemplo de código del archivo principal:
+
+\begin{lstlisting}[language=python]
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from routers.embalses import router as router_embalses
+from routers.stations import router as router_stations
+from routers.data import router as router_data
+
+api_public = FastAPI(
+    title="Endpoints publicos para Tuxhydro",
+    version="0.1.0",
+)
+
+api_public.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+api_public.include_router(router_embalses)
+api_public.include_router(router_stations)
+api_public.include_router(router_data)
+\end{lstlisting}
+
+\subsubsection{Routers (APIs)}
+
+Los routers definen los endpoints de la API y se encuentran en \url{src/routers/}:
+
+\begin{itemize}
+    \item \url{routers/embalses.py}: Endpoints relacionados con embalses
+    \begin{itemize}
+        \item \texttt{GET /embalses/points}: Retorna coordenadas de embalses como puntos
+        \item \texttt{GET /embalses/polygons}: Retorna geometrías de embalses como polígonos (GeoJSON)
+    \end{itemize}
+    
+    \item \textbf{routers/stations.py}: Endpoints relacionados con estaciones meteorológicas
+    \begin{itemize}
+        \item \texttt{GET /estaciones/flow}: Lista todas las estaciones de caudal
+        \item \texttt{GET /estaciones/rain}: Lista todas las estaciones de precipitación
+        \item \texttt{GET /estaciones/flow/nearest/\{embalse\_id\}}: Encuentra la estación de caudal más cercana a un embalse usando cálculos geoespaciales
+    \end{itemize}
+    
+    \item \textbf{routers/data.py}: Endpoints para acceder a datos históricos y proyectados
+    \begin{itemize}
+        \item \texttt{GET /data/semestres}: Obtiene todos los periodos disponibles
+        \item \texttt{GET /data/flow}: Datos de caudal históricos
+        \item \texttt{GET /data/rain}: Datos de precipitación históricos
+        \item \texttt{GET /data/q\_proyectado/\{embalse\_id\}/\{periodo\}}: Calcula y retorna el caudal proyectado para un embalse y periodo específico
+        \item \texttt{GET /data/media/\{graph\_filename\}}: Extrae valores estadísticos de archivos HTML de gráficos
+    \end{itemize}
+\end{itemize}
+
+Ejemplo de un endpoint con consulta geoespacial:
+
+\begin{lstlisting}[language=python]
+from geoalchemy2.functions import ST_Distance, ST_Transform
+from sqlalchemy import select, cast
+from geoalchemy2 import Geography
+
+@router.get("/flow/nearest/{embalse_id}")
+async def get_nearest_flow_station(
+    embalse_id: int,
+    db: AsyncSession = Depends(get_db)
+):
+    """Obtiene la estacion de caudal mas cercana"""
+    
+    embalse_subq = select(ReservoirDot.geom).where(
+        ReservoirDot.id == embalse_id
+    ).scalar_subquery()
+    
+    distance_km = (ST_Distance(
+        cast(ST_Transform(embalse_subq, 4326), Geography),
+        cast(ST_SetSRID(
+            ST_MakePoint(FlowStation.longitude, 
+                        FlowStation.latitude), 4326
+        ), Geography)
+    ) / 1000).label("distance_km")
+    
+    stmt = select(
+        FlowStation.id,
+        FlowStation.name,
+        distance_km
+    ).order_by(distance_km).limit(1)
+    
+    result = await db.execute(stmt)
+    return result.mappings().first()
+\end{lstlisting}
+
+\subsubsection{Modelos de Base de Datos}
+
+Los modelos ORM de SQLAlchemy se encuentran en \texttt{src/models/} y definen la estructura de las tablas de la base de datos:
+
+\begin{itemize}
+    \item \textbf{models/base.py}: Clase base para todos los modelos
+    \item \textbf{models/reservoir\_dot.py}: Modelo para embalses como puntos geográficos
+    \item \textbf{models/reservoir\_polygon.py}: Modelo para embalses como polígonos con geometría
+    \item \textbf{models/flow\_stations.py}: Modelo para estaciones de medición de caudal
+    \item \textbf{models/rain\_stations.py}: Modelo para estaciones de precipitación
+    \item \textbf{models/flow.py}: Modelo para datos históricos de caudal
+    \item \textbf{models/precipitation.py}: Modelo para datos históricos de precipitación
+    \item \textbf{models/predicted.py}: Modelo para datos proyectados que incluye los coeficientes del modelo lluvia-escorrentía
+\end{itemize}
+
+Ejemplo del modelo de datos proyectados:
+
+\begin{lstlisting}[language=python]
+from sqlalchemy import String, BigInteger, Numeric
+from sqlalchemy.orm import Mapped, mapped_column
+
+class PredictedData(Base):
+    __tablename__ = "predicted_data"
+    __table_args__ = {"schema": "data"}
+
+    id: Mapped[int] = mapped_column(
+        BigInteger, primary_key=True
+    )
+    embalse: Mapped[str] = mapped_column(String(50))
+    periodo: Mapped[str] = mapped_column(String(10))
+    precipitacion_project: Mapped[Decimal] = mapped_column(
+        Numeric(25, 16)
+    )
+    ar: Mapped[Decimal] = mapped_column(Numeric(25, 16))
+    br: Mapped[Decimal] = mapped_column(Numeric(25, 4))
+    ar_km2: Mapped[Decimal] = mapped_column(Numeric(25, 3))
+    ai_km2: Mapped[Decimal] = mapped_column(Numeric(25, 3))
+    q_proyectado: Mapped[Decimal] = mapped_column(
+        Numeric(25, 16)
+    )
+\end{lstlisting}
+
+\subsection{Dependencias del Backend}
+
+El archivo \texttt{requirements.txt} en el directorio \texttt{App/} contiene todas las dependencias necesarias:
+
+\begin{lstlisting}[style=bash]
+fastapi>=0.120.2
+uvicorn>=0.38.0
+sqlalchemy>=2.0.44
+GeoAlchemy2==0.18.1
+pandas>=2.3.3
+aiofiles>=25.1.0
+requests>=2.32.5
+\end{lstlisting}
+
+Las dependencias clave son:
+\begin{itemize}
+    \item \textbf{FastAPI}: Framework web asíncrono
+    \item \textbf{Uvicorn}: Servidor ASGI para ejecutar FastAPI
+    \item \textbf{SQLAlchemy}: ORM para interactuar con PostgreSQL
+    \item \textbf{GeoAlchemy2}: Extensión de SQLAlchemy para tipos geoespaciales (PostGIS)
+    \item \textbf{Pandas}: Procesamiento y análisis de datos
+\end{itemize}
+
+\subsection{Ejecutar el Backend}
+
+Para iniciar el servidor backend:
+
+\begin{lstlisting}[style=bash]
+# Instalar dependencias
+pip install -r requirements.txt
+
+# Iniciar servidor de desarrollo
+cd App/Core/src
+uvicorn main:api --reload --port 8000
+
+# El servidor estara disponible en:
+# http://localhost:8000
+# Documentacion interactiva en:
+# http://localhost:8000/docs
+\end{lstlisting}
+
+\subsection{Base de Datos}
+
+El backend requiere una base de datos PostgreSQL con la extensión PostGIS habilitada. La conexión se configura mediante variables de entorno o archivos de configuración. La base de datos contiene:
+
+\begin{itemize}
+    \item Schema \texttt{geodata}: Tablas de estaciones y embalses con datos geoespaciales
+    \item Schema \texttt{data}: Tablas de datos históricos y proyectados
+\end{itemize} 
+
+
+
+\section{Notebooks de análisis}
+\label{sec:chp5-1}
+
+El repositorio incluye diversos notebooks interactivos para análisis exploratorio y procesamiento de datos, ubicados en el directorio \url{notebooks/}. Estos notebooks permiten profundizar en los análisis realizados y generar nuevas visualizaciones.
+
+\subsection{Ejecución con Marimo}
+\label{subsec:chp5-1-1}
+
+Los notebooks del proyecto están desarrollados con Marimo\cite{marimo_license}, un sistema de notebooks interactivos para Python que permite una ejecución reactiva y determinista. Para ejecutarlos, primero se debe instalar Marimo:
+
+\begin{lstlisting}[style=bash]
+pip install marimo
+\end{lstlisting}
+
+Luego, se puede abrir cualquier notebook con:
+
+\begin{lstlisting}[style=bash]
+marimo edit notebooks/Graficos.py
+\end{lstlisting}
+
+Cada notebook se opera desde el navegador de preferencia, un ejemplo lo puede ver en la figura~\ref{fig:marimo-notebook}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{img/marimo.png}
+  \caption{Ejecución y edición de un notebook de marimo}
+  \label{fig:marimo-notebook}
+\end{figure}
+
+
+Los principales notebooks disponibles son:
+
+\begin{itemize}
+    \item \textbf{Graficos.py}: Análisis de gráficos y visualizaciones generales
+    \item \textbf{hidroelectrica.py}: Análisis específico del sector hidroeléctrico
+    \item \textbf{fenomeno\_presence.py}: Análisis de presencia de fenómenos climáticos (El Niño, La Niña)
+    \item \textbf{precipitacion.py}: Análisis de datos de precipitación
+    \item \textbf{CORRECTED\_CAUDAL\_CALCULATION.py}: Cálculo corregido de caudales proyectados
+    \item \textbf{improve\_br\_cumulative.py}: Mejora de coeficientes de regresión lluvia-escorrentía
+    \item \textbf{analisis\_limpieza\_caudal.py}: Limpieza y procesamiento de datos de caudal
+\end{itemize}
+
+
+\section{Documentación}
+\label{sec:chp5-2}
+
+Toda la documentación está dentro de \url{docs/DocumentacionFinal/} y se puede modificar libremente bajo los términos de la licencia CC BY-SA 4.0\cite{cc_by_sa_4_0}.
+
+\subsection{Estructura de la Documentación}
+
+La documentación está organizada en los siguientes directorios:
+
+\begin{itemize}
+    \item \textbf{chapters/}: Contiene todos los capítulos del documento (chapter\_1.tex hasta chapter\_7.tex)
+    \item \textbf{appendices/}: Apéndices y acrónimos
+    \item \textbf{frontmatter/}: Páginas preliminares como el resumen (abstract)
+    \item \textbf{prefrontmatter/}: Portada, colofón y páginas anteriores al contenido principal
+    \item \textbf{preamble/}: Configuraciones de LaTeX, fuentes y estilos
+    \item \textbf{bibliography/}: Archivo de bibliografía en formato BibTeX
+    \item \textbf{img/}: Imágenes y figuras utilizadas en el documento
+    \item \textbf{graphics/}: Gráficos adicionales
+\end{itemize}
+
+\subsection{Prerrequisitos para Compilar}
+
+Para compilar la documentación, se requieren las siguientes herramientas instaladas en el sistema:
+
+\begin{itemize}
+    \item \textbf{XeLaTeX}: Compilador LaTeX con soporte para fuentes modernas
+    \item \textbf{Biber}: Procesador de bibliografía para biblatex
+    \item \textbf{Paquetes LaTeX}: memoir, biblatex, hyperref, graphicx, listings, y otros especificados en el preámbulo, se recomienda realizar la instalación de \LaTeX con la máxima cantidad de paquetes
+    \item \textbf{Make}: Herramienta para automatizar la compilación (opcional pero recomendado)
+\end{itemize}
+
+En sistemas Linux basados en Debian/Ubuntu, puede instalar todo lo necesario con:
+
+\begin{lstlisting}[style=bash]
+sudo apt update
+sudo apt install texlive-xetex texlive-bibtex-extra \
+    texlive-latex-extra texlive-fonts-extra biber make
+\end{lstlisting}
+
+En sistemas Arch Linux:
+
+\begin{lstlisting}[style=bash]
+sudo pacman -S texlive-core texlive-latexextra \
+    texlive-bibtexextra biber make
+\end{lstlisting}
+
+\subsection{Compilación de la Documentación}
+
+El proyecto incluye un \texttt{Makefile} que automatiza el proceso de compilación. Los comandos disponibles son:
+
+\begin{lstlisting}[style=bash]
+# Compilacion completa (limpia y genera el PDF)
+make all
+
+# Compilacion incremental (mas rapida)
+make
+
+# Compilacion rapida de un solo paso
+make quick
+
+# Ver el PDF generado
+make view
+
+# Limpiar archivos auxiliares
+make clean
+
+# Limpiar todo incluyendo el PDF
+make distclean
+
+# Ver ayuda
+make help
+\end{lstlisting}
+
+\subsection{Proceso de Compilación Manual}
+
+Si prefiere compilar manualmente sin usar Make, ejecute los siguientes comandos en el directorio \texttt{docs/DocumentacionFinal/}:
+
+\begin{lstlisting}[style=bash]
+# Primera pasada: procesa el documento y genera archivos auxiliares
+xelatex -interaction=nonstopmode Report.tex
+
+# Procesa la bibliografia
+biber Report
+
+# Segunda pasada: incorpora las referencias
+xelatex -interaction=nonstopmode Report.tex
+
+# Tercera pasada: resuelve referencias cruzadas
+xelatex -interaction=nonstopmode Report.tex
+\end{lstlisting}
+
+El archivo PDF final se generará como \texttt{Report.pdf}.
+
+\subsection{Editar la Documentación}
+
+Para modificar el contenido de la documentación:
+
+\begin{enumerate}
+    \item Edite los archivos \texttt{.tex} correspondientes en el directorio apropiado
+    \item Para agregar nuevas figuras, colóquelas en el directorio \texttt{img/}
+    \item Para agregar referencias bibliográficas, edite \texttt{bibliography/bibliography.bib}
+    \item Compile usando \texttt{make all} para regenerar el documento
+    \item Revise el PDF generado para verificar los cambios
+\end{enumerate}
+
+
+

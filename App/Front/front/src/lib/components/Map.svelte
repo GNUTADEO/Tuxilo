@@ -61,9 +61,10 @@
 		onSemestresLoaded?: (semestres: Semestre[]) => void;
 		showNearestStation?: boolean;
 		comparisonResult?: string | null;
+		caudalChange?: number | null;
 	}
 
-	let { selectedEmbalseId, onEmbalsesLoaded, onSemestresLoaded, showNearestStation = false, comparisonResult = null }: Props = $props();
+	let { selectedEmbalseId, onEmbalsesLoaded, onSemestresLoaded, showNearestStation = false, comparisonResult = null, caudalChange = null }: Props = $props();
 
 	let mapElement: HTMLDivElement;
 
@@ -214,6 +215,7 @@
 			map: !!map,
 			selectedEmbalseId,
 			comparisonResult,
+			caudalChange,
 			hasPolygon: selectedEmbalseId ? polygonLayers.has(Number(selectedEmbalseId)) : false,
 			polygonLayersSize: polygonLayers.size
 		});
@@ -223,8 +225,8 @@
 			const embalse = embalses.find((e) => e.id === Number(selectedEmbalseId));
 			
 			if (polygonLayer && embalse) {
-				// If comparisonResult is null, reset to default color
-				if (!comparisonResult) {
+				// If comparisonResult is null, reset to default color and popup
+				if (!comparisonResult || caudalChange === null) {
 					console.log('Resetting polygon color to default blue');
 					polygonLayer.setStyle({
 						color: '#3388ff',
@@ -232,6 +234,10 @@
 						weight: 2,
 						fillOpacity: 0.4
 					});
+					
+					// Reset popup to show Area
+					polygonLayer.bindPopup(`<b>${embalse.nombre}</b><br>
+                        Area: ${polygonLayer.feature.properties.area_km2} km²`);
 				} else {
 					// Determine color based on comparison result
 					const color = comparisonResult === 'above' ? '#22c55e' : '#ef4444'; // green : red
@@ -246,6 +252,13 @@
 						weight: 3,
 						fillOpacity: 0.6
 					});
+					
+					// Update popup to show caudal change
+					const changeText = caudalChange > 0 ? `+${caudalChange.toFixed(2)}` : caudalChange.toFixed(2);
+					const changeLabel = caudalChange > 0 ? 'Aumento' : 'Disminución';
+					
+					polygonLayer.bindPopup(`<b>${embalse.nombre}</b><br>
+                        ${changeLabel} de Caudal: ${changeText} m³/s`);
 					
 					console.log(`✓ Updated polygon color for ${embalse.nombre} to ${comparisonResult === 'above' ? 'green' : 'red'}`);
 				}

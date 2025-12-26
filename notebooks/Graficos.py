@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.18.1"
+__generated_with = "0.18.4"
 app = marimo.App(width="medium")
 
 
@@ -43,7 +43,7 @@ def _(Path, np, pd, plt):
         oni_val = row['ONI']
         tsm_calida = row['TSM_Calida']
         tsm_fria = row['TSM_Fria']
-    
+
         if oni_val < 0 and tsm_fria < 0:
             return 'La Niña'
         elif oni_val > 0 and tsm_calida > 0:
@@ -232,10 +232,10 @@ def _(Path, np, pd, plt):
         else:
             oni_shifted = df['ONI'].shift(lag)
             tsm_shifted = df['TSM_Dominante'].shift(lag)
-    
+
         oni_corr = df['Precipitacion'].corr(oni_shifted)
         tsm_corr = df['Precipitacion'].corr(tsm_shifted)
-    
+
         oni_corrs.append(oni_corr)
         tsm_corrs.append(tsm_corr)
 
