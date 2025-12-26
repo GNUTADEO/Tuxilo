@@ -102,6 +102,8 @@ services:
       - ../../scripts/dml/04_populate_rain_data.sql:/docker-entrypoint-initdb.d/04_populate_rain_data.sql:ro
       - ../../data/Caudal/caudal_stations.csv:/tmp/grdc_stations.csv:ro
       - ../../data/Caudal/caudal_flow.csv:/tmp/grdc_flow.csv:ro
+      - ../../data/Precipitación/estaciones/rain_stations.csv:/tmp/rain_stations.csv:ro
+      - ../../data/Precipitación/data/unificado/data.csv:/tmp/rain_data.csv:ro
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
       interval: 5s
