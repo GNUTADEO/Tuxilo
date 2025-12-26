@@ -29,9 +29,9 @@
 	function handleCorrer() {
 		if (selectedEmbalseId && selectedSemestreId) {
 			showNearestStation = true;
-			console.log('Showing nearest station for embalse:', selectedEmbalseId);
+			console.log('Showing nearest station for embalse:', selectedEmbalseId, 'and semestre:', selectedSemestreId);
 		} else {
-			alert('Por favor seleccione un embalse primero');
+			alert('Por favor seleccione un embalse y un semestre primero.');
 		}
 	}
 </script>
