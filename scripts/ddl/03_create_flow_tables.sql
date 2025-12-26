@@ -35,4 +35,3 @@ CREATE TABLE IF NOT EXISTS geodata.grdc_daily_flow (
 
 CREATE INDEX IF NOT EXISTS idx_grdc_station_date ON geodata.grdc_daily_flow(station_id, observation_date);
 CREATE INDEX IF NOT EXISTS idx_grdc_date ON geodata.grdc_daily_flow(observation_date);
-CREATE INDEX IF NOT EXISTS idx_grdc_month ON geodata.grdc_daily_flow(month_number);

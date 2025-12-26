@@ -3,10 +3,10 @@
 -- Imports daily flow data
 -- ============================================
 -- Load stations data
-\COPY geodata.flow_stations (station_id, river_name, station_name, latitude, longitude) FROM '/tmp/grdc_stations.csv' WITH CSV HEADER;
+\COPY geodata.flow_stations (station_id, station_name, latitude, longitude) FROM '/tmp/grdc_stations.csv' WITH CSV HEADER;
 
 -- Load daily flow data
-\COPY geodata.grdc_daily_flow (station_id, observation_date, flow_value, month_number, flow_value_imputed) FROM '/tmp/grdc_flow.csv' WITH CSV HEADER;
+\COPY geodata.grdc_daily_flow (station_id, observation_date, value) FROM '/tmp/grdc_flow.csv' WITH CSV HEADER;
 
 -- Log completion
 DO $$
