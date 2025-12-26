@@ -11,6 +11,8 @@ Secrets/
 !bun.lock
 
 # Cosas del LaTeX
+*.fdb_latexmk
+*.fls
 *.aux
 *.bcf
 *.lof

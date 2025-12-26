@@ -1,2 +1,53 @@
 \chapter{Análisis técnico y metodología}
 \label{chp:2}
+
+\section{Correlación}
+\label{sec:chp2-1}
+
+\section{Predicción}
+\label{sec:chp2-1}
+
+\subsection{Precipitación}
+
+\subsection{Caudales}
+Con base en los resultados obtenidos en la predicción de la precipitación, se estima el caudal de manera empírica a partir de relaciones lluvia–escorrentía, utilizando datos históricos de caudal y precipitación mensuales provenientes de estaciones hidrometeorológicas cercanas a cada embalse. Este enfoque se fundamenta en la premisa de que la precipitación constituye el principal aporte al caudal superficial y que su relación con la escorrentía puede representarse mediante expresiones matemáticas simplificadas, especialmente en contextos donde la disponibilidad de información detallada del balance hídrico es limitada [CITA]. 
+
+En este sentido, se emplea un modelo empírico de tipo potencia que relaciona el caudal con la precipitación mediante coeficientes de ajuste, los cuales integran las características hidrológicas de la cuenca, tales como su tamaño y su respuesta ante eventos de lluvia, según la siguiente expresión:
+\begin{equation}
+Q_{i,t} = a_r \cdot \left( P_{i,t} + P_{i,t-1} + P_{i,t-2} \right)^{b_r} \cdot \left( \frac{A_r}{A_i} \right)
+\end{equation}
+Donde:
+
+\begin{itemize}
+    \item $Q_{i,t}$ es el caudal estimado asociado al embalse $i$ en el período $t$, expresado en $m^{3}/s$.
+    \item $a_r$ es el coeficiente empírico de escala, obtenido a partir del ajuste entre los datos históricos de precipitación y caudal, y representa la magnitud media de la respuesta hidrológica de la cuenca.
+    \item $b_r$ es el exponente de la relación lluvia--escorrentía, el cual refleja la sensibilidad del caudal ante variaciones en la precipitación y el comportamiento hidrológico de la cuenca.
+    \item $P_{i,t}$ corresponde a la precipitación semestral proyectada en el área de influencia del embalse $i$ durante el período $t$ ($mm$).
+    \item $P_{i,t-1}$ y $P_{i,t-2}$ representan la precipitación semestral de los dos meses anteriores, incorporadas para considerar el efecto acumulado y retardado de la precipitación sobre la generación de escorrentía.
+    \item $A_r$ es el área de la macrocuenca en la que se encuentra el embalse $i$ ($km^{2}$).
+    \item $A_i$ es el área de drenaje del embalse, utilizada para normalizar el caudal estimado en función del tamaño relativo de la cuenca.
+    \item $t$ indica el período temporal de análisis (mes).
+    \item $i$ identifica cada uno de los embalses analizados.
+\end{itemize}
+
+Para la estimación de los coeficientes $a_r$ y $b_r$, se aplicó una regresión lineal en escala logarítmica, considerando la precipitación acumulada en una ventana temporal de tres meses, definida como:
+
+\begin{equation}
+P_{\text{cum}}(t) = P(t) + P(t-1) + P(t-2)
+\end{equation}
+
+A partir de esta definición, la relación empírica entre caudal y precipitación se linealiza mediante la transformación logarítmica, expresándose como:
+
+\begin{equation}
+\ln(Q) = \ln(a_r) + b_r \cdot \ln\left(P_{\text{cum}}(t)\right)
+\end{equation}
+
+donde los parámetros $a_r$ y $b_r$ se obtienen a partir del ajuste por mínimos cuadrados utilizando los datos históricos de precipitación y caudal.
+
+
+
+
+
+
+\section{Implementación}
+\label{sec:chp2-3}
