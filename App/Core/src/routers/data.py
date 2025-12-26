@@ -190,7 +190,7 @@ async def get_media_from_graph(graph_filename: str):
             content = f.read()
             
         # Search for "Media = value" pattern
-        match = re.search(r'Media = ([\d.]+)', content)
+        match = re.search(r'Valor 2025: ([\d.]+)', content)
         
         if not match:
             raise HTTPException(status_code=404, detail=f"Media value not found in '{graph_filename}'")
