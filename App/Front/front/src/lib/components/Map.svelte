@@ -5,6 +5,7 @@
 	let L: Leaflet;
 	let map: any;
 	let markers = new Map<number, any>();
+	let polygonLayers = new Map<number, any>();
 	let stationMarker: any = null;
 	let embalses: Embalse[] = [];
 	let estaciones_flow: Flow[] = [];
@@ -13,6 +14,8 @@
 	
 	let ICONS: {
       embalse: any;
+      embalseGreen: any;
+      embalseRed: any;
       flow: any;
       rain: any;
     };
@@ -57,9 +60,10 @@
 		onEmbalsesLoaded?: (embalses: Embalse[]) => void;
 		onSemestresLoaded?: (semestres: Semestre[]) => void;
 		showNearestStation?: boolean;
+		comparisonResult?: string | null;
 	}
 
-	let { selectedEmbalseId, onEmbalsesLoaded, onSemestresLoaded, showNearestStation = false }: Props = $props();
+	let { selectedEmbalseId, onEmbalsesLoaded, onSemestresLoaded, showNearestStation = false, comparisonResult = null }: Props = $props();
 
 	let mapElement: HTMLDivElement;
 
@@ -68,6 +72,24 @@
 		ICONS = {
           embalse: new L.Icon({
             iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png',
+            shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41],
+          }),
+		
+		  embalseGreen: new L.Icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png',
+            shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41],
+          }),
+		
+		  embalseRed: new L.Icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
             shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
             iconSize: [25, 41],
             iconAnchor: [12, 41],
@@ -135,33 +157,13 @@
 				markers.set(embalse.id, marker);
 			});
 
-			estaciones_flow.forEach((estacion_flow) => {
-				const marker = L.marker(
-					[estacion_flow.latitud, estacion_flow.longitud],
-					{ icon: ICONS.flow }
-				).addTo(map)
-					.bindPopup(`<b>${estacion_flow.nombre}</b><br>
-					    Latitud: ${estacion_flow.latitud}<br>
-					    Longitud: ${estacion_flow.longitud}`);
-				markers.set(estacion_flow.id, marker);
-			});
-
-			estaciones_rain.forEach((estacion_rain) => {
-				const marker = L.marker(
-					[estacion_rain.latitud, estacion_rain.longitud],
-					{ icon: ICONS.rain }
-				).addTo(map)
-					.bindPopup(`<b>${estacion_rain.nombre}</b><br>
-					    Latitud: ${estacion_rain.latitud}<br>
-					    Longitud: ${estacion_rain.longitud}`);
-				markers.set(estacion_rain.id, marker);
-			});
-
 			L.geoJSON(embalses_polygons_data, {
 				style: { color: '#3388ff', weight: 2, fillOpacity: 0.4 },
 				onEachFeature: (feature, layer) => {
 					layer.bindPopup(`<b>${feature.properties.nombre}</b><br>
                         Area: ${feature.properties.area_km2} km²`);
+					// Store the polygon layer by embalse ID for later color updates
+					polygonLayers.set(feature.id, layer);
 				}
 			}).addTo(map);
 
@@ -206,10 +208,55 @@
 		}
 	});
 
+	// Effect to update embalse polygon color based on comparison result
+	$effect(() => {
+		console.log('Polygon effect triggered:', {
+			map: !!map,
+			selectedEmbalseId,
+			comparisonResult,
+			hasPolygon: selectedEmbalseId ? polygonLayers.has(Number(selectedEmbalseId)) : false,
+			polygonLayersSize: polygonLayers.size
+		});
+		
+		if (map && selectedEmbalseId && polygonLayers.has(Number(selectedEmbalseId))) {
+			const polygonLayer = polygonLayers.get(Number(selectedEmbalseId));
+			const embalse = embalses.find((e) => e.id === Number(selectedEmbalseId));
+			
+			if (polygonLayer && embalse) {
+				// If comparisonResult is null, reset to default color
+				if (!comparisonResult) {
+					console.log('Resetting polygon color to default blue');
+					polygonLayer.setStyle({
+						color: '#3388ff',
+						fillColor: '#3388ff',
+						weight: 2,
+						fillOpacity: 0.4
+					});
+				} else {
+					// Determine color based on comparison result
+					const color = comparisonResult === 'above' ? '#22c55e' : '#ef4444'; // green : red
+					const fillColor = comparisonResult === 'above' ? '#22c55e' : '#ef4444';
+					
+					console.log('Changing polygon color to:', comparisonResult === 'above' ? 'green' : 'red');
+					
+					// Update the polygon style
+					polygonLayer.setStyle({
+						color: color,
+						fillColor: fillColor,
+						weight: 3,
+						fillOpacity: 0.6
+					});
+					
+					console.log(`✓ Updated polygon color for ${embalse.nombre} to ${comparisonResult === 'above' ? 'green' : 'red'}`);
+				}
+			}
+		}
+	});
+
 	async function fetchNearestStation(embalseId: number) {
 		try {
 			const L = await import('leaflet');
-			const response = await fetch(`http://localhost:8000/public/stations/nearest/${embalseId}`);
+			const response = await fetch(`http://localhost:8000/public/estaciones/flow/nearest/${embalseId}`);
 			const data = await response.json();
 
 			if (data.station && map) {
@@ -221,18 +268,18 @@
 				const station: Station = data.station;
 
 				// Create custom icon for station
-				const stationIcon = L.divIcon({
-					className: 'custom-station-marker',
-					html: `<div style="background-color: #ef4444; width: 30px; height: 30px; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.3);"></div>`,
-					iconSize: [30, 30],
-					iconAnchor: [15, 15]
-				});
+				// const stationIcon = L.divIcon({
+				// 	className: 'custom-station-marker',
+				// 	html: `<div style="background-color: #ef4444; width: 30px; height: 30px; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.3);"></div>`,
+				// 	iconSize: [30, 30],
+				// 	iconAnchor: [15, 15]
+				// });
 
-				stationMarker = L.marker([station.latitude, station.longitude], {
-					icon: stationIcon
-				}).addTo(map).bindPopup(`<b>${station.station_name}</b><br>
-							  River: ${station.river_name}<br>
-							  Distance: ${station.distance_km} km`);
+				// stationMarker = L.marker([station.latitude, station.longitude], {
+				// 	icon: stationIcon
+				// }).addTo(map).bindPopup(`<b>${station.station_name}</b><br>
+				// 			  River: ${station.river_name}<br>
+				// 			  Distance: ${station.distance_km} km`);
 
 				console.log('Nearest station added:', station.station_name);
 			}
