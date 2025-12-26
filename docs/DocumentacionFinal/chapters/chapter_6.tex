@@ -19,3 +19,103 @@ En cuanto al manejo de los datos geográficos se obtuvo como resultado el \textt
 
 \subsection{Precipitación y caudal Proyectados}
 Como resultado de la integración de estos componentes, se generó el archivo \url{data/Calculo_caudal/caudales_proyectados_CORREGIDO.csv}, en el cual se presentan las proyecciones de precipitación y caudal para el periodo comprendido entre 2025-1S y 2029-2S, así como los valores de las distintas variables empleadas en el modelo.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Aplicativo web}
+
+
+Uno de los servicios es el aplicativo web que se puede observar en la figura~\ref{fig:web-inicio} mostrando los controles para realizar la consulta por Embalse y Semestre con un lapso de tiempo de 5 años (10 semestres) desde 2025-1S a 2029-2S, en la figura~\ref{fig:embalses-listado} y~\ref{fig:semestres-listado} se muestra esta información.
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{img/web-final.png}
+  \caption{Pantalla de inicio del aplicativo}
+  \label{fig:web-inicio}
+\end{figure}
+
+
+\begin{figure}[H]
+    \centering
+
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{img/web-embalses.png}
+        \caption{Listado de embalses}
+        \label{fig:embalses-listado}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{img/web-semestres.png}
+        \caption{Listado de semestres}
+        \label{fig:semestres-listado}
+    \end{subfigure}
+
+    \caption{Selectores para la consulta}
+    \label{fig:selectores}
+\end{figure}
+
+
+
+Cuando se selecciona el embalse el mapa hace zoom a dicha región mostrando también su serie de tiempo respectiva, un ejemplo se ve en la figura~\ref{fig:web-sisga}.
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{img/web-sisga.png}
+  \caption{Embalse del sisga junto con su serie de tiempo.}
+  \label{fig:web-sisga}
+\end{figure}
+  
+
+
+Una vez seleccionado el semestre se puede dar clic en el botón de \url{Consultar}. Este mostrará el embalse en un color rojo o verde dependiendo de la diferencia y el cambio del caudal, un ejemplo se muestra en la figura~\ref{fig:sisga-rojo} donde se hace la consulta para el Embalse del Sisga en el semestre 2025-2S, se observa que su nivel va a bajar para este período de tiempo. 
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{img/sisga-rojo.png}
+  \caption{Consulta del nivel del sisga para el semestre 2025-2S}
+  \label{fig:sisga-rojo}
+\end{figure}
+
+

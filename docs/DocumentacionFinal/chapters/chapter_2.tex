@@ -73,3 +73,45 @@ Posterior a dicho cálculo, se realiza una comparación entre el caudal estimado
 \section{Implementación}
 \label{sec:chp2-3}
 
+La implementación de la solución se estructura siguiendo una arquitectura modular de tres capas que separa el almacenamiento de datos, la lógica de negocio y la presentación de resultados. Esta metodología facilita el mantenimiento y escalabilidad del sistema.
+
+\subsection{Metodología de Desarrollo}
+
+El desarrollo del proyecto se llevó a cabo en las siguientes etapas:
+
+
+\subsection{Arquitectura del Sistema}
+
+La solución se implementa mediante contenedores Docker orquestados con Docker Compose, definidos en \texttt{App/Deploy/compose.yaml}. Los componentes principales son:
+
+\begin{itemize}
+    \item \textbf{Base de datos}: PostgreSQL con extensión PostGIS para gestión de datos geoespaciales y series temporales
+    \item \textbf{Backend}: API REST desarrollada con FastAPI que expone endpoints para consulta de embalses, estaciones y proyecciones
+    \item \textbf{Frontend}: Aplicación web con SvelteKit que presenta un mapa interactivo usando Leaflet sobre capas de OpenStreetMap
+    \item \textbf{Proxy inverso}: NGINX para enrutamiento de peticiones y servicio de contenido estático
+\end{itemize}
+
+La inicialización de la base de datos se automatiza mediante scripts SQL ubicados en \texttt{scripts/ddl/} (definición de esquemas) y \texttt{scripts/dml/} (carga de datos), que se ejecutan automáticamente al levantar los contenedores.
+
+\subsection{Flujo de Datos}
+
+El flujo general del sistema sigue la siguiente secuencia:
+
+\begin{enumerate}
+    \item Los datos procesados se cargan en PostgreSQL mediante archivos CSV montados como volúmenes
+    \item El backend consulta la base de datos y expone la información mediante API REST
+    \item El frontend consume estos endpoints y presenta los datos de forma visual
+    \item Los gráficos estadísticos se generan previamente con Plotly y se sirven como HTML estático
+    \item El usuario selecciona embalse y período, el sistema consulta la proyección y colorea el mapa según el resultado (verde para aumento, rojo para disminución de caudal)
+\end{enumerate}
+
+\subsection{Consideraciones de Implementación}
+
+\begin{itemize}
+    \item Los coeficientes y caudales se almacenan con tipo \texttt{NUMERIC(25,16)} en PostgreSQL para mantener precisión numérica
+    \item Las geometrías de embalses se convierten de shapefile a SQL mediante la herramienta \texttt{shp2pgsql}
+    \item El cálculo de áreas de drenaje se realizó con GRASS GIS utilizando el DEM y las herramientas \texttt{r.fill.dir}, \texttt{r.watershed} y \texttt{r.water.outlet}
+    \item La configuración del sistema se centraliza en variables de entorno (\texttt{.env}) y secretos Docker para credenciales sensibles
+\end{itemize}
+
+Esta metodología de implementación permite reproducibilidad completa del entorno mediante contenedores y facilita el despliegue en diferentes infraestructuras.
