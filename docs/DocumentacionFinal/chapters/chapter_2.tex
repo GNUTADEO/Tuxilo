@@ -6,6 +6,11 @@
 
 \section{Predicción}
 \label{sec:chp2-1}
+El modelo predictivo se estructura a partir de la integración de índices climáticos de gran escala que presentan una correlación significativa con las distintas regiones del país, identificada a partir del análisis desarrollado en el apartado anterior. Estos índices se emplean como variables explicativas para la estimación de la precipitación proyectada y, posteriormente, para el cálculo del caudal asociado a cada embalse.
+
+Dicho modelo se aplica para la predicción del periodo comprendido entre 2025-1S y 2029-2S y se desarrolla en dos etapas consecutivas. En primer lugar, se modela la precipitación futura a partir de la relación estadística entre los índices climáticos y los registros históricos de precipitación. En una segunda etapa, los valores de precipitación proyectada se incorporan en un modelo empírico lluvia–escorrentía, con el fin de estimar el caudal esperado en cada embalse. Finalmente, los caudales proyectados se analizan en comparación con la tendencia histórica, lo que permite identificar posibles escenarios de incremento o disminución del volumen almacenado en los embalses.
+
+A continuación, se describen de manera detallada cada una de las etapas que componen el modelo predictivo.
 
 \subsection{Precipitación}
 
@@ -45,7 +50,7 @@ A partir de esta definición, la relación empírica entre caudal y precipitaci�
 
 donde los parámetros $a_r$ y $b_r$ se obtienen a partir del ajuste por mínimos cuadrados utilizando los datos históricos de precipitación y caudal.
 
-
+Posterior a dicho cálculo, se realiza una comparación entre el caudal estimado para cada embalse y la tendencia de los caudales históricos, registrada en el repositorio ***. Esta comparación permite identificar los períodos en los que el caudal proyectado se sitúa por encima de la tendencia histórica, lo cual se asocia con una fase de aumento del aporte hídrico y, por ende, con una posible subida del nivel del embalse. En contraste, cuando el caudal proyectado se ubica por debajo de la línea de tendencia histórica, se interpreta como una disminución de los aportes, lo que sugiere una reducción del volumen almacenado en el embalse.
 
 
 
