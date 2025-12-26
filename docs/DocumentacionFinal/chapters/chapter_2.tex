@@ -15,9 +15,11 @@ A continuación, se describen de manera detallada cada una de las etapas que com
 \subsection{Precipitación}
 
 \subsection{Caudales}
-Con base en los resultados obtenidos en la predicción de la precipitación, se estima el caudal de manera empírica a partir de relaciones lluvia–escorrentía, utilizando datos históricos de caudal y precipitación mensuales provenientes de estaciones hidrometeorológicas cercanas a cada embalse. Este enfoque se fundamenta en la premisa de que la precipitación constituye el principal aporte al caudal superficial y que su relación con la escorrentía puede representarse mediante expresiones matemáticas simplificadas, especialmente en contextos donde la disponibilidad de información detallada del balance hídrico es limitada [CITA]. 
+Con base en los resultados obtenidos en la predicción de la precipitación, se estima el caudal de manera empírica a partir de relaciones lluvia–escorrentía, utilizando datos históricos de caudal y precipitación mensuales provenientes de estaciones hidrometeorológicas cercanas a cada embalse quienes se encuentran en el repositorio como \url{data/Calculo_caudal/Caudal_Consolidado_Completo.csv}. Este enfoque se fundamenta en la premisa de que la precipitación constituye el principal aporte al caudal superficial y que su relación con la escorrentía puede representarse mediante expresiones matemáticas simplificadas, especialmente en contextos donde la disponibilidad de información detallada del balance hídrico es limitada\cite{sitterson2018_overview_rainfall_runoff}. 
 
-En este sentido, se emplea un modelo empírico de tipo potencia que relaciona el caudal con la precipitación mediante coeficientes de ajuste, los cuales integran las características hidrológicas de la cuenca, tales como su tamaño y su respuesta ante eventos de lluvia, según la siguiente expresión:
+En este sentido, se emplea un modelo empírico de tipo potencia, evidenciado en el repositorio como \url{    Tuxilo/notebooks
+
+/CORRECTED_CAUDAL_CALCULATION.py}, que relaciona el caudal con la precipitación mediante coeficientes de ajuste, los cuales integran las características hidrológicas de la cuenca, tales como su tamaño y su respuesta ante eventos de lluvia, según la siguiente expresión:
 
 \begin{equation}
 Q_{i,t} = a_r \cdot \left( P_{i,t} + P_{i,t-1} + P_{i,t-2} \right)^{b_r} \cdot \left( \frac{A_r}{A_i} \right)
@@ -36,7 +38,7 @@ Donde:
     \item $i$ identifica cada uno de los embalses analizados.
 \end{itemize}
 
-Para la estimación de los coeficientes $a_r$ y $b_r$, se aplicó una regresión lineal en escala logarítmica, considerando la precipitación acumulada en una ventana temporal de tres meses, definida como:
+Para la estimación de los coeficientes $a_r$ y $b_r$, se aplicó una regresión lineal en escala logarítmica, considerando la precipitación acumulada en una ventana temporal de tres meses, código presente en \url{notebooks/improve_br_cumulative.py}, definida como:
 
 \begin{equation}
 P_{\text{cum}}(t) = P(t) + P(t-1) + P(t-2)
@@ -49,6 +51,17 @@ A partir de esta definición, la relación empírica entre caudal y precipitaci�
 \end{equation}
 
 donde los parámetros $a_r$ y $b_r$ se obtienen a partir del ajuste por mínimos cuadrados utilizando los datos históricos de precipitación y caudal.
+
+Para la obtención de las áreas $A_r$ y $A_i$, se utilizó la información geográfica de zonificación hidrográfica y el Modelo Digital de Elevación (DEM), descritas en el capítulo siguiente. El cálculo del área $A_r$ se realizó en QGIS mediante la herramienta de cálculo de campos, aplicando la expresión $area/1000000$, posterior a la separación de las macrocuencas y a la aplicación de la herramienta \textit{merge}.  
+
+Para la estimación del área $A_i$, se hizo uso de las herramientas del \textit{toolbox} del aplicativo GRASS GIS, correspondientes a los procesos de análisis hidrológico sobre datos ráster y vectoriales \cite{alonso2016_puedo_grass_gis}. En primer lugar, se empleó la función \texttt{r.fill.dir} para corregir depresiones y espacios en blanco presentes en el archivo ráster del DEM. Posteriormente, se utilizó la herramienta \texttt{r.watershed} para obtener la dirección de flujo y la red de drenaje de la cuenca a partir del relieve, considerando una escala mínima de análisis de 1000 unidades, como se muestra en la figura~\ref{fig:flow_dir}. Finalmente, se aplicó la herramienta \texttt{r.water.outlet}, en la cual se definió el punto de descarga correspondiente al embalse, permitiendo delimitar el área de influencia de drenaje asociada a cada uno, dando como resultado un archivo vectorial en formato \texttt{.shp}.
+ 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{img/flow_dir.jpeg}
+  \caption{Flow direction y drenajes obtenidos por el DEM de la región.}
+  \label{fig:flow_dir}
+\end{figure}
 
 Posterior a dicho cálculo, se realiza una comparación entre el caudal estimado para cada embalse y la tendencia de los caudales históricos, registrada en el repositorio ***. Esta comparación permite identificar los períodos en los que el caudal proyectado se sitúa por encima de la tendencia histórica, lo cual se asocia con una fase de aumento del aporte hídrico y, por ende, con una posible subida del nivel del embalse. En contraste, cuando el caudal proyectado se ubica por debajo de la línea de tendencia histórica, se interpreta como una disminución de los aportes, lo que sugiere una reducción del volumen almacenado en el embalse.
 
