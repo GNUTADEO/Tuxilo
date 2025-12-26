@@ -1,4 +1,4 @@
-station_id,station_name,latitude,longitude
+id,name,latitude,longitude
 3102010,COTOCA ABAJO  - AUT [13077060],9.2244,-75.8344
 3103010,NARINO - AUT [21237010],4.3878,-74.8384
 3103015,EL BANCO - AUT [25027020],8.9925,-73.9694

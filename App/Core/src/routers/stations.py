@@ -1,18 +1,29 @@
-from this import s
 from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import text
 from sqlalchemy import select
 from sqlalchemy import cast
 from geoalchemy2 import Geography
-from geoalchemy2.functions import ST_Intersects, ST_Transform, ST_SetSRID, ST_MakePoint, ST_Distance
+from geoalchemy2.functions import ST_Transform, ST_SetSRID, ST_MakePoint, ST_Distance
 
 from shared_db import get_db
 
-from models import FlowStation, RainStation, ReservoirDot, ReservoirPolygon
+from models import FlowStation, RainStation, ReservoirDot
 
-router = APIRouter(tags=["Stations"], prefix="/stations")
+router = APIRouter(tags=["Stations"], prefix="/estaciones")
 
+FLOW_STATION_IDS = [
+    21080030,
+    21160040,
+    21200620,
+    21200780,
+    21201180,
+    21201320,
+    23050250,
+    23085110,
+    24015120,
+    26030150,
+    35060100,
+]
 
 @router.get(
     "/flow",
@@ -24,35 +35,34 @@ async def get_all_flow_stations(
     """Obtiene todas las estaciones con sus coordenadas"""
     stmt = (
         select(
-            FlowStation.station_id,
-            FlowStation.station_name,
-            FlowStation.river_name,
+            FlowStation.id,
+            FlowStation.name,
             FlowStation.latitude,
             FlowStation.longitude
         )
         .where(
             FlowStation.latitude.is_not(None),
             FlowStation.longitude.is_not(None),
-            FlowStation.station_name.is_not(None)
+            FlowStation.name.is_not(None),
         )
-        .order_by(FlowStation.station_name)
+        .order_by(FlowStation.name)
     )
 
     result = await db.execute(stmt)
     rows = result.mappings().all()
     
-    stations = [
+    features = [
         {
-            "station_id": row['station_id'],
-            "station_name": row['station_name'],
-            "river_name": row['river_name'],
-            "latitude": float(row['latitude']) if row['latitude'] else None,
-            "longitude": float(row['longitude']) if row['longitude'] else None,
+            "id": row["id"],
+            "type": "Feature",
+            "nombre": row["name"],
+            "latitud": float(row["latitude"]) if row["latitude"] else None,
+            "longitud": float(row["longitude"]) if row["longitude"] else None,
         }
         for row in rows
     ]
     
-    return {"stations": stations}
+    return {"type": "FeatureCollection", "features": features}
 
 
 @router.get(
@@ -65,35 +75,34 @@ async def get_all_rain_stations(
     """Obtiene todas las estaciones con sus coordenadas"""
     stmt = (
         select(
-            RainStation.station_id,
-            RainStation.station_name,
-            RainStation.river_name,
+            RainStation.id,
+            RainStation.name,
             RainStation.latitude,
             RainStation.longitude
         )
         .where(
             RainStation.latitude.is_not(None),
             RainStation.longitude.is_not(None),
-            RainStation.station_name.is_not(None)
+            RainStation.name.is_not(None)
         )
-        .order_by(RainStation.station_name)
+        .order_by(RainStation.name)
     )
 
     result = await db.execute(stmt)
     rows = result.mappings().all()
     
-    stations = [
+    features = [
         {
-            "station_id": row['station_id'],
-            "station_name": row['station_name'],
-            "river_name": row['river_name'],
-            "latitude": float(row['latitude']) if row['latitude'] else None,
-            "longitude": float(row['longitude']) if row['longitude'] else None,
+            "id": row["id"],
+            "type": "Feature",
+            "nombre": row["name"],
+            "latitud": float(row["latitude"]) if row["latitude"] else None,
+            "longitud": float(row["longitude"]) if row["longitude"] else None,
         }
         for row in rows
     ]
     
-    return {"stations": stations}
+    return {"type": "FeatureCollection", "features": features}
 
 
 @router.get("/flow/nearest/{embalse_id}")
@@ -105,7 +114,7 @@ async def get_nearest_flow_station(
 
     # Subquery to get the embalse geometry
     embalse_subq = select(ReservoirDot.geom).where(
-        ReservoirDot.reservoir_id == embalse_id
+        ReservoirDot.id == embalse_id
     ).limit(1).scalar_subquery()
 
     # Calculate distance
@@ -117,9 +126,8 @@ async def get_nearest_flow_station(
     # Build the query with distance calculation
     stmt = (
         select(
-            FlowStation.station_id,
-            FlowStation.station_name,
-            FlowStation.river_name,
+            FlowStation.id,
+            FlowStation.name,
             FlowStation.latitude,
             FlowStation.longitude,
             distance_km
@@ -142,9 +150,8 @@ async def get_nearest_flow_station(
     # Return clean dict
     return {
         "station": {
-            "station_id": row["station_id"],
-            "station_name": row["station_name"],
-            "river_name": row["river_name"],
+            "station_id": row["id"],
+            "station_name": row["name"],
             "latitude": float(row["latitude"]) if row["latitude"] else None,
             "longitude": float(row["longitude"]) if row["longitude"] else None,
             "distance_km": round(float(row["distance_km"]), 2) if row["distance_km"] else None,

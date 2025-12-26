@@ -96,14 +96,17 @@ services:
       - ../../scripts/ddl/02_create_embalses_points.sql:/docker-entrypoint-initdb.d/02_create_embalses_points.sql:ro
       - ../../scripts/ddl/03_create_flow_tables.sql:/docker-entrypoint-initdb.d/03_create_flow_tables.sql:ro
       - ../../scripts/ddl/04_create_rain_tables.sql:/docker-entrypoint-initdb.d/04_create_rain_tables.sql:ro
+      - ../../scripts/ddl/05_create_predicted.sql:/docker-entrypoint-initdb.d/05_create_predicted.sql:ro
       - ../../scripts/dml/01_populate_embalses_geometry.sql:/docker-entrypoint-initdb.d/01_populate_embalses_geometry.sql:ro
       - ../../scripts/dml/02_populate_embalses_points.sql:/docker-entrypoint-initdb.d/02_populate_embalses_points.sql:ro
       - ../../scripts/dml/03_populate_flow_data.sql:/docker-entrypoint-initdb.d/03_populate_flow_data.sql:ro
       - ../../scripts/dml/04_populate_rain_data.sql:/docker-entrypoint-initdb.d/04_populate_rain_data.sql:ro
+      - ../../scripts/dml/05_populate_predicted.sql:/docker-entrypoint-initdb.d/05_populate_predicted.sql:ro
       - ../../data/Caudal/caudal_stations.csv:/tmp/grdc_stations.csv:ro
       - ../../data/Caudal/caudal_flow.csv:/tmp/grdc_flow.csv:ro
       - ../../data/Precipitación/estaciones/rain_stations.csv:/tmp/rain_stations.csv:ro
       - ../../data/Precipitación/data/unificado/data.csv:/tmp/rain_data.csv:ro
+      - ../../data/Calculo_caudal/predicted_data.csv:/tmp/predicted_data.csv:ro
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
       interval: 5s

@@ -8,14 +8,13 @@
 -- Longitude (DD):      -75.83444444
 
 CREATE TABLE IF NOT EXISTS geodata.rain_stations (
-    station_id VARCHAR(50) PRIMARY KEY,
-    station_name VARCHAR(255) NOT NULL,
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
     latitude DECIMAL(10, 8) NOT NULL, --Por qué decimal y no NUMERIC?
     longitude DECIMAL(11, 8) NOT NULL --Por qué decimal y no NUMERIC?
 );
 
-CREATE INDEX IF NOT EXISTS idx_stations_river ON geodata.rain_stations(river_name);
-CREATE INDEX IF NOT EXISTS idx_stations_name ON geodata.rain_stations(station_name);
+CREATE INDEX IF NOT EXISTS idx_rain_stations_name ON geodata.rain_stations(name);
 
 -- =====================================================
 -- GRDC Daily Flow Data Table
@@ -24,14 +23,14 @@ CREATE INDEX IF NOT EXISTS idx_stations_name ON geodata.rain_stations(station_na
 -- YYYY-MM-DD;Value;month;Value_imputed
 -- 1970-03-01;146.3;3;146.3
 
-CREATE TABLE IF NOT EXISTS geodata.rain_data (
+CREATE TABLE IF NOT EXISTS data.rain_data (
     id BIGSERIAL PRIMARY KEY,
-    station_id VARCHAR(50) NOT NULL,
+    station_id BIGSERIAL NOT NULL,
     observation_date DATE NOT NULL,
     value DECIMAL(12, 3),
-    FOREIGN KEY (station_id) REFERENCES geodata.rain_stations(station_id) ON DELETE CASCADE,
+    FOREIGN KEY (station_id) REFERENCES geodata.rain_stations(id) ON DELETE CASCADE,
     UNIQUE (station_id, observation_date)
 );
 
-CREATE INDEX IF NOT EXISTS idx_grdc_station_date ON geodata.rain_data(station_id, observation_date);
-CREATE INDEX IF NOT EXISTS idx_grdc_date ON geodata.rain_data(observation_date);
+CREATE INDEX IF NOT EXISTS idx_rain_station_date ON data.rain_data(station_id, observation_date);
+CREATE INDEX IF NOT EXISTS idx_rain_date ON data.rain_data(observation_date);

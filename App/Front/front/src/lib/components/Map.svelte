@@ -7,16 +7,36 @@
 	let markers = new Map<number, any>();
 	let stationMarker: any = null;
 	let embalses: Embalse[] = [];
+	let estaciones_flow: Flow[] = [];
+	let estaciones_rain: Rain[] = [];
 	let semestres: Semestre[] = [];
+	
+	let ICONS: {
+      embalse: any;
+      flow: any;
+      rain: any;
+    };
 
 	interface Semestre {
+		id: number;
+		periodo: string;
+	}
+
+	interface Embalse {
 		id: number;
 		nombre: string;
 		latitud: number;
 		longitud: number;
 	}
 
-	interface Embalse {
+	interface Flow {
+		id: number;
+		nombre: string;
+		latitud: number;
+		longitud: number;
+	}
+
+	interface Rain {
 		id: number;
 		nombre: string;
 		latitud: number;
@@ -35,15 +55,44 @@
 	interface Props {
 		selectedEmbalseId?: number | null;
 		onEmbalsesLoaded?: (embalses: Embalse[]) => void;
+		onSemestresLoaded?: (semestres: Semestre[]) => void;
 		showNearestStation?: boolean;
 	}
 
-	let { selectedEmbalseId, onEmbalsesLoaded, showNearestStation = false }: Props = $props();
+	let { selectedEmbalseId, onEmbalsesLoaded, onSemestresLoaded, showNearestStation = false }: Props = $props();
 
 	let mapElement: HTMLDivElement;
 
 	onMount(async () => {
 		L = await import('leaflet');
+		ICONS = {
+          embalse: new L.Icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png',
+            shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41],
+          }),
+        
+          flow: new L.Icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png',
+            shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41],
+          }),
+        
+          rain: new L.Icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+            shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41],
+          }),
+        };
 		map = L.map(mapElement).setView([4.711, -74.0721], 6);
 
 		// Add OpenStreetMap tile layer
@@ -55,28 +104,60 @@
 
 		// Fetch embalses from API
 		try {
-			const embalses_response = await fetch('http://localhost:8000/public/embalses/');
-			const embalses_response_geojson = await fetch('http://localhost:8000/public/embalses/geojson');
-			
+			const embalses_points_response = await fetch('http://localhost:8000/public/embalses/points');
+			const estaciones_flow_points_response = await fetch('http://localhost:8000/public/estaciones/flow');
+			const estaciones_rain_points_response = await fetch('http://localhost:8000/public/estaciones/rain');
+
+			const embalses_polygons_response = await fetch('http://localhost:8000/public/embalses/polygons');
 			const semestres_response = await fetch('http://localhost:8000/public/data/semestres');
 
-			const embalses_data = await embalses_response.json();
-			const embalses_geojson = await embalses_response_geojson.json();
-			
+			const embalses_points_data = await embalses_points_response.json();
+			const estaciones_flow_data = await estaciones_flow_points_response.json();
+			const estaciones_rain_data = await estaciones_rain_points_response.json();
+
+			const embalses_polygons_data = await embalses_polygons_response.json();
 			const semestres_data = await semestres_response.json();
 
-			embalses = embalses_data.embalses;
-			semestres = semestres_data.semestres;
+			embalses = embalses_points_data.features;
+			estaciones_flow = estaciones_flow_data.features;
+			estaciones_rain = estaciones_rain_data.features;
+			semestres = semestres_data.features;
 
 			// Add markers for each embalse
 			embalses.forEach((embalse) => {
-				const marker = L.marker([embalse.latitud, embalse.longitud])
-					.addTo(map)
-					.bindPopup(`<b>${embalse.nombre}</b>`);
+				const marker = L.marker(
+					[embalse.latitud, embalse.longitud],
+					{ icon: ICONS.embalse }
+				).addTo(map)
+					.bindPopup(`<b>${embalse.nombre}</b><br>
+					    Latitud: ${embalse.latitud}<br>
+					    Longitud: ${embalse.longitud}`);
 				markers.set(embalse.id, marker);
 			});
 
-			L.geoJSON(embalses_geojson, {
+			estaciones_flow.forEach((estacion_flow) => {
+				const marker = L.marker(
+					[estacion_flow.latitud, estacion_flow.longitud],
+					{ icon: ICONS.flow }
+				).addTo(map)
+					.bindPopup(`<b>${estacion_flow.nombre}</b><br>
+					    Latitud: ${estacion_flow.latitud}<br>
+					    Longitud: ${estacion_flow.longitud}`);
+				markers.set(estacion_flow.id, marker);
+			});
+
+			estaciones_rain.forEach((estacion_rain) => {
+				const marker = L.marker(
+					[estacion_rain.latitud, estacion_rain.longitud],
+					{ icon: ICONS.rain }
+				).addTo(map)
+					.bindPopup(`<b>${estacion_rain.nombre}</b><br>
+					    Latitud: ${estacion_rain.latitud}<br>
+					    Longitud: ${estacion_rain.longitud}`);
+				markers.set(estacion_rain.id, marker);
+			});
+
+			L.geoJSON(embalses_polygons_data, {
 				style: { color: '#3388ff', weight: 2, fillOpacity: 0.4 },
 				onEachFeature: (feature, layer) => {
 					layer.bindPopup(`<b>${feature.properties.nombre}</b><br>
@@ -86,6 +167,9 @@
 
 			if (onEmbalsesLoaded) {
 				onEmbalsesLoaded(embalses);
+			}
+			if (onSemestresLoaded) {
+				onSemestresLoaded(semestres);
 			}
 		} catch (error) {
 			console.error('Error fetching embalses:', error);

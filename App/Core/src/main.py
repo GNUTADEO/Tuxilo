@@ -1,5 +1,3 @@
-import os
-import logging
 
 from typing import Literal
 from fastapi import FastAPI
