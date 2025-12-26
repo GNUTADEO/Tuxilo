@@ -14,6 +14,29 @@ from models import FlowData, RainData
 
 router = APIRouter(tags=["Data"], prefix="/data")
 
+@router.get(
+    "/semestres",
+    operation_id="get_all_semesters",
+)
+async def get_all_semesters(db: AsyncSession = Depends(get_db)):
+    """Obtiene todos los semestres del modelo"""
+
+    start_year = 2025
+    end_year = 2029
+    semesters_per_year = [1, 2]
+
+    semestres_list = []
+
+    for year in range(start_year, end_year + 1):
+        for sem in semesters_per_year:
+            sem_id = f"{year}-{sem}"
+            semestres_list.append({
+                "id": sem_id,
+                "nombre": sem_id
+            })
+
+    return {"semestres": semestres_list}
+
 
 @router.get(
     "/flow",
@@ -39,7 +62,8 @@ async def get_all_flow_data(
         {
             "id": row.id,
             "station_id": row.station_id,
-            "flow_value": row.flow_value,
+            "date": row.observation_date,
+            "value": row.flow_value,
         }
         for row in rows
     ]
