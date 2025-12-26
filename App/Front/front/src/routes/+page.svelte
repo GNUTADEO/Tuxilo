@@ -11,6 +11,7 @@
 	let selectedPeriodo = $state(null);
 	let mediaValue = $state(null);
 	let comparisonResult = $state(null);
+	let caudalChange = $state(null);
 
 	// Mapping of embalse IDs to their corresponding HTML graph files (rain stations)
 	const embalseGraphMapping = {
@@ -50,6 +51,7 @@
 		comparisonResult = null;
 		qProyectadoData = null;
 		mediaValue = null;
+		caudalChange = null;
 	}
 
 	function handleSemestreChange(event) {
@@ -67,6 +69,7 @@
 		comparisonResult = null;
 		qProyectadoData = null;
 		mediaValue = null;
+		caudalChange = null;
 	}
 
 	async function handleCorrer() {
@@ -103,7 +106,11 @@
 					comparisonResult = 'below'; // Red
 				}
 				
+				// Calculate the caudal change (increase or decrease)
+				caudalChange = qProyectadoData.q_proyectado - mediaValue;
+				
 				console.log('Comparison Result:', comparisonResult, `(${qProyectadoData.q_proyectado} vs ${mediaValue})`);
+				console.log('Caudal Change:', caudalChange);
 				
 			} catch (error) {
 				console.error('Error fetching data:', error);
@@ -169,6 +176,7 @@
                 onSemestresLoaded={(s) => semestres = s}
                 {showNearestStation}
                 {comparisonResult}
+                {caudalChange}
             />
 		</div>
 
