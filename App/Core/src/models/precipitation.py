@@ -10,10 +10,14 @@ class RainData(Base):
     __tablename__ = "rain_data"
     __table_args__ = {"schema": "data", "extend_existing": True}
 
-    id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True)
+    id: Mapped[int] = mapped_column(
+        BigInteger,
+        primary_key=True,
+        autoincrement=True
+    )
     station_id: Mapped[str] = mapped_column(
-        String(50),
-        ForeignKey("geodata.rain_stations.station_id", ondelete="CASCADE"),
+        BigInteger,
+        ForeignKey("geodata.rain_stations.id", ondelete="CASCADE"),
         nullable=False
     )
     observation_date: Mapped[date] = mapped_column(Date, nullable=False)

@@ -8,13 +8,13 @@
 -- Longitude (DD):      -75.83444444
 
 CREATE TABLE IF NOT EXISTS geodata.flow_stations (
-    station_id VARCHAR(50) PRIMARY KEY,
-    station_name VARCHAR(255) NOT NULL,
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
     latitude DECIMAL(10, 8) NOT NULL, 
     longitude DECIMAL(11, 8) NOT NULL 
 );
 
-CREATE INDEX IF NOT EXISTS idx_stations_name ON geodata.flow_stations(station_name);
+CREATE INDEX IF NOT EXISTS idx_stations_name ON geodata.flow_stations(name);
 
 -- =====================================================
 -- GRDC Daily Flow Data Table
@@ -25,10 +25,10 @@ CREATE INDEX IF NOT EXISTS idx_stations_name ON geodata.flow_stations(station_na
 
 CREATE TABLE IF NOT EXISTS data.grdc_daily_flow (
     id BIGSERIAL PRIMARY KEY,
-    station_id VARCHAR(50) NOT NULL,
+    station_id BIGSERIAL NOT NULL,
     observation_date DATE NOT NULL,
     value DECIMAL(12, 3),
-    FOREIGN KEY (station_id) REFERENCES geodata.flow_stations(station_id) ON DELETE CASCADE,
+    FOREIGN KEY (station_id) REFERENCES geodata.flow_stations(id) ON DELETE CASCADE,
     UNIQUE (station_id, observation_date)
 );
 

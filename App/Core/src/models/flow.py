@@ -10,10 +10,14 @@ class FlowData(Base):
     __tablename__ = "grdc_daily_flow"
     __table_args__ = {"schema": "data", "extend_existing": True}
 
-    id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True)
+    id: Mapped[int] = mapped_column(
+        BigInteger,
+        primary_key=True,
+        autoincrement=True
+    )
     station_id: Mapped[str] = mapped_column(
-        String(50),
-        ForeignKey("geodata.flow_stations.station_id", ondelete="CASCADE"),
+        BigInteger,
+        ForeignKey("geodata.flow_stations.id", ondelete="CASCADE"),
         nullable=False
     )
     observation_date: Mapped[date] = mapped_column(Date, nullable=False)

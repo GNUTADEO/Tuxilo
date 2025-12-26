@@ -1,9 +1,6 @@
-from datetime import datetime
-
-from sqlalchemy.orm import Mapped, mapped_column
-from sqlalchemy import String, Integer, Numeric, DateTime, text
-
 from geoalchemy2 import Geometry
+from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy import String, BigInteger, Numeric
 
 from .base import Base
 
@@ -11,30 +8,14 @@ class ReservoirDot(Base):
     __tablename__ = "embalses_points"
     __table_args__ = {"schema": "geodata", "extend_existing": True}
 
-    reservoir_id: Mapped[int] = mapped_column(
-        Integer,
+    id: Mapped[int] = mapped_column(
+        BigInteger,
         primary_key=True,
         autoincrement=True
     )
-
-    created_at: Mapped[datetime] = mapped_column(
-        DateTime,
-        server_default=text("CURRENT_TIMESTAMP"),
-        nullable=False
-    )
-
-    nombre: Mapped[str | None] = mapped_column(
-        String(255)
-    )
-
-    latitud: Mapped[float | None] = mapped_column(
-        Numeric
-    )
-
-    longitud: Mapped[float | None] = mapped_column(
-        Numeric
-    )
-
+    name: Mapped[str | None] = mapped_column(String(255))
+    latitude: Mapped[float | None] = mapped_column(Numeric)
+    longitude: Mapped[float | None] = mapped_column(Numeric)
     geom: Mapped[str | None] = mapped_column(
         Geometry(
             geometry_type="POINT",

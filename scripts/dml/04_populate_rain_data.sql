@@ -3,7 +3,7 @@
 -- Imports station metadata and daily flow data
 -- ============================================
 -- Load stations data
-\COPY geodata.rain_stations (station_id, station_name, latitude, longitude) FROM '/tmp/rain_stations.csv' WITH CSV HEADER;
+\COPY geodata.rain_stations (id, name, latitude, longitude) FROM '/tmp/rain_stations.csv' WITH CSV HEADER;
 
 -- Load daily flow data
 \COPY data.rain_data (station_id, observation_date, value) FROM '/tmp/rain_data.csv' WITH CSV HEADER;
