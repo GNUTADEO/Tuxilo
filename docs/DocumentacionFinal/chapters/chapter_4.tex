@@ -1,6 +1,7 @@
 \chapter{Herramientas, requerimientos de software y arquitectura}
 \label{chp:4}
 
+\section{Componentes de la solución}
 
 Para dar cumplimiento al requerimiento de uso de software libre, el cuadro~\ref{tab:software} presenta el conjunto de programas empleados durante el desarrollo del proyecto, junto con una breve descripción de su uso y la licencia correspondiente. Para la clasificación de las licencias se adopta la definición de \ac{FLOSS}, que incluye software libre y de código abierto, según lo establecido por la \ac{FSF}\cite{gnu_free_sw}.
 
@@ -121,6 +122,41 @@ En conclusión, la distribución de licencias \acs{FLOSS} y propietaria se puede
 \end{figure}
 
 
+\section{Flujo general}
 
 
 
+
+\section{Configuraciones a ajustar}
+
+Antes de realizar todo el despliegue se debe hacer la creación y modificación de algunos archivos para el correcto funcionamiento del aplicativo.
+
+En primer lugar, dentro de \url{App/Deploy} se encuentra un archivo \url{env.example}, este debe ser copiado como se muestra a continuación (asumiendo que se está en sistemas UNIX):
+
+\begin{lstlisting}[style=bash]
+cp env.example .env
+\end{lstlisting}
+
+Ahora, puede utilizar su editor de texto de preferencia y empezar a editar el archivo \url{.env}, asumiendo que posee el editor de texto GNU Emacs, se debe hacer:
+
+\begin{lstlisting}[style=bash]
+  emacs -nw .env
+\end{lstlisting}
+
+Posteriormente, deberá ajustar estas variables de acuerdo a sus requerimientos y disponibilidad de puertos para cada uno de los servicios mostrados.
+
+Por otra parte, la contraseña de la base de datos deberá guardarla en un archivo de texto plano. Para eso, debe primero crear el directorio \url{Secrets} usando (desde el directorio raíz):
+
+\begin{lstlisting}[style=bash]
+  mkdir -p App/Secrets
+\end{lstlisting}
+
+Ya teniendo el directorio puede crear el archivo en donde estará la contraseña de la base de datos. Para esto, puede crear un archivo llamado \url{postgres_password} dentro de \url{Secrets/} de la siguiente manera:
+
+\begin{lstlisting}[style=bash]
+  cat > App/Secrets/postgres_password
+  Ingrese-su-password-segura
+  ^C
+\end{lstlisting}
+
+Donde \url{Ingrese-su-password-segura} es la contraseña de la base de datos y \url{^C} es la combinación de teclas Control + C. Así, ya tendrá las configuraciones de variables de ambiente para poder desplegar el aplicativo completo. 
