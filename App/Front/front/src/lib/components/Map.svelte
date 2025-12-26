@@ -19,9 +19,7 @@
 
 	interface Semestre {
 		id: number;
-		nombre: string;
-		latitud: number;
-		longitud: number;
+		periodo: string;
 	}
 
 	interface Embalse {
@@ -57,10 +55,11 @@
 	interface Props {
 		selectedEmbalseId?: number | null;
 		onEmbalsesLoaded?: (embalses: Embalse[]) => void;
+		onSemestresLoaded?: (semestres: Semestre[]) => void;
 		showNearestStation?: boolean;
 	}
 
-	let { selectedEmbalseId, onEmbalsesLoaded, showNearestStation = false }: Props = $props();
+	let { selectedEmbalseId, onEmbalsesLoaded, onSemestresLoaded, showNearestStation = false }: Props = $props();
 
 	let mapElement: HTMLDivElement;
 
@@ -122,7 +121,7 @@
 			embalses = embalses_points_data.features;
 			estaciones_flow = estaciones_flow_data.features;
 			estaciones_rain = estaciones_rain_data.features;
-			semestres = semestres_data.semestres;
+			semestres = semestres_data.features;
 
 			// Add markers for each embalse
 			embalses.forEach((embalse) => {
@@ -168,6 +167,9 @@
 
 			if (onEmbalsesLoaded) {
 				onEmbalsesLoaded(embalses);
+			}
+			if (onSemestresLoaded) {
+				onSemestresLoaded(semestres);
 			}
 		} catch (error) {
 			console.error('Error fetching embalses:', error);

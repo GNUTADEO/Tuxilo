@@ -7,8 +7,11 @@
 	let selectedSemestreId = $state(null);
 	let showNearestStation = $state(false);
 
-	function handleLoaded(loadedEmbalses) {
+	function handleLoadedEmbalses(loadedEmbalses) {
 		embalses = loadedEmbalses;
+	}
+	
+	function handleLoadedSemestres(loadedSemestres) {
 		semestres = loadedSemestres;
 	}
 
@@ -18,7 +21,7 @@
 		// Reset when changing embalse
 		showNearestStation = false;
 	}
-	
+
 	function handleSemestreChange(event) {
 		selectedSemestreId = event.target.value ? Number(event.target.value) : null;
 		console.log('Selected semestre ID:', selectedSemestreId);
@@ -37,7 +40,7 @@
 </script>
 
 <div class="flex h-full w-full flex-col gap-4">
-    
+
 	<div class="w-full">
 		<div class="card bg-base-100 h-full w-full p-4 shadow-xl">
 			<h1 class="mb-4 text-2xl font-bold">Controles</h1>
@@ -72,7 +75,7 @@
 					>
 						<option value="">Seleccione un semestre</option>
 						{#each semestres as semestre (semestre.id)}
-							<option value={semestre.id}>{semestre.nombre}</option>
+							<option value={semestre.id}>{semestre.periodo}</option>
 						{/each}
 					</select>
 				</div>
@@ -86,7 +89,12 @@
 
 	<div class="flex flex-1 flex-col gap-4">
 		<div class="card bg-base-100 h-[65vh] p-2 shadow-xl">
-			<Map {selectedEmbalseId} onEmbalsesLoaded={handleLoaded} {showNearestStation} />
+		<Map
+            {selectedEmbalseId}
+            onEmbalsesLoaded={(e) => embalses = e}
+            onSemestresLoaded={(s) => semestres = s}
+            {showNearestStation}
+        />
 		</div>
 	</div>
 
